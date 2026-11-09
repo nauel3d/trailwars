@@ -124,26 +124,28 @@ function Sim.step(self: any, inputs: any?)
 					p.id,
 					"Wall"
 				)
-				for _, segment in
-					self.index:query(p.x, p.y, nextState.x, nextState.y, c.CoreRadius + c.TrailRadius + margin)
-				do
-					if segment.owner ~= p.id or p.distance - segment.endDistance > c.SelfGraceDistance then
-						hit(
-							Geometry.capsuleTOI(
-								p.x,
-								p.y,
-								nextState.x,
-								nextState.y,
-								segment.ax,
-								segment.ay,
-								segment.bx,
-								segment.by,
-								c.CoreRadius + c.TrailRadius + margin
-							),
-							p.id,
-							if segment.owner == p.id then "SelfTrail" else "Trail",
-							segment.owner
-						)
+				if not p.jumping then
+					for _, segment in
+						self.index:query(p.x, p.y, nextState.x, nextState.y, c.CoreRadius + c.TrailRadius + margin)
+					do
+						if segment.owner ~= p.id or p.distance - segment.endDistance > c.SelfGraceDistance then
+							hit(
+								Geometry.capsuleTOI(
+									p.x,
+									p.y,
+									nextState.x,
+									nextState.y,
+									segment.ax,
+									segment.ay,
+									segment.bx,
+									segment.by,
+									c.CoreRadius + c.TrailRadius + margin
+								),
+								p.id,
+								if segment.owner == p.id then "SelfTrail" else "Trail",
+								segment.owner
+							)
+						end
 					end
 				end
 			end
@@ -152,7 +154,7 @@ function Sim.step(self: any, inputs: any?)
 			if a.alive then
 				for j = i + 1, #self.players do
 					local b = self.players[j]
-					if b.alive then
+					if b.alive and not a.jumping and not b.jumping then
 						local an, bn = proposals[a.id], proposals[b.id]
 						local head = Geometry.circleTOI(
 							a.x - b.x,
@@ -212,7 +214,7 @@ function Sim.step(self: any, inputs: any?)
 					heading = p.heading + angle * portion,
 					distance = p.distance + (proposed.distance - p.distance) * portion,
 				}
-				if (n.x - p.x) ^ 2 + (n.y - p.y) ^ 2 > 1e-12 then
+				if not p.jumping and (n.x - p.x) ^ 2 + (n.y - p.y) ^ 2 > 1e-12 then
 					self.index:insert({
 						owner = p.id,
 						ax = p.x,
@@ -241,6 +243,7 @@ function Sim.step(self: any, inputs: any?)
 					p.placement = before
 					p.eliminatedTick = self.tick
 					p.cause = event.kind
+					p.killerId = if event.kind == "Trail" and event.other ~= p.id then event.other else nil
 					self.nextEvent += 1
 					table.insert(self.events, {
 						sequence = self.nextEvent,
@@ -248,6 +251,7 @@ function Sim.step(self: any, inputs: any?)
 						id = p.id,
 						kind = "Eliminated",
 						cause = event.kind,
+						killerId = p.killerId,
 						placement = before,
 					})
 				end
@@ -291,6 +295,8 @@ function Sim.snapshot(self: any)
 			turn = p.turn,
 			placement = p.placement,
 			cause = p.cause,
+			jumping = p.jumping == true,
+			killerId = p.killerId,
 		})
 	end
 	return {

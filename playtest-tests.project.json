@@ -1,0 +1,64 @@
+{
+  "name": "TrailWarsNov10EngineTests",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "TrailWars": {
+        "$path": "src/shared"
+      },
+      "TrailWarsUI": {
+        "$path": "src/client"
+      },
+      "TrailWarsDev": {
+        "$path": "dev/PolishProof",
+        "$className": "Folder"
+      }
+    },
+    "ServerScriptService": {
+      "TrailWars": {
+        "$className": "Folder",
+        "MatchService": {
+          "$path": "src/server/MatchService.luau"
+        },
+        "ProfileStore": {
+          "$path": "src/server/ProfileStore.luau"
+        },
+        "EconomyService": {
+          "$path": "src/server/EconomyService.luau"
+        },
+        "MockStore": {
+          "$path": "src/server/MockStore.luau"
+        },
+        "PlaytestMatchService": {
+          "$path": "src/server/PlaytestMatchService.luau"
+        }
+      },
+      "Gameplay": {
+        "$path": "dev/PlaytestServer.server.luau"
+      },
+      "Nov10Test": {
+        "$path": "tests/Nov10Engine.server.luau"
+      }
+    },
+    "StarterGui": {
+      "$properties": {
+        "ScreenOrientation": "Sensor"
+      }
+    },
+    "StarterPlayer": {
+      "$properties": {
+        "LoadCharacterAppearance": false,
+        "DevTouchMovementMode": "Scriptable",
+        "DevComputerMovementMode": "Scriptable"
+      },
+      "StarterPlayerScripts": {
+        "Gameplay": {
+          "$path": "dev/PlaytestBootstrap.client.luau"
+        },
+        "Nov10Test": {
+          "$path": "tests/Nov10Engine.client.luau"
+        }
+      }
+    }
+  }
+}
