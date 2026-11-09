@@ -24,7 +24,7 @@ Status: critical controlled two-client engine gate PASSED. This is an unpublishe
 | Online Roblox hosting for remote testers | NOT ENABLED | Owner publishing approval required; no publish performed |
 | Purchases / monetization | DISABLED | No live purchase path |
 
-Normal Studio visual review found correct rank numbers displayed in unsorted array order. The row component now sorts a copied input by rank/ID before calculating animated positions; final native verification is recorded separately. Intermission animation is cancellable, supports reduced motion and local skip. Simulation does not wait for animation.
+Normal Studio visual review found correct rank numbers displayed in unsorted array order. The row component now sorts a copied input by rank/ID before calculating animated positions. A subsequent complete normal three-round run passed: final native row Y offsets34/82/130/178 corresponded to ranks1/2/3/4 and scores70/61/49/10. See `verified-normal-gameplay.mp4` and its unmodified frame at108seconds, `verified-final-frame.png`. This is solo normal gameplay with three bots; the separate JSON is the controlled two-client evidence. Intermission animation is cancellable, supports reduced motion and local skip. Simulation does not wait for animation.
 
 Earlier engine attempts1–4 are retained. They exposed driver exit/steering timing issues and a short fixture round that expired before a missed rocket could relaunch. The successful fifth run uses controlled geometry with a longer first fixture round; normal rounds retain their own cap. Fixture geometry is never shipped in the normal place.
 
