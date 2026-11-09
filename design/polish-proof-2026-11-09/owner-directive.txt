@@ -1,0 +1,157 @@
+# TRAIL WARS — LOW-CREDIT UI DEVELOPMENT DIRECTIVE
+
+Continue from the existing GitHub project:
+https://github.com/nauel3d/trailwars
+
+## Objective
+
+Build a beautiful, Nintendo-like, playful, tactile, fully responsive and modular Roblox UI based on our approved design direction.
+
+**Prioritize final quality while minimizing tool calls, unnecessary research, repeated work, and expensive computer-use sessions.**
+
+## 1. Reuse everything already completed
+
+Before doing anything new:
+
+- Inspect the current branch and existing files.
+- Reuse all previous UI research, screen inventories, navigation diagrams, mockups, design tokens, tests, and working code.
+- Do not repeat the Steam/REA investigation.
+- Do not redesign the entire UI again.
+- Preserve all existing systems and Git history.
+
+Use GitHub Issue #2 and its latest instructions as the project requirements.
+
+## 2. Use the most efficient toolchain
+
+Evaluate the existing toolchain once, then select a practical solution.
+
+Preferred workflow:
+
+**Penpot (if beneficial) → reusable graphics → Roblox native UI → Luau/Rojo → UI Labs.**
+
+Do not install or integrate tools unless they materially improve results.
+
+Do not waste credits researching ten alternatives when an existing solution works.
+
+Prefer native Roblox components, with nine-slice graphics for decorative glossy buttons and panels.
+
+Use real TextLabels, TextButtons, UI layouts, and dynamic values.
+
+Never create an interface by stretching a complete screenshot.
+
+## 3. Responsive architecture
+
+Develop one modular UI system that intelligently adapts to available viewport and safe-area dimensions.
+
+Support desktop, ultrawide, tablets, portrait phones, landscape phones, mouse, keyboard, touch, and controller.
+
+Use appropriate native layout objects and size constraints.
+
+Do not rely solely on UIScale.
+
+Keep text readable, touch targets large, navigation accessible, and gameplay HUD unobstructed.
+
+Reuse responsive layout functions across screens.
+
+## 4. Component-first implementation
+
+Before building complete screens, create these reusable components:
+
+- Primary and secondary buttons.
+- Navigation buttons.
+- Glossy panels and cards.
+- Currency display.
+- Cosmetic item cards.
+- Cosmetic preview.
+- Modal and popup.
+- Tabs and settings rows.
+- Shared navigation and screen shell.
+
+Each component must support its necessary interactive states.
+
+Make controls enjoyable to press, with restrained tactile animation and clear feedback.
+
+Do not implement decorative features that noticeably harm performance.
+
+## 5. Work in efficient batches
+
+Follow this process:
+
+**Batch A — Design foundation:** Confirm approved visual references, reuse the existing design specifications, and document chosen tools and reusable asset requirements.
+
+**Batch B — Component proof:** Build and test representative interactive components using source code and UI Labs.
+
+**Batch C — Responsive proof:** Compose one approved screen at desktop, phone portrait, and phone landscape sizes. Verify no stretching, clipping, or unusable controls.
+
+**STOP for my approval of the visual proof.**
+
+**Batch D — Full UI implementation after approval:** Build remaining approved screens using the shared components. Preserve existing navigation, inventory, settings, and economy logic.
+
+**Batch E — Final QA:** Perform a small number of bundled Roblox Studio checks, resolve problems, and push verified changes to GitHub.
+
+Do not repeatedly open Studio for small changes.
+
+## 6. Know when to pivot
+
+If an approach fails two meaningful tests or clearly produces poor fidelity, stop forcing it.
+
+Identify the problem, compare plausible alternatives, and test the best option on one component.
+
+Change techniques when necessary.
+
+Preserve working code and approved art direction.
+
+Do not spend hours repairing a fundamentally unsuitable approach.
+
+## 7. Strict credit-saving rules
+
+- Prefer existing evidence over new research.
+- Prefer direct file inspection over expensive GUI browsing.
+- Prefer CLI commands over computer-use automation.
+- Use image generation only for missing, necessary visual assets.
+- Avoid repeatedly regenerating entire screens.
+- Use mock data and UI Labs for isolated previews.
+- Batch Studio screenshots and verification.
+- Do not launch Steam or use REA.
+- Do not implement gameplay.
+- Do not enable real purchases.
+- Do not rewrite functioning backend systems.
+- Avoid repetitive status messages and lengthy research reports.
+- Commit meaningful milestones rather than every minor edit.
+
+Do not skip essential visual testing merely to save credits.
+
+## 8. Quality requirements
+
+The result should have:
+
+- A consistent, memorable visual identity.
+- Nintendo-like tactile polish without copying Nintendo assets.
+- Smooth and purposeful transitions.
+- Real responsive layouts, not stretched images.
+- Clear navigation.
+- Reusable components.
+- Proper loading and error states.
+- Efficient rendering.
+- Accessible controls.
+- Excellent visual fidelity to approved designs.
+
+## 9. Immediate action
+
+Start from the current GitHub branch.
+
+Verify which design direction is actually approved. The latest mint/navy proposal was not approved; do not silently implement it.
+
+Use the approved peach/plum/orange/turquoise visual reference unless I've subsequently approved a replacement.
+
+Briefly report what can be reused.
+
+Then create the reusable component proof and responsive screen prototype.
+
+Do not perform another broad research or redesign cycle.
+
+**Show me the actual Roblox UI result for approval before implementing the remaining screens.**
+
+Work independently, efficiently, and intelligently. Save progress to GitHub.
+
+The goal is not the fewest possible tool calls. The goal is the best polished, maintainable UI with no wasted work.

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"note\":\"Roblox engine frame-size tests and callback/state checks; not hardware, safe-area, mouse, touch or controller certification.\",\"callbacks\":165,\"failures\":[],\"cases\":33,\"states\":4}"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,16 @@
+{
+  "name": "TrailWarsSnapProof",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "TrailWars": { "$path": "src/shared" },
+      "TrailWarsUI": { "$path": "src/client" },
+      "TrailWarsDev": { "$path": "dev" }
+    },
+    "StarterGui": { "$properties": { "ScreenOrientation": "Sensor" } },
+    "StarterPlayer": {
+      "$properties": { "LoadCharacterAppearance": false, "DevTouchMovementMode": "Scriptable", "DevComputerMovementMode": "Scriptable" },
+      "StarterPlayerScripts": { "TrailWars": { "$path": "dev/SnapProofBootstrap.client.luau" } }
+    }
+  }
+}
