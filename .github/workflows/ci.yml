@@ -1,0 +1,20 @@
+name: Source checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Bootstrap checksum-pinned local tools
+        shell: pwsh
+        run: ./scripts/bootstrap.ps1
+      - name: Format, lint, compile, test and build
+        shell: pwsh
+        run: ./scripts/check.ps1
