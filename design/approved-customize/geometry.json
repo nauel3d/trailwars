@@ -1,0 +1,128 @@
+{
+  "canvas": [
+    1672,
+    941
+  ],
+  "layers": [
+    {
+      "name": "logo",
+      "asset": "logo",
+      "rect": [
+        22,
+        25,
+        345,
+        249
+      ]
+    },
+    {
+      "name": "play",
+      "asset": "button_plum",
+      "rect": [
+        14,
+        282,
+        360,
+        128
+      ]
+    },
+    {
+      "name": "customize",
+      "asset": "button_plum",
+      "rect": [
+        14,
+        409,
+        360,
+        128
+      ]
+    },
+    {
+      "name": "shop",
+      "asset": "button_orange",
+      "rect": [
+        14,
+        524,
+        360,
+        128
+      ]
+    },
+    {
+      "name": "profile",
+      "asset": "button_plum",
+      "rect": [
+        14,
+        649,
+        360,
+        128
+      ]
+    },
+    {
+      "name": "settings",
+      "asset": "button_plum",
+      "rect": [
+        14,
+        766,
+        360,
+        128
+      ]
+    },
+    {
+      "name": "ring-card",
+      "asset": "card_selected",
+      "rect": [
+        374,
+        242,
+        512,
+        196
+      ]
+    },
+    {
+      "name": "trail-card",
+      "asset": "card_plum",
+      "rect": [
+        374,
+        447,
+        512,
+        176
+      ]
+    },
+    {
+      "name": "preview-frame",
+      "asset": "frame_cream",
+      "rect": [
+        904,
+        144,
+        752,
+        560
+      ]
+    },
+    {
+      "name": "view-item",
+      "asset": "button_orange",
+      "rect": [
+        1032,
+        708,
+        528,
+        132
+      ]
+    },
+    {
+      "name": "starter-core",
+      "asset": "pill_cream",
+      "rect": [
+        378,
+        704,
+        512,
+        94
+      ]
+    },
+    {
+      "name": "starter-trail",
+      "asset": "pill_cream",
+      "rect": [
+        378,
+        803,
+        512,
+        94
+      ]
+    }
+  ]
+}

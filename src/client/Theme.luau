@@ -1,14 +1,14 @@
 --!strict
--- Course markings: original geometric UI, no uploaded/reference assets.
+-- User-approved peach/plum identity. Shared by the existing UI routes.
 return table.freeze({
-	Background = Color3.fromRGB(21, 23, 25),
-	Surface = Color3.fromRGB(34, 38, 41),
-	Raised = Color3.fromRGB(44, 49, 52),
-	Text = Color3.fromRGB(245, 243, 233),
-	Muted = Color3.fromRGB(174, 182, 181),
-	Border = Color3.fromRGB(83, 91, 92),
-	Accent = Color3.fromRGB(231, 245, 106),
-	Trail = Color3.fromRGB(185, 167, 238),
-	Warm = Color3.fromRGB(243, 154, 131),
-	Ink = Color3.fromRGB(21, 23, 25),
+	Background = Color3.fromRGB(255, 208, 167),
+	Surface = Color3.fromRGB(61, 27, 57),
+	Raised = Color3.fromRGB(94, 42, 79),
+	Text = Color3.fromRGB(61, 27, 57),
+	Muted = Color3.fromRGB(99, 59, 79),
+	Border = Color3.fromRGB(170, 101, 136),
+	Accent = Color3.fromRGB(255, 119, 0),
+	Trail = Color3.fromRGB(0, 218, 186),
+	Warm = Color3.fromRGB(255, 231, 197),
+	Ink = Color3.fromRGB(255, 241, 218),
 })

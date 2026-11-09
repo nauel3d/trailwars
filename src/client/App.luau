@@ -18,7 +18,7 @@ function App.mount(target: Instance, options: any?)
 		screen = Instance.new("ScreenGui")
 		screen.ResetOnSpawn = false
 		screen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-		screen.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
+		screen.ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets
 	else
 		screen = Instance.new("Frame")
 		screen.Size = UDim2.fromScale(1, 1)
@@ -27,6 +27,22 @@ function App.mount(target: Instance, options: any?)
 	end
 	screen.Name = "TrailWarsUI"
 	screen.Parent = target
+	if screen:IsA("ScreenGui") then
+		local safeBackground = Instance.new("ScreenGui")
+		safeBackground.Name = "TrailWarsBackground"
+		safeBackground.ResetOnSpawn = false
+		safeBackground.ScreenInsets = Enum.ScreenInsets.None
+		safeBackground.DisplayOrder = screen.DisplayOrder - 1
+		safeBackground.Parent = target
+		local fill = Instance.new("Frame")
+		fill.Size = UDim2.fromScale(1, 1)
+		fill.BackgroundColor3 = Theme.Background
+		fill.BorderSizePixel = 0
+		fill.Parent = safeBackground
+		screen.Destroying:Once(function()
+			safeBackground:Destroy()
+		end)
+	end
 	local backdrop = Instance.new("Frame")
 	backdrop.Name = "ArcadeBackdrop"
 	backdrop.Size = UDim2.fromScale(1, 1)
@@ -76,6 +92,7 @@ function App.mount(target: Instance, options: any?)
 	local pointerSteering: { [InputObject]: string } = {}
 	local selectionPulse: { [string]: boolean } = {}
 	local persistent: { RBXScriptConnection } = {}
+	local approvedStage: Frame? = nil
 
 	local function header(title: string)
 		W.text(body, title, 56, 26)
@@ -388,6 +405,10 @@ function App.mount(target: Instance, options: any?)
 		end
 		generation += 1
 		W.clear()
+		if approvedStage then
+			approvedStage:Destroy()
+			approvedStage = nil
+		end
 		steering = nil
 		table.clear(steeringKeys)
 		table.clear(pointerSteering)
@@ -399,14 +420,60 @@ function App.mount(target: Instance, options: any?)
 		end
 		W.scale = if profile then profile.settings.textScale else 1
 		W.reducedMotion = profile and profile.settings.reducedMotion == true
-		local wordmark = W.label(root, "TRAIL / WARS", 22, Theme.Text)
-		wordmark.Size = UDim2.new(0.6, 0, 0, 48)
+		root.Visible = (route ~= "Customize" and route ~= "Home" and route ~= "Shop") or modal ~= nil
+		if (route == "Customize" or route == "Home" or route == "Shop") and not modal then
+			if screen:IsA("ScreenGui") then
+				screen.ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets
+			end
+			approvedStage = require(script.Parent.PeachCustomize).mount(screen, {
+				widgets = W,
+				page = route,
+				profile = profile,
+				mock = mock,
+				initialSelection = if focusName and focusName:sub(1, 5) == "Item_" then focusName:sub(6) else nil,
+				status = message,
+				needsReconciliation = needsReconciliation,
+				refresh = function()
+					request({ action = "Snapshot" })
+				end,
+				navigate = navigate,
+				itemDetails = itemDetails,
+			})
+			if not options.preview and focusName then
+				for _, candidate in W.buttons do
+					if candidate.Name == focusName then
+						GuiService.SelectedObject = candidate
+						break
+					end
+				end
+			end
+			if not options.preview and UserInputService.GamepadEnabled and not GuiService.SelectedObject then
+				GuiService.SelectedObject = W.firstButton
+			end
+			local elapsed = (os.clock() - before) * 1000
+			telemetry.lastNavigationMs = elapsed
+			telemetry.maxNavigationMs = math.max(telemetry.maxNavigationMs, elapsed)
+			screen:SetAttribute("LastNavigationMs", elapsed)
+			screen:SetAttribute("MaxNavigationMs", telemetry.maxNavigationMs)
+			screen:SetAttribute("CurrentRoute", route)
+			return
+		end
+		if screen:IsA("ScreenGui") then
+			screen.ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets
+		end
+		local wordmark = Instance.new("ImageLabel")
+		wordmark.Name = "TrailWarsWordmark"
+		wordmark.BackgroundTransparency = 1
+		wordmark.Image = require(script.Parent.PeachAssets).logo.image
+		wordmark.ScaleType = Enum.ScaleType.Fit
+		wordmark.Parent = root
+		wordmark.Size = UDim2.fromOffset(140, 100)
 		local profileLink = W.button(root, "PROFILE ↗", function()
 			navigate("Profile")
 		end, modal ~= nil)
-		profileLink.Size = UDim2.new(0.35, 0, 0, 48)
+		profileLink.Size = UDim2.new(0.35, 0, 0, 58)
 		profileLink.TextSize = 12 * W.scale
-		profileLink.Position = UDim2.fromScale(0.65, 0)
+		profileLink.Position = UDim2.new(0.65, 0, 0, 16)
 		local nav = W.frame(root, "Navigation", 52)
 		nav.Position = UDim2.new(0, 0, 1, -56)
 		for index, destination in { "Home", "Customize", "Shop", "Settings" } do
@@ -433,7 +500,7 @@ function App.mount(target: Instance, options: any?)
 				else "← BACK",
 			back
 		)
-		backButton.Position = UDim2.fromOffset(0, 54)
+		backButton.Position = UDim2.fromOffset(0, 106)
 		backButton.Size = UDim2.new(1, 0, 0, 48)
 		body = Instance.new("ScrollingFrame")
 		body.Name = "ScreenContent"
@@ -451,6 +518,30 @@ function App.mount(target: Instance, options: any?)
 		bodyPadding.PaddingBottom = UDim.new(0, 16)
 		bodyPadding.Parent = body
 		W.list(body, 12)
+		local function arrangeShell()
+			if not body.Parent then
+				return
+			end
+			local narrow = root.AbsoluteSize.X < 560
+			local navHeight = if narrow then 132 else 64
+			nav.Size = UDim2.new(1, 0, 0, navHeight)
+			nav.Position = UDim2.new(0, 0, 1, -navHeight - 6)
+			body.Position = UDim2.fromOffset(0, 168)
+			body.Size = UDim2.new(1, 0, 1, -168 - navHeight - 18)
+			local index = 0
+			for _, control in nav:GetChildren() do
+				if control:IsA("TextButton") then
+					local columns = if narrow then 2 else 4
+					local col, row = index % columns, math.floor(index / columns)
+					control.Position = UDim2.new(col / columns, 3, 0, row * 66)
+					control.Size = UDim2.new(1 / columns, -8, 0, 58)
+					control.TextSize = 16 * W.scale
+					index += 1
+				end
+			end
+		end
+		W.connect(root:GetPropertyChangedSignal("AbsoluteSize"), arrangeShell)
+		task.defer(arrangeShell)
 		W.text(body, (if mock then "MOCK · " else "") .. message, 38, 13)
 		if not profile and not needsReconciliation then
 			button("RETRY PROFILE CONNECTION", function()

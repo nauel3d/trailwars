@@ -1,6 +1,7 @@
 --!strict
 -- Scoped native components shared by the live app and UI Labs stories.
 local Theme = require(script.Parent.Theme)
+local Assets = require(script.Parent.PeachAssets)
 local TweenService = game:GetService("TweenService")
 local Widgets = {}
 function Widgets.new()
@@ -78,14 +79,14 @@ function Widgets.new()
 	function W.button(parent: Instance, content: string, callback: () -> (), disabled: boolean?): TextButton
 		local result = Instance.new("TextButton")
 		result.Size = UDim2.new(1, 0, 0, 54)
-		result.Font = Enum.Font.GothamMedium
+		result.Font = Enum.Font.FredokaOne
 		result.TextSize = 15 * W.scale
 		result.TextWrapped = true
 		if parent:IsA("ScrollingFrame") then
 			result.AutomaticSize = Enum.AutomaticSize.Y
 		end
 		result.Name = "Button_" .. string.sub(string.gsub(content, "[^%w]", "_"), 1, 80)
-		result.TextColor3 = Theme.Text
+		result.TextColor3 = Theme.Ink
 		result.BackgroundColor3 = if disabled then Theme.Surface else Theme.Surface
 		result.TextTransparency = if disabled then 0.4 else 0
 		result.AutoButtonColor = false
@@ -93,10 +94,43 @@ function Widgets.new()
 		result.Selectable = not disabled
 		result.Text = content
 		result.Parent = parent
+		result.BackgroundTransparency = 1
+		local skin = Instance.new("ImageLabel")
+		skin.Name = "GlossySkin"
+		skin.Image = Assets.button_plum.image
+		skin.ScaleType = Enum.ScaleType.Slice
+		skin.SliceCenter = Rect.new(table.unpack(Assets.button_plum.slice))
+		skin.SliceScale = Assets.button_plum.sliceScale
+		skin.BackgroundTransparency = 1
+		skin.Size = UDim2.new(1, 12, 1, 8)
+		skin.Position = UDim2.fromOffset(-6, -2)
+		skin.Parent = result
+		local face = Instance.new("TextLabel")
+		face.Name = "ButtonFace"
+		face.BackgroundTransparency = 1
+		face.Size = UDim2.new(1, -12, 1, 0)
+		face.Position = UDim2.fromOffset(6, 0)
+		face.Text = content
+		face.TextWrapped = true
+		face.Font = result.Font
+		face.TextSize = result.TextSize
+		face.TextColor3 = Theme.Ink
+		face.TextTransparency = if disabled then 0.45 else 0
+		face.Parent = result
+		W.connect(result:GetPropertyChangedSignal("TextSize"), function()
+			face.TextSize = result.TextSize
+		end)
+		W.connect(result:GetPropertyChangedSignal("TextColor3"), function()
+			face.TextColor3 = result.TextColor3
+		end)
+		W.connect(result:GetPropertyChangedSignal("Text"), function()
+			face.Text = result.Text
+		end)
 		local stroke = Instance.new("UIStroke")
 		stroke.Color = Theme.Border
 		stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		stroke.Parent = result
+		stroke.Transparency = 1
 		local corner = Instance.new("UICorner")
 		corner.CornerRadius = UDim.new(0, 10)
 		corner.Parent = result
@@ -110,14 +144,11 @@ function Widgets.new()
 					return
 				end
 				result.TextTransparency = 0
-				local color = if result:GetAttribute("Primary")
-					then Theme.Accent
-					elseif active then Theme.Raised
-					else Theme.Surface
+				local color = if active then Color3.fromRGB(238, 248, 245) else Color3.new(1, 1, 1)
 				if W.reducedMotion then
-					result.BackgroundColor3 = color
+					skin.ImageColor3 = color
 				else
-					local tween = TweenService:Create(result, TweenInfo.new(0.12), { BackgroundColor3 = color })
+					local tween = TweenService:Create(skin, TweenInfo.new(0.12), { ImageColor3 = color })
 					if W.tweens[result] then
 						W.tweens[result]:Cancel()
 					end
@@ -141,9 +172,11 @@ function Widgets.new()
 			end)
 			W.connect(result.MouseButton1Down, function()
 				result.TextTransparency = 0.25
+				skin.Position = UDim2.fromOffset(-6, 1)
 			end)
 			W.connect(result.MouseButton1Up, function()
 				result.TextTransparency = 0
+				skin.Position = UDim2.fromOffset(-6, -2)
 			end)
 		end
 		if not disabled then
@@ -157,64 +190,75 @@ function Widgets.new()
 		return result
 	end
 	function W.preview(parent: Instance, item: any)
-		local frame = W.frame(parent, "CosmeticPreview", 110)
-		frame.BackgroundTransparency = 0
-		frame.BackgroundColor3 = Theme.Background
-		local trail = Instance.new("Frame")
-		trail.Position = UDim2.new(0.15, 0, 0.5, -3)
-		trail.Size = UDim2.new(0.65, 0, 0, 6)
-		trail.BackgroundColor3 = Theme.Trail
-		trail.BorderSizePixel = 0
+		local frame = W.frame(parent, "CosmeticPreview", 160)
+		local field = Instance.new("ImageLabel")
+		field.Name = "PlumPreviewField"
+		field.Image = Assets.plum_texture.image
+		field.BackgroundTransparency = 1
+		field.Position = UDim2.fromOffset(10, 10)
+		field.Size = UDim2.new(1, -20, 1, -20)
+		field.ScaleType = Enum.ScaleType.Tile
+		field.TileSize = UDim2.fromOffset(128, 128)
+		field.Parent = frame
+		local clip = Instance.new("UICorner")
+		clip.CornerRadius = UDim.new(0, 24)
+		clip.Parent = field
+		local trail = Instance.new("ImageLabel")
+		trail.Name = "CosmeticTrail"
+		trail.BackgroundTransparency = 1
+		trail.Image = if item.id == "trail_dashed" then Assets.dashed_icon.image else Assets.route_teal.image
+		trail.ImageColor3 = if item.id == "trail_dashed" then Color3.new(1, 1, 1) else Theme.Trail
+		trail.Position = UDim2.fromScale(0.08, 0.12)
+		trail.Size = UDim2.fromScale(0.82, 0.76)
+		trail.ScaleType = Enum.ScaleType.Fit
 		trail.Parent = frame
-		if item.id == "trail_dashed" then
-			-- Keep a continuous visible boundary under the cosmetic dash pattern.
-			trail.BackgroundColor3 = Theme.Muted
-			for index = 0, 7 do
-				local dash = Instance.new("Frame")
-				dash.Position = UDim2.fromScale(index / 8, 0)
-				dash.Size = UDim2.fromScale(0.08, 1)
-				dash.BackgroundColor3 = Theme.Trail
-				dash.BorderSizePixel = 0
-				dash.Parent = trail
-			end
-		end
-		local core = Instance.new("Frame")
+		local core = Instance.new("ImageLabel")
+		core.Name = "CosmeticCore"
+		core.BackgroundTransparency = 1
+		core.Image = if item.id == "core_ring" then Assets.ring.image else Assets.core.image
 		core.AnchorPoint = Vector2.new(0.5, 0.5)
-		core.Position = UDim2.fromScale(0.8, 0.5)
-		core.Size = UDim2.fromOffset(28, 28)
-		core.BackgroundColor3 = Theme.Accent
-		core.BorderSizePixel = 0
+		core.Position = UDim2.fromScale(0.72, 0.54)
+		core.Size = UDim2.fromOffset(46, 46)
 		core.Parent = frame
-		local corner = Instance.new("UICorner")
-		corner.CornerRadius = UDim.new(1, 0)
-		corner.Parent = core
-		if item.id == "core_ring" then
-			core.BackgroundTransparency = 1
-			local stroke = Instance.new("UIStroke")
-			stroke.Color = Theme.Accent
-			stroke.Thickness = 4
-			stroke.Parent = core
-		end
+		local rim = Instance.new("ImageLabel")
+		rim.Name = "CreamPreviewRim"
+		rim.BackgroundTransparency = 1
+		rim.Image = Assets.frame_cream.image
+		rim.ScaleType = Enum.ScaleType.Slice
+		rim.SliceCenter = Rect.new(table.unpack(Assets.frame_cream.slice))
+		rim.SliceScale = 0.32
+		rim.Size = UDim2.fromScale(1, 1)
+		rim.Parent = frame
 		return frame
 	end
 	function W.primary(control: TextButton)
 		control:SetAttribute("Primary", true)
 		control.BackgroundColor3 = Theme.Accent
 		control.TextColor3 = Theme.Ink
-		control.Font = Enum.Font.GothamBold
+		control.Font = Enum.Font.FredokaOne
+		local skin = control:FindFirstChild("GlossySkin") :: ImageLabel?
+		if skin then
+			skin.Image = Assets.button_orange.image
+			skin.SliceCenter = Rect.new(table.unpack(Assets.button_orange.slice))
+		end
 		control.TextSize = 21 * W.scale
 		control.Size = UDim2.new(1, 0, 0, 64)
 	end
 	function W.selected(control: TextButton)
 		control.BackgroundColor3 = Theme.Raised
-		control.TextColor3 = Theme.Accent
+		control.TextColor3 = Theme.Ink
+		local skin = control:FindFirstChild("GlossySkin") :: ImageLabel?
+		if skin then
+			skin.Image = Assets.button_orange.image
+			skin.SliceCenter = Rect.new(table.unpack(Assets.button_orange.slice))
+		end
 	end
 	function W.label(parent: Instance, content: string, size: number, color: Color3?): TextLabel
 		local label = Instance.new("TextLabel")
 		label.BackgroundTransparency = 1
 		label.Text = content
 		label.TextColor3 = color or Theme.Text
-		label.Font = Enum.Font.GothamBold
+		label.Font = Enum.Font.FredokaOne
 		label.TextSize = size
 		label.TextWrapped = true
 		label.TextXAlignment = Enum.TextXAlignment.Left
@@ -224,11 +268,11 @@ function Widgets.new()
 	end
 	function W.hero(parent: Instance)
 		local hero = W.frame(parent, "HomeHero", 310)
-		local title = W.label(hero, "MAKE YOUR\nOWN WAY.", 60, Theme.Text)
+		local title = W.label(hero, "BATTLE WITH\nTRAILS!", 60, Theme.Text)
 		title.TextYAlignment = Enum.TextYAlignment.Top
-		local marker = W.label(hero, "01 / SURVIVAL ARCADE", 13, Theme.Accent)
+		local marker = W.label(hero, "LAST CORE STANDING", 14, Theme.Text)
 		local preview = W.preview(hero, { id = "core_ring" })
-		local caption = W.label(hero, "A core. A trail.\nA way out.", 18, Theme.Muted)
+		local caption = W.label(hero, "A core. A trail.\nA way out.", 18, Theme.Ink)
 		local function arrange()
 			if not hero.Parent then
 				return
@@ -270,11 +314,11 @@ function Widgets.new()
 		local preview = W.preview(card, item)
 		preview.Position = UDim2.fromOffset(2, 12)
 		preview.Size = UDim2.new(1, -4, 0.55, 0)
-		local label = W.label(card, item.name, 18 * W.scale, Theme.Text)
+		local label = W.label(card, item.name, 18 * W.scale, Theme.Ink)
 		label.Position = UDim2.fromScale(0, 0.62)
 		label.Size = UDim2.fromScale(1, 0.18)
 		local status =
-			W.label(card, state .. "  ↗", 12 * W.scale, if state == "EQUIPPED" then Theme.Accent else Theme.Muted)
+			W.label(card, state .. "  ↗", 12 * W.scale, if state == "EQUIPPED" then Theme.Accent else Theme.Ink)
 		status.Position = UDim2.fromScale(0, 0.83)
 		status.Size = UDim2.fromScale(1, 0.14)
 		return card
@@ -289,7 +333,7 @@ function Widgets.new()
 		local preview = W.preview(arena, { id = "trail_dashed" })
 		preview.Position = UDim2.fromScale(0.08, 0.23)
 		preview.Size = UDim2.fromScale(0.84, 0.6)
-		local label = W.label(arena, "TOP-DOWN ARENA / MOCK VIEW", 12, Theme.Muted)
+		local label = W.label(arena, "TOP-DOWN ARENA / MOCK VIEW", 12, Theme.Ink)
 		label.Position = UDim2.fromOffset(16, 12)
 		label.Size = UDim2.new(1, -32, 0, 28)
 		return arena

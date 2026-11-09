@@ -1,0 +1,272 @@
+{
+  "button_plum": {
+    "file": "button_plum.png",
+    "size": [
+      685,
+      236
+    ],
+    "sha256": "bb2631854618baf6b9fcc5074756138ae3f750df716a3024c93fedf304a62e80",
+    "sliceCenter": [
+      120,
+      104,
+      565,
+      130
+    ]
+  },
+  "button_orange": {
+    "file": "button_orange.png",
+    "size": [
+      740,
+      236
+    ],
+    "sha256": "e8e65f6c4c89194b7a43eaf9b273afff9ad1a0877c5331eeebd9337a061dc63b",
+    "sliceCenter": [
+      120,
+      104,
+      620,
+      130
+    ]
+  },
+  "card_plum": {
+    "file": "card_plum.png",
+    "size": [
+      685,
+      236
+    ],
+    "sha256": "bb2631854618baf6b9fcc5074756138ae3f750df716a3024c93fedf304a62e80",
+    "sliceCenter": [
+      120,
+      104,
+      565,
+      130
+    ]
+  },
+  "card_selected": {
+    "file": "card_selected.png",
+    "size": [
+      759,
+      359
+    ],
+    "sha256": "55c52cc80b62186175b689bebf57bcca99bc17dcf2ba3b461a90ad6ff0a4ca96",
+    "sliceCenter": [
+      90,
+      90,
+      669,
+      269
+    ]
+  },
+  "pill_cream": {
+    "file": "pill_cream.png",
+    "size": [
+      300,
+      82
+    ],
+    "sha256": "29f4fc373de741440aa7c0325fa0ff2c10ba8bdff438639275b59fdd3f61c3b3",
+    "sliceCenter": [
+      53,
+      40,
+      247,
+      42
+    ]
+  },
+  "pill_teal": {
+    "file": "pill_teal.png",
+    "size": [
+      180,
+      66
+    ],
+    "sha256": "7c37a83b85f318c52205592a2bae41d38e6f2db91affa89e0314e302b2eb5f59",
+    "sliceCenter": [
+      46,
+      32,
+      134,
+      34
+    ]
+  },
+  "frame_cream": {
+    "file": "frame_cream.png",
+    "size": [
+      725,
+      579
+    ],
+    "sha256": "39e814bddd2d31c59d8a0950d074e701194df9efb44f6caa83cf296c4518b93d",
+    "sliceCenter": [
+      135,
+      135,
+      590,
+      444
+    ]
+  },
+  "tab_orange": {
+    "file": "tab_orange.png",
+    "size": [
+      160,
+      60
+    ],
+    "sha256": "7d5c7e42b570fcd752651c3ccebe2e39afe5120ece2866d7ed4411d07aa81ad6",
+    "sliceCenter": [
+      43,
+      29,
+      117,
+      31
+    ]
+  },
+  "tab_teal": {
+    "file": "tab_teal.png",
+    "size": [
+      160,
+      60
+    ],
+    "sha256": "2043053ded8a9b3952536bdc5ac1174371ce05a612ea1204ba8aad3048053c7a",
+    "sliceCenter": [
+      43,
+      29,
+      117,
+      31
+    ]
+  },
+  "logo": {
+    "file": "logo.png",
+    "size": [
+      345,
+      249
+    ],
+    "sha256": "4b66512aea819084cede33faafbfcedbab6514a05cdcf051daf15d05c3a1da6b"
+  },
+  "icon_play": {
+    "file": "icon_play.png",
+    "size": [
+      88,
+      91
+    ],
+    "sha256": "79af458c345de3cfb7f1e733573c8c21f12ea0157a5b513c68cc8dd8217a8272"
+  },
+  "icon_customize": {
+    "file": "icon_customize.png",
+    "size": [
+      89,
+      82
+    ],
+    "sha256": "0dde54f03cc64950bd4ed481660c023efcc9fc0cd535c511f2349167f98414b2"
+  },
+  "icon_shop": {
+    "file": "icon_shop.png",
+    "size": [
+      83,
+      81
+    ],
+    "sha256": "d3b960ad54e3dd131ba4bb0e1b6edcc320077d9c518dec6ffab4b2b0fb3bffa7"
+  },
+  "icon_profile": {
+    "file": "icon_profile.png",
+    "size": [
+      80,
+      74
+    ],
+    "sha256": "ab70072815788175476d77c0c6352c53c11c824f1fdd93745538f3af8983014a"
+  },
+  "icon_settings": {
+    "file": "icon_settings.png",
+    "size": [
+      84,
+      76
+    ],
+    "sha256": "6303107d503290fe2da91ce946862e95eba82ab2e4885b5498418be62e44b368"
+  },
+  "coin": {
+    "file": "coin.png",
+    "size": [
+      50,
+      51
+    ],
+    "sha256": "8560792e589112e7897eba7193c15135682ecde5d2cced78e61ea4e11d78ddb7"
+  },
+  "ring": {
+    "file": "ring.png",
+    "size": [
+      157,
+      159
+    ],
+    "sha256": "d11697d995214ce0f5b124f978194954f0ee1ae8b7fe6ffad250502ab8a680e8"
+  },
+  "core": {
+    "file": "core.png",
+    "size": [
+      160,
+      160
+    ],
+    "sha256": "44bd2e91b2248adfa980588d2a51158fd41f202a85a723076ced0bfc0c3377e1"
+  },
+  "route_orange": {
+    "file": "route_orange.png",
+    "size": [
+      700,
+      460
+    ],
+    "sha256": "97c567888fb6c48a512db78c883355894d12bf2e4fca0c34ad05d06098de48b5"
+  },
+  "route_teal": {
+    "file": "route_teal.png",
+    "size": [
+      700,
+      460
+    ],
+    "sha256": "fecb061277b612abedd32f323f3cec787c9fda00cb9e374c5c7692a2d681f870"
+  },
+  "route_cream": {
+    "file": "route_cream.png",
+    "size": [
+      700,
+      460
+    ],
+    "sha256": "57bf7d0d7cc802b6d822c8589e03aba3a296f926b35334ad161f83b1c3876202"
+  },
+  "route_dashed": {
+    "file": "route_dashed.png",
+    "size": [
+      700,
+      460
+    ],
+    "sha256": "5c3ddddb0a0d986918b7a3325560eb92d694c66c285cedb30b6e95e13ae0ccb6"
+  },
+  "plum_texture": {
+    "file": "plum_texture.png",
+    "size": [
+      128,
+      128
+    ],
+    "sha256": "938afcf581398408447f66aa06a61d65b4228d2866df63d2be87228b8db6b4d0"
+  },
+  "peach_gradient": {
+    "file": "peach_gradient.png",
+    "size": [
+      256,
+      256
+    ],
+    "sha256": "5af8fe143ed26a973948ccc4559a70272e947d89c0df58122d115cbd1a7fd8d3"
+  },
+  "core_neutral": {
+    "file": "core_neutral.png",
+    "size": [
+      160,
+      160
+    ],
+    "sha256": "4adfadb2071e10ecbc8a9e0f2112df936d75a0bac6e5d64949199ced7dc3aed0"
+  },
+  "dashed_icon": {
+    "file": "dashed_icon.png",
+    "size": [
+      171,
+      104
+    ],
+    "sha256": "281fcad108f3eec1f6ef822f8a49ff538ab6e9fcf1e2760ab39f06635b8340ee"
+  },
+  "starter_trail_icon": {
+    "file": "starter_trail_icon.png",
+    "size": [
+      103,
+      41
+    ],
+    "sha256": "c65b972f6cce441378ab793bdf8190e54e660039d3f7837c0251a86a28f94bf9"
+  }
+}

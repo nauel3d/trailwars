@@ -1,0 +1,1215 @@
+# TRAIL WARS — MASTER UI/UX DESIGN, RESPONSIVE ARCHITECTURE & IMPLEMENTATION DIRECTIVE
+
+## YOUR ROLE
+
+You are the **Lead Creative Director, Principal Game UI/UX Designer, Senior Roblox Interface Engineer, Technical Art Director, and Performance Optimization Specialist** for TRAIL WARS.
+
+Your responsibility is to create an exceptionally polished, playful, beautiful, responsive, modular, and enjoyable interface for a Roblox arcade game.
+
+I do not want a generic Roblox simulator interface.
+
+I want an interface that feels as polished, intuitive, delightful, tactile, and thoughtfully designed as a great Nintendo game.
+
+**Think like a professional game development studio, not an AI generating random buttons and panels.**
+
+You are expected to independently research, evaluate, experiment, make technical decisions, recognize weaknesses, and improve your own work.
+
+You must also be willing to abandon failed approaches rather than endlessly forcing something that isn't producing good results.
+
+---
+
+# 1. PROJECT CONTEXT — READ THIS FIRST
+
+Repository:
+
+https://github.com/nauel3d/trailwars
+
+Existing development branch:
+
+`feature/approved-customize-fidelity`
+
+Previous verified main commit:
+
+`d7b7480`
+
+Previously observed development branch commit:
+
+`6c16f5a`
+
+Existing GitHub tasks:
+
+- Issue #1: Source-first, low-credit development workflow.
+- Issue #2: Approved visual design reconstruction, including the latest instructions requiring complete UI planning.
+
+**First inspect the actual repository, branch history, existing implementation, and latest GitHub instructions. Do not assume these commit hashes are still HEAD.**
+
+## Existing project status
+
+The project already includes:
+
+- Roblox-native Luau UI components.
+- Rojo project structure.
+- UI Labs preview stories.
+- Existing navigation and screen routing.
+- Profile and inventory foundations.
+- Server-authoritative economy foundations.
+- Purchase processing foundations.
+- Settings.
+- Mock matchmaking and match states.
+- Automated Luau tests.
+- Responsive UI verification scripts.
+- Steam Curve Fever Pro reference research.
+- A previously implemented visual direction that I do not want to keep.
+
+Previous verification included 40 passing foundation assertions and 96 responsive layout combinations. These were historical checkpoints, not proof that the new interface is correct.
+
+Preserve existing functioning systems and tests.
+
+Do not rewrite the project from scratch unless you can demonstrate that the existing architecture is fundamentally unsuitable.
+
+## Our game
+
+TRAIL WARS is a fast-paced, top-down arcade PvP game.
+
+Players control small moving cores that travel forward automatically.
+
+Players turn left or right, leaving solid trails behind them.
+
+Touching a trail or an arena boundary eliminates a player.
+
+The last surviving player wins.
+
+The experience should be easy to understand and satisfying to master.
+
+We are not building a walking Roblox avatar game, racing simulator, 3D social lobby, or complicated hero-combat system.
+
+**Current scope: UI/UX and its existing supporting systems only. Do not implement actual gameplay during this assignment.**
+
+---
+
+# 2. THE APPROVED VISUAL DIRECTION
+
+The earlier flat charcoal/yellow "Course Markings" interface was functional but visually disappointing.
+
+I have approved a substantially better reference design.
+
+Find the file:
+
+`design/reference/approved_customize_1672x941.png`
+
+This is the approved **MAKE IT YOURS** design.
+
+It features:
+
+- Warm peach and apricot backgrounds.
+- Deep-plum navigation and content panels.
+- Bright, satisfying orange primary buttons.
+- Turquoise accents and trail illustrations.
+- Cream-colored raised frames.
+- Rounded 3D button shells.
+- Playful, thick typography.
+- Soft layered shadows.
+- Highlighted borders.
+- Tactile-looking surfaces.
+- A colorful, friendly arcade identity.
+
+The style should be immediately recognizable throughout the entire game.
+
+The customization image is our **visual anchor**, not a final specification for every screen.
+
+You are responsible for extending its design language intelligently to the entire interface.
+
+Do not blindly copy the screenshot's dimensions, positions, or layouts onto other devices.
+
+Preserve the intended feeling while adapting intelligently to the context.
+
+### Important
+
+The visual appearance is approved as a foundation.
+
+The complete interaction design, responsive rules, navigation, and layouts are NOT yet approved.
+
+These must be professionally designed and presented before full implementation.
+
+---
+
+# 3. THE NINTENDO-LIKE QUALITY STANDARD
+
+I want the interface to feel like a delightful, professionally developed game.
+
+Research how excellent Nintendo games make their interfaces feel charming, intuitive, responsive, playful, and satisfying.
+
+Study relevant examples of menu design, feedback, interaction, and accessibility from Nintendo-developed or Nintendo-published games.
+
+Do not reproduce Nintendo's copyrighted characters, trademarks, UI artwork, sound effects, or specific screen designs.
+
+Instead, understand the design principles that create their distinctive feeling.
+
+## Interaction philosophy
+
+Every important interaction should feel satisfying.
+
+Consider:
+
+- Buttons that physically depress when clicked.
+- Playful but controlled easing and bounce.
+- Clear focus states.
+- Charming selection feedback.
+- Pleasant, subtle interface sounds.
+- Smooth transitions.
+- Responsive hover and press states.
+- Enjoyable item selection.
+- Satisfying equipping confirmations.
+- Reward reveals that feel special.
+- Clear victory celebrations.
+- Cheerful loading states.
+- Intuitive navigation.
+- Easily understood controls.
+
+Nothing should feel sluggish, confusing, or unnecessarily complicated.
+
+The player should enjoy interacting with the interface, not simply tolerate it.
+
+## Do not overdo it
+
+Nintendo-like polish does not mean constant bouncing, excessive particles, huge animated backgrounds, or complicated transitions.
+
+Prioritize clarity, responsiveness, and intentional feedback.
+
+Every animation should have a purpose.
+
+Use reduced-motion alternatives.
+
+Avoid visual or audio fatigue.
+
+The interface must remain enjoyable after hundreds of interactions.
+
+---
+
+# 4. CRITICAL REQUIREMENT — COMPLETE UI PLANNING BEFORE CODING
+
+This is the most important instruction.
+
+**Do not start by implementing the customization screen and improvise the rest later.**
+
+First design the ENTIRE UI SYSTEM.
+
+I want you to identify every screen, panel, modal, overlay, interaction, error state, loading state, and transition that our game reasonably needs.
+
+Examine the existing project and determine what is:
+
+1. Already implemented.
+2. Implemented but visually outdated.
+3. Mocked.
+4. Required for launch.
+5. Useful later.
+6. Unnecessary.
+
+Do not invent features merely to fill empty screens.
+
+Do not blindly bring every Curve Fever Pro feature into TRAIL WARS.
+
+Our game should be smaller, clearer, and more polished.
+
+## Complete UI inventory
+
+Plan the following areas, including all relevant substates.
+
+### A. Game entry
+
+- Initial loading.
+- Player profile loading.
+- Connection establishment.
+- First-launch experience.
+- Welcome screen if justified.
+- Failed data loading.
+- Retry and recovery.
+- Service unavailable.
+- Returning player flow.
+
+### B. Main menu
+
+- Home.
+- Primary Play action.
+- Navigation.
+- Equipped cosmetic preview.
+- Currency display.
+- Profile access.
+- Optional progression summary.
+- Optional daily reward access.
+- Important notifications.
+- Menu transitions.
+
+Prioritize Play over secondary systems.
+
+### C. Play and matchmaking
+
+- First-time controls explanation.
+- Quick Play.
+- Queue entry.
+- Searching for match.
+- Cancel queue.
+- Connection failure.
+- Match found.
+- Ready state if actually needed.
+- Countdown.
+- Transition into match.
+
+Do not add multiple game modes without a justified gameplay requirement.
+
+### D. Gameplay HUD
+
+Even though gameplay is not being implemented now, fully design its interface.
+
+Include:
+
+- Players remaining.
+- Round timer.
+- Player identification.
+- Leaderboard or compact standings, if justified.
+- Mobile steering controls.
+- Keyboard/controller indicators.
+- Pause or exit interface.
+- Important announcements.
+- Elimination notifications.
+- End-of-round state.
+
+The HUD must never obscure critical trails or reduce visibility unnecessarily.
+
+### E. Elimination and spectator
+
+- Elimination feedback.
+- Player placement.
+- Spectator view.
+- Switching observed players if supported.
+- Waiting for round completion.
+- Leaving spectator mode.
+- Connection loss during spectating.
+
+### F. Results
+
+- Victory.
+- Defeat.
+- Placement.
+- Match statistics.
+- Earned rewards.
+- Progress gained.
+- Rematch.
+- Return Home.
+- Reward errors or delayed confirmations.
+
+This screen should feel especially delightful when someone wins.
+
+### G. Customization
+
+- Cosmetic inventory.
+- Core cosmetics.
+- Trail cosmetics.
+- Owned items.
+- Locked items.
+- Equipped items.
+- Item preview.
+- Item details.
+- Equip and unequip.
+- Unlock information.
+- Empty states.
+- Save or equip failures.
+
+Use the approved MAKE IT YOURS screenshot as the primary style reference.
+
+### H. Shop
+
+- Main Shop.
+- Cosmetic categories.
+- Featured items if justified.
+- Item details.
+- Currency prices.
+- Owned state.
+- Insufficient funds.
+- Earned-currency purchases.
+- Purchase confirmation.
+- Processing state.
+- Purchase succeeded.
+- Purchase failed.
+- Purchase canceled.
+- Unavailable items.
+- Real-money purchases unavailable.
+- Entitlement verification.
+
+Avoid manipulative monetization and unnecessary clutter.
+
+Paid purchases remain disabled until proper configuration and approval.
+
+### I. Profile and progression
+
+- Player profile.
+- Cosmetic identity.
+- Level or progression, if supported.
+- Wins.
+- Matches played.
+- Relevant statistics.
+- Achievements, if justified.
+- Progress rewards.
+- Empty player history.
+- Profile loading and errors.
+
+Never display fabricated player statistics as though they are real.
+
+### J. Settings
+
+- Audio.
+- Controls.
+- UI scale/readability.
+- Motion reduction.
+- Graphics-related options that actually matter.
+- Accessibility.
+- Mobile controls.
+- Keyboard bindings information.
+- Controller bindings information.
+- Save confirmation and failure.
+- Restore default settings.
+
+### K. Shared interface elements
+
+- Confirmations.
+- Warning dialogs.
+- Tooltips.
+- Toast notifications.
+- Error messages.
+- Loading states.
+- Disabled buttons.
+- Item detail popups.
+- Insufficient currency messages.
+- Connection warnings.
+- Focus navigation.
+- Back navigation.
+- Leaving-match confirmation.
+- Purchase status reconciliation.
+- Help and controls.
+
+For every feature, specify every meaningful state.
+
+A single screenshot is not enough to define a complete screen.
+
+---
+
+# 5. DESIGN THE COMPLETE NAVIGATION ARCHITECTURE
+
+Create a proper navigation system before implementing visual screens.
+
+Deliver:
+
+- Full screen map.
+- Navigation flow diagram.
+- Parent-child screen hierarchy.
+- Modal hierarchy.
+- Back navigation behavior.
+- Keyboard navigation order.
+- Controller navigation order.
+- Mobile navigation patterns.
+- Focus restoration.
+- Loading transitions.
+- Error recovery.
+- Deep-link behavior for items when needed.
+
+Avoid navigation dead ends.
+
+A player must always understand where they are and how to return.
+
+Do not make users click through unnecessary pages to reach a match.
+
+The most important user journeys are:
+
+1. First launch → tutorial → first match.
+2. Returning player → Play → match.
+3. Home → Customize → equip.
+4. Home → Shop → inspect → unlock.
+5. Match → elimination → spectator → results.
+6. Results → rematch.
+7. Purchase canceled → return to Shop.
+8. Connection failure → recovery.
+
+Optimize these flows first.
+
+---
+
+# 6. RESPONSIVENESS IS NON-NEGOTIABLE
+
+The UI must look excellent across supported phones, tablets, desktops, laptops, ultrawide monitors, and controller-driven displays.
+
+**Do not build one desktop layout and shrink it with UIScale.**
+
+That is not acceptable.
+
+The UI must intelligently rearrange itself depending on the available viewport.
+
+## Research the best Roblox techniques
+
+Investigate current Roblox documentation for:
+
+- UIScale.
+- UDim2 scale and offset.
+- UIListLayout.
+- UIFlexItem and flex-style layouts.
+- UIGridLayout.
+- AutomaticSize.
+- AutomaticCanvasSize.
+- UISizeConstraint.
+- UITextSizeConstraint.
+- UIAspectRatioConstraint.
+- AnchorPoint.
+- Safe area handling.
+- ScrollingFrame.
+- Nine-slice images.
+- Text wrapping.
+- Layout measurement.
+- Input modality changes.
+
+Use the appropriate combination rather than applying one approach everywhere.
+
+Avoid conflicting constraints, sizing loops, or deep nested structures that are difficult to maintain.
+
+## Adaptive layout philosophy
+
+Create several composition modes.
+
+### Spacious landscape
+
+Desktop and large screens.
+
+Allow more horizontal composition, side-by-side content, larger previews, and expanded navigation.
+
+### Compact landscape
+
+Small laptops and mobile devices in landscape.
+
+Reduce decorative space, reorganize panels, preserve essential actions, and maintain readable text.
+
+### Tablet / intermediate
+
+Use adaptive grids, proportional content regions, and deliberate navigation placement.
+
+### Narrow portrait
+
+Use vertically stacked sections, compact navigation, and scrolling where necessary.
+
+Keep important controls accessible.
+
+Do not force a large horizontal layout into a tiny screen.
+
+## Size changes at runtime
+
+The UI must also handle:
+
+- Device rotation.
+- Window resizing.
+- Changing input method.
+- Safe-area changes.
+- Text scaling.
+- Long player names.
+- Large currency values.
+- Localization-ready text.
+- Mobile notches and system bars.
+- Tablet split-screen or unusual available sizes where Roblox supports them.
+
+Layout rules should depend primarily on actual available content dimensions, not just the device name.
+
+## Representative viewport tests
+
+Test at least:
+
+- 320 × 568
+- 360 × 640
+- 390 × 844
+- 568 × 320
+- 844 × 390
+- 768 × 1024
+- 1024 × 768
+- 1280 × 720
+- 1672 × 941
+- 1920 × 1080
+- Ultrawide landscape
+
+Also test relevant portrait/landscape orientations and text sizes at 100%, 125%, and 150%.
+
+Test actual layout geometry, not merely screenshots.
+
+Ensure that:
+
+- No critical controls are clipped.
+- Text is readable.
+- Navigation remains accessible.
+- Touch targets remain comfortably sized.
+- Popups fit correctly.
+- Scroll containers work.
+- The gameplay HUD leaves adequate playfield visibility.
+- Nothing overlaps Roblox CoreGui or unsafe screen regions.
+- Controller focus works.
+- Button interaction matches its visible bounds.
+
+These are representative tests, not proof that every imaginable viewport has been covered.
+
+Test real devices where available.
+
+---
+
+# 7. CREATE A MODULAR UI DESIGN SYSTEM
+
+Do not implement each screen independently.
+
+Build a reusable component library.
+
+Define the interface's:
+
+- Color tokens.
+- Spacing tokens.
+- Typography.
+- Shadow system.
+- Corner-radius system.
+- Border styles.
+- Image assets.
+- Button variants.
+- Iconography.
+- Motion tokens.
+- Sound feedback.
+- Responsive breakpoints or layout rules.
+- Accessibility states.
+
+## Shared components
+
+Consider reusable implementations of:
+
+- AppShell
+- SafeArea
+- ScreenContainer
+- TopBar
+- Logo
+- NavigationRail
+- MobileNavigation
+- PrimaryButton
+- SecondaryButton
+- IconButton
+- TextButton
+- CurrencyDisplay
+- ItemCard
+- CosmeticPreview
+- ItemDetails
+- Tooltip
+- Tabs
+- ScrollGrid
+- Dialog
+- Toast
+- ProgressBar
+- LoadingIndicator
+- ProfileSummary
+- RewardCard
+- SettingsRow
+- MatchHUD
+- ResultsPanel
+
+Choose sensible boundaries.
+
+Avoid making dozens of tiny abstractions that add complexity without meaningful reuse.
+
+## Component states
+
+Buttons should support:
+
+- Default.
+- Hover.
+- Focused.
+- Pressed.
+- Selected.
+- Disabled.
+- Loading.
+
+Item cards should support:
+
+- Owned.
+- Locked.
+- Equipped.
+- Available.
+- Purchasing.
+- Unavailable.
+
+Every reusable component must have consistent behavior.
+
+The same component should feel like part of the same game regardless of which screen uses it.
+
+## Architecture
+
+Separate:
+
+- Visual components.
+- Layout logic.
+- Theme definitions.
+- Routing.
+- Input.
+- Animation.
+- Sound feedback.
+- Client state.
+- Server communication.
+- Data display.
+- Inventory interactions.
+- Commerce presentation.
+
+Preserve working data and economy systems.
+
+Do not let design changes compromise server-authoritative purchase logic.
+
+---
+
+# 8. INVESTIGATE THE BEST VISUAL IMPLEMENTATION WORKFLOW
+
+Do not blindly commit to the first tool you try.
+
+We need a workflow that reproduces the approved graphical style accurately while remaining maintainable and performant.
+
+Evaluate the following approaches:
+
+1. Layered SVG or vector-authoring workflow.
+2. Figma or Penpot if useful and available.
+3. Reusable PNG assets.
+4. Roblox nine-slice image scaling.
+5. Native Roblox UI objects.
+6. UIGradient, UIStroke and UICorner.
+7. Texture atlases when useful.
+8. ImageButton / ImageLabel assets.
+9. Existing native Luau components and Rojo.
+10. UI Labs isolated component previews.
+11. Relevant design-to-Roblox conversion tools.
+
+Investigate practical benefits and drawbacks.
+
+Do not choose a design importer simply because it sounds convenient.
+
+Evaluate:
+
+- Visual fidelity.
+- Ease of iteration.
+- Maintainability.
+- Responsive behavior.
+- Number of imported assets.
+- Memory usage.
+- Rendering costs.
+- Editable text.
+- Actual Roblox Studio compatibility.
+- Asset upload requirements.
+- Development speed.
+
+## Critical implementation principle
+
+Do not recreate the entire interface with one flattened image.
+
+Use real Roblox text, buttons, dynamic values, and interactions.
+
+Use image assets where necessary to preserve difficult visual details.
+
+For example, glossy button shells can use reusable nine-slice imagery while their text remains dynamic.
+
+Keep the source art editable.
+
+Do not fabricate Roblox asset IDs.
+
+---
+
+# 9. ABANDON DEAD ENDS — VERY IMPORTANT
+
+You have explicit permission to rethink and replace a technical approach when it is not working.
+
+I do not want you endlessly debugging something that should have been replaced.
+
+Examples:
+
+If nine-slice rendering cannot preserve a particular shape or bevel, investigate alternative asset construction.
+
+If a design importer generates unusable hierarchies, stop relying on it.
+
+If manually reconstructing artwork is too slow, investigate another method.
+
+If a component architecture becomes excessively complicated, simplify or replace it.
+
+If an animation technique has unacceptable frame-time costs, remove or redesign it.
+
+If a font cannot achieve the desired appearance or readability, find a better supported alternative.
+
+If an approach works on desktop but fails badly on phones, reconsider the architecture instead of adding endless device-specific patches.
+
+## Pivot procedure
+
+When a significant approach repeatedly fails:
+
+1. Identify the actual problem.
+2. Gather evidence.
+3. Explain why the current technique is unsuitable.
+4. Research at least two plausible alternatives when practical.
+5. Test the most promising alternative in a small isolated example.
+6. Compare quality, performance, complexity, and maintenance.
+7. Choose the strongest approach.
+8. Preserve useful working code.
+9. Continue.
+
+Timebox experimentation.
+
+After roughly two meaningful failed attempts at the same technique, reassess rather than blindly trying more variations.
+
+Do not become attached to a solution simply because you've already spent time on it.
+
+**The objective is the best result, not defending the first implementation.**
+
+Do not silently abandon the approved visual identity. Technical solutions may change; major aesthetic changes still require my approval.
+
+---
+
+# 10. RESEARCH DELIGHTFUL UI ANIMATIONS AND FEEDBACK
+
+Develop a consistent interaction-feedback system.
+
+Investigate polished game UI motion techniques.
+
+Define purposeful animation behaviors for:
+
+- Button hover.
+- Button press.
+- Button release.
+- Screen opening.
+- Screen closing.
+- Tab switching.
+- Item selection.
+- Item equipping.
+- Purchase success.
+- Purchase failure.
+- Currency changes.
+- Reward claims.
+- Victory.
+- Defeat.
+- Notifications.
+
+Do not animate everything.
+
+Use motion intentionally to communicate interaction and game state.
+
+Create consistent durations, easing curves, and cancellation rules.
+
+Use TweenService or another appropriate supported implementation.
+
+Avoid uncontrolled frame-loop animations.
+
+Use audio feedback sparingly.
+
+The final system should remain satisfying without becoming noisy or visually exhausting.
+
+Support reduced motion and sound settings.
+
+---
+
+# 11. DESIGN EVERY SCREEN BEFORE BROAD IMPLEMENTATION
+
+Create a comprehensive visual presentation showing the whole interface.
+
+Do not produce one overcrowded collage as the sole deliverable.
+
+Generate or author sufficiently detailed mockups for:
+
+- Home.
+- Play / Queue.
+- Controls tutorial.
+- Customize.
+- Item details.
+- Shop.
+- Purchase confirmation.
+- Profile.
+- Settings.
+- Gameplay HUD.
+- Elimination.
+- Spectator.
+- Victory.
+- Defeat.
+- Rewards.
+- Core loading and error states.
+
+Also create representative mobile versions.
+
+The design must feel cohesive across every screen.
+
+Use the approved customization image as the primary stylistic reference.
+
+Do not substitute the previously rejected charcoal/yellow UI.
+
+For each screen, explain:
+
+- Purpose.
+- Layout.
+- Important interactions.
+- Navigation.
+- Responsive transformations.
+- Shared components.
+- Required visual assets.
+- State variants.
+- Expected performance considerations.
+
+Provide exact design measurements or relative layout rules where appropriate.
+
+## Approval checkpoint
+
+Once the complete system and representative screen mockups are prepared:
+
+**STOP AND PRESENT EVERYTHING FOR MY APPROVAL.**
+
+Do not proceed to broad UI implementation until I approve the system.
+
+I may request revisions.
+
+Preserve the mockups, source files, and decisions so modifications are efficient.
+
+---
+
+# 12. IMPLEMENTATION AFTER APPROVAL
+
+Once the UI system is approved, implement it using the chosen architecture.
+
+Preserve the existing functional code.
+
+Replace the old visual implementation systematically.
+
+Work by shared components and reusable screen templates.
+
+Use the approved mockups as the visual targets.
+
+Do not create a visually generic approximation.
+
+## Visual verification
+
+Compare actual Roblox Studio screenshots against approved designs.
+
+Use:
+
+- Side-by-side comparisons.
+- Image overlays.
+- Geometry measurements.
+- Text-fit checks.
+- Color comparisons.
+- Manual visual inspection.
+
+Fix significant discrepancies.
+
+An exact desktop reference can be compared pixel-for-pixel where appropriate.
+
+Compact mobile layouts must be compared against their own approved responsive designs, not forced to match desktop pixels.
+
+Do not claim perfect fidelity without actual verification.
+
+---
+
+# 13. OPTIMIZATION AND PERFORMANCE
+
+Treat mobile as a first-class platform.
+
+The interface should look rich without being unnecessarily expensive.
+
+Investigate:
+
+- GUI hierarchy complexity.
+- Image memory.
+- Texture resolution.
+- Transparency overdraw.
+- Nested clipping.
+- Unnecessary CanvasGroups.
+- Frequent property updates.
+- Tween management.
+- Component cleanup.
+- Screen mounting and unmounting.
+- Preloading critical assets.
+- Lazy loading secondary content.
+- Large inventories and scrolling.
+- Input latency.
+- Frame-time spikes.
+- Network response behavior.
+
+Avoid heavy, constantly animated backgrounds.
+
+Avoid rebuilding large UI trees every frame.
+
+Reuse assets and components.
+
+Measure actual performance rather than inventing results.
+
+A visually impressive screen that feels sluggish on mobile is not acceptable.
+
+---
+
+# 14. TEST THE SYSTEM
+
+Build automated tests for screen and component behavior where feasible.
+
+Validate:
+
+- Navigation.
+- Back and Close behavior.
+- Screen routing.
+- Modal focus.
+- Keyboard activation.
+- Controller focus.
+- Touch interaction.
+- Responsive reflow.
+- Text clipping.
+- Long content.
+- Missing data.
+- Currency formatting.
+- Purchase status.
+- Locked and owned items.
+- Equip feedback.
+- Settings persistence.
+- Reduced motion.
+- Cleanup and remounting.
+- Disconnected and loading states.
+
+Use existing tests and extend them.
+
+Preserve the previously passing foundation tests.
+
+Test visual behavior in actual Roblox Studio, not just static generated images.
+
+Report what was actually tested versus what remains unverified.
+
+---
+
+# 15. MINIMIZE EXPENSIVE TOOL USAGE
+
+Previous development consumed too many credits through repeated desktop control and runtime inspection.
+
+Use a source-first workflow.
+
+Prefer:
+
+1. Existing research and files.
+2. Current Roblox documentation.
+3. Local design files.
+4. Image generation and design tools.
+5. CLI scripts.
+6. Rojo builds.
+7. Automated tests.
+8. UI Labs component previews.
+9. Bundled Studio verification.
+
+Do not reopen Curve Fever Pro or repeat the REA audit unless a specific important question requires it.
+
+Do not repeatedly launch Studio for minor code changes.
+
+Group visual testing into meaningful checkpoints.
+
+However, do not sacrifice design quality just to reduce tool calls.
+
+If a more expensive inspection is genuinely necessary, use it strategically and explain why.
+
+---
+
+# 16. GITHUB AND PROJECT SAFETY
+
+Continue from the existing GitHub repository.
+
+Inspect the latest branch state before changing files.
+
+Create or continue a dedicated feature branch for the redesigned UI.
+
+Commit meaningful work regularly.
+
+Do not force-push.
+
+Preserve:
+
+- Existing Luau systems.
+- Server economy modules.
+- Inventory logic.
+- Purchase infrastructure.
+- Existing tests.
+- Research documents.
+- Approved references.
+- Design source files.
+
+Do not merge into main before approval.
+
+Do not publish the game.
+
+Do not activate real-money commerce.
+
+Do not implement gameplay.
+
+Avoid storing private credentials, extracted proprietary game assets, or sensitive local reference files in the public repository.
+
+---
+
+# 17. REQUIRED DELIVERABLES
+
+Organize the work in an appropriate directory such as:
+
+`design/ui-master-plan/`
+
+Include:
+
+### Research and planning
+
+- `screen-inventory.md`
+- `navigation-and-state-machine.md`
+- `responsive-layout-contract.md`
+- `components-and-tokens.md`
+- `interaction-and-motion.md`
+- `asset-pipeline.md`
+- `performance-strategy.md`
+- `implementation-plan.md`
+- `qa-matrix.md`
+
+### Visual design
+
+- Complete design-system board.
+- All required screen mockups.
+- Desktop layouts.
+- Mobile layouts.
+- Core loading/error states.
+- Component variants.
+- Navigation diagram.
+- Editable source artwork.
+- Reusable asset specifications.
+
+### Technical decisions
+
+Document:
+
+- Chosen workflow.
+- Tools evaluated.
+- Reasons for choosing them.
+- Problems encountered.
+- Alternatives tested.
+- Pivots made.
+- Remaining technical risks.
+
+### After approval only
+
+- Production-ready reusable Roblox UI components.
+- Responsive UI implementation.
+- UI Labs preview stories.
+- Asset manifest.
+- Updated tests.
+- Studio screenshots.
+- Visual comparison reports.
+- Performance observations.
+- GitHub commits and PR.
+
+---
+
+# 18. EXECUTION ORDER — FOLLOW THIS STRICTLY
+
+## Phase 1 — Repository review
+
+Understand precisely where we stopped.
+
+Inspect the current branch, approved screenshot, design research, code, tests, and previous GitHub instructions.
+
+Preserve the existing state.
+
+## Phase 2 — Complete UI planning
+
+Create the full screen inventory, navigation architecture, state matrix, interaction specification, and responsive layout rules.
+
+Decide what belongs in the MVP and what should be deferred.
+
+## Phase 3 — Modular design system
+
+Specify reusable components, tokens, input behavior, graphical assets, animation and sound principles.
+
+Research and select the most effective technical approach.
+
+## Phase 4 — Visual design
+
+Produce high-quality mockups covering all major screens and key responsive layouts.
+
+Extend the approved visual identity across the entire game.
+
+## Phase 5 — Design review
+
+Critically evaluate originality, joy, consistency, readability, responsiveness, technical feasibility and performance.
+
+Fix weaknesses.
+
+Present the complete design for my approval.
+
+**STOP HERE.**
+
+## Phase 6 — Implementation
+
+Only after explicit approval, implement the approved system using the existing Luau/Rojo project.
+
+## Phase 7 — Validation
+
+Run automated tests, bundled Studio visual checks, accessibility checks, responsive tests, and performance profiling.
+
+Compare actual Roblox output with approved designs.
+
+Fix discrepancies.
+
+## Phase 8 — Delivery
+
+Submit a GitHub pull request with documented verification.
+
+Do not publish or merge without approval.
+
+---
+
+# 19. NON-NEGOTIABLE RULES
+
+1. Do not rush into coding.
+2. Design the entire UI system before broad implementation.
+3. Preserve the approved peach/plum/orange/turquoise identity.
+4. Aim for the delightful, tactile polish of a great Nintendo game without copying Nintendo assets.
+5. Make the interface genuinely responsive, not uniformly scaled.
+6. Prioritize mobile usability.
+7. Use reusable components.
+8. Preserve the existing working backend foundations.
+9. Do not add unnecessary complexity.
+10. Do not fabricate player statistics or commerce functionality.
+11. Do not implement gameplay during this assignment.
+12. Do not use entire screenshots as fake interactive interfaces.
+13. Do not accept generic-looking UI.
+14. Do not sacrifice performance for decoration.
+15. Do not claim tests passed unless they actually ran.
+16. Do not waste credits on repetitive GUI exploration.
+17. Do not force an unsuccessful implementation strategy.
+18. Research alternatives when necessary.
+19. Be willing to pivot.
+20. Do not proceed past the design approval checkpoint without my explicit approval.
+
+---
+
+# THE STANDARD I EXPECT
+
+I want TRAIL WARS to feel like a real, polished, joyfully designed game.
+
+A game where pressing Play feels good.
+
+Where selecting a cosmetic feels satisfying.
+
+Where navigating menus feels effortless.
+
+Where victory looks exciting.
+
+Where every screen belongs to the same unmistakable visual identity.
+
+And where the interface adapts intelligently to whatever supported device the player uses.
+
+**Do not just make the UI functional. Make it delightful.**
+
+The approved screenshot is the beginning, not the entire design.
+
+Your job is to turn that visual direction into a complete, professional, modular game interface.
+
+### IMMEDIATE INSTRUCTION
+
+Start by reviewing the current GitHub branch and telling me exactly where development stopped.
+
+Then produce the complete UI inventory, navigation architecture, responsive layout strategy, modular design system, and visual mockups.
+
+Do not start broad implementation yet.
+
+Be independent, critical, resourceful, and willing to change direction when a solution is not good enough.
+
+**I will approve the complete UI design before you implement it.**
