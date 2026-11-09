@@ -64,3 +64,19 @@ Python3 and PowerShell7 are required. Tool binaries are local and ignored; offic
 Checks run StyLua, Selene, the official Luau compiler, deterministic existing foundation tests through a minimal service/module adapter, both Rojo builds, and a production-artifact boundary check. Headless mocks do not emulate the Roblox engine or prove live DataStore/Marketplace behavior. The compiler verifies parsing/bytecode generation, not full Roblox typechecking. GitHub Actions runs the same source checks on pushes and pull requests.
 
 The completed bundled Studio checkpoint, corrected small-phone case, functional results and limitations are recorded in [qa/studio_verification.md](qa/studio_verification.md). Remaining release gates are in [qa/remaining_risks.md](qa/remaining_risks.md).
+
+## Original gameplay prototype
+
+Use the explicit gameplay projects on `feature/gameplay-reconstruction`; default UI/backend bootstraps are preserved.
+
+```powershell
+.tools/rojo/rojo.exe build local-gameplay.project.json -o dist/TrailWarsLocalGameplay.rbxlx
+.tools/rojo/rojo.exe build gameplay.project.json -o dist/TrailWarsMultiplayerGameplay.rbxlx
+.tools/rojo/rojo.exe serve gameplay.project.json
+```
+
+The first place runs local one-human/three-bot practice. The second uses server-owned 2–6-human rounds, with solo practice after a 12-second pairing grace period. PLAY opens the real queue/match; other Home destinations retain their existing UI demonstrations. A/D, arrows, held left/right touch buttons, D-pad or horizontal thumbstick steer; release or both directions preserve heading. Eliminated humans spectate; Play Again queues a new match identity. Server events extend the existing match contract.
+
+`gameplay-tests.project.json` adds only the explicit automated engine fixture. Open its build in Studio, then use StudioTestService:ExecuteMultiplayerTestAsync(2, {case="TrailWarsAuthority", players=2}) from a plugin/API context. The fixture reports actual client rendering, resync, and server results, then ends the test. It is excluded from normal gameplay builds. Studio-only BindableFunction probes are local diagnostics, not client-accessible server authority.
+
+The multiplayer harness uses MockStore, including mock rewards for eligible human matches. Production persistence, purchases and publication remain disabled. Participation checks are an initial gate, not a complete anti-farming system. See [qa/gameplay/verified-checkpoint.md](qa/gameplay/verified-checkpoint.md) for actual evidence and remaining release gates. Reference research and unresolved/custom rules live in `research/gameplay-reconstruction/`; protected reference materials stay in the ignored private directory.

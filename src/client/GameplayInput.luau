@@ -21,7 +21,8 @@ function Input.new(left: GuiButton, right: GuiButton)
 	end
 	connect(UIS.InputBegan, function(i, processed)
 		local turn = direction(i.KeyCode)
-		if not processed and controller.enabled and turn then
+		local dpad = i.KeyCode == Enum.KeyCode.DPadLeft or i.KeyCode == Enum.KeyCode.DPadRight
+		if (not processed or dpad) and controller.enabled and turn then
 			controller.held[i.KeyCode] = turn
 		end
 	end)

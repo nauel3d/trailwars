@@ -40,7 +40,10 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	center.ZIndex = 8
 	center.TextStrokeColor3 = Kit.colors.paper
 	center.TextStrokeTransparency = 0.2
-	local board = Leaderboard.mount(screen, { demo = false, selfId = "you", hud = true, preferences = preferences })
+	local board = Leaderboard.mount(
+		screen,
+		{ demo = false, selfId = if transport then transport.selfId else "you", hud = true, preferences = preferences }
+	)
 	local round: any = nil
 	local snapshot: any = nil
 	local home: any = nil
@@ -182,22 +185,26 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		left.root.Visible = not results
 		right.root.Visible = not results
 		status.Visible = not results
-		status.Text = if state.phase == "Countdown"
-			then "A/D · ARROWS · HOLD TO TURN"
+		status.Text = if state.phase == "Queue"
+			then "FINDING PLAYERS · SOLO PRACTICE AFTER 12s"
+			elseif state.phase == "Countdown" then "A/D · ARROWS · HOLD TO TURN"
 			elseif me and not me.alive then "OUT #" .. tostring(me.placement) .. " · SPECTATING"
+			elseif not me then "SPECTATING · NEXT ROUND QUEUED"
 			else "RELEASE = STRAIGHT\nBOTH = STRAIGHT"
 		clock.Text = string.format(
 			"%s  ·  %02d:%02d  ·  %d ALIVE",
-			if transport then "SERVER ROUND" else "PRACTICE · NO REWARDS",
+			if transport then "SERVER · MOCK ECONOMY" else "PRACTICE · NO REWARDS",
 			math.floor(state.time / 60),
 			math.floor(state.time % 60),
 			alive
 		)
-		center.Text = if state.phase == "Countdown"
-			then tostring(state.remaining)
+		center.Text = if state.phase == "Queue"
+			then "FINDING A ROUND…"
+			elseif state.phase == "Countdown" then tostring(state.remaining)
 			elseif results then (if state.winnerId == selfId
 				then "YOU WIN!"
-				elseif state.winnerId then "ROUND OVER"
+				elseif state.winnerId and me then "OUT #" .. tostring(me.placement)
+				elseif state.reason == "TimeLimit" then "TIME UP · DRAW"
 				else "DRAW")
 			else ""
 		if state.revision ~= lastRevision then

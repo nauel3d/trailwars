@@ -23,10 +23,12 @@ return table.freeze({
 	MaxBacklogSeconds = 0.5,
 	InputLeaseTicks = 20,
 	SnapshotTicks = 5,
+	MaxSegmentsPerPacket = 600,
 	MaxInputMessagesPerSecond = 40,
 	MaxSequence = 2147483647,
 	ResultsSeconds = 4,
 	QueueSeconds = 2,
+	SoloPracticeDelay = 12,
 	EnableTrailGaps = false,
 	EnableProductionRewards = false,
 })

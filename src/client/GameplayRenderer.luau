@@ -40,7 +40,7 @@ function Renderer.new(field: Frame, Kit: any, config: any)
 				local label = Kit.text(core, "Name", p.name, 12)
 				label.Position = UDim2.new(-2, 0, -1, -4)
 				label.Size = UDim2.new(5, 0, 0, 20)
-				controller.sprites[p.id] = { core = core, color = palette[i] }
+				controller.sprites[p.id] = { core = core, color = palette[i], label = label }
 			end
 		end
 	end
@@ -92,6 +92,14 @@ function Renderer.new(field: Frame, Kit: any, config: any)
 				sprite.core.Position = UDim2.fromScale(p.x / config.Width, p.y / config.Height)
 				local size = math.max(7, config.VisualRadius * 2 * scale)
 				sprite.core.Size = UDim2.fromOffset(size, size)
+				local labelWidth = math.min(80, field.AbsoluteSize.X / 4)
+				sprite.label.Size = UDim2.fromOffset(labelWidth, 18)
+				sprite.label.AnchorPoint = Vector2.new(0.5, 1)
+				local px, py = p.x * scale, p.y * scale
+				sprite.label.Position = UDim2.fromOffset(
+					math.clamp(px, labelWidth / 2, field.AbsoluteSize.X - labelWidth / 2) - px + size / 2,
+					if py < 22 then size + 20 else -4
+				)
 				sprite.core.Visible = p.alive
 			end
 		end

@@ -23,6 +23,9 @@ export type MatchEvent = {
 	isMock: boolean,
 	remaining: number?,
 	winnerUserId: number?,
+	winnerId: string?,
+	id: string?,
+	placement: number?,
 }
 return table.freeze({
 	RemoteName = "TrailWarsRequest",

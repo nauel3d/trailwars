@@ -19,3 +19,9 @@ sources = [element.text or "" for element in production.findall(".//Properties/*
 assert not any("_TrailWarsTestFixture" in source for source in sources), "Temporary fixture source leaked"
 assert any("ProcessReceipt" in source for source in sources), "Production server source missing"
 print("ARTIFACT BOUNDARY: production excludes dev/stories, tests and temporary fixture; preview includes stories")
+
+gameplay = ET.parse(root / "dist" / "TrailWarsMultiplayerGameplay.rbxlx")
+gameplay_names = names(gameplay)
+assert "Main" not in gameplay_names, "Default UI backend must not run alongside the isolated match adapter"
+assert "StudioGameplayTest" not in gameplay_names, "Engine fixture leaked into gameplay build"
+print("GAMEPLAY BOUNDARY: isolated adapter; default Main and engine fixtures excluded")
