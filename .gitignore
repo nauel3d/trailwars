@@ -1,6 +1,10 @@
 # Private reference evidence remains preserved locally.
 /research/*
 !/research/public/
+!/research/gameplay-reconstruction/
+/research/gameplay-reconstruction/private/
+!/research/gameplay-observation.md
+!/research/gameplay-measurements.csv
 /qa/*evidence*.json
 /qa/screenshots/
 /dist/

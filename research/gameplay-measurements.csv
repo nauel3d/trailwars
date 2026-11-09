@@ -1,0 +1,14 @@
+evidence_id,source,start_s,end_s,quantity,low,high,unit,classification,method,uncertainty_or_limit
+V1,Curve Fever Pro Trailer,0,56.389667,video_duration,56.389667,56.389667,video_seconds,observed_metadata,1690 frames at 30000/1001 fps,Container duration not match duration
+V1,Curve Fever Pro Trailer,23.990633,24.491133,arena_inner_width,1900,1916,pixels,manual_image_estimate,Visible board borders near x6 and x1914,Manual bounds +/-8 pixels
+V1,Curve Fever Pro Trailer,23.990633,24.491133,purple_forward_speed,0.070,0.095,arena_width_per_video_second,manual_image_estimate,Head approx 626:545 to 574:488 over 15 frames,Input state and speed modifiers and trailer playback rate unknown
+V1,Curve Fever Pro Trailer,23.990633,24.491133,green_forward_speed,0.070,0.095,arena_width_per_video_second,manual_image_estimate,Head approx 1638:1045 to 1717:1048 over 15 frames,Input state and speed modifiers and trailer playback rate unknown
+V1,Curve Fever Pro Trailer,23.990633,24.491133,orange_arc_radius,0.025,0.038,arena_width,manual_image_estimate,Approx 48 to 72px from visible circular-like arc,Continuous held key and exact circularity not established
+V1,Curve Fever Pro Trailer,23.990633,24.491133,trail_visual_body_width,0.0047,0.0079,arena_width,manual_image_estimate,9 to 15px excluding particle wake,Visible antialiased body not collision width
+V1,Curve Fever Pro Trailer,23.990633,24.491133,head_visual_width,0.0084,0.0137,arena_width,manual_image_estimate,16 to 26px excluding wake and labels,Ship cosmetics differ and hitbox unknown
+V1,Curve Fever Pro Trailer,23.990633,24.491133,conditional_angular_rate,1.8,3.8,radians_per_video_second,inference,speed interval divided by radius interval,Mixes players and assumes unmodified speed and circular held turn
+V1,Curve Fever Pro Trailer,25,28,trail_gap_interval,,,seconds,unknown,Disconnected sections visible,Edited material cannot establish periodicity
+V1,Curve Fever Pro Trailer,24,28,wall_collision_threshold,,,arena_width,unknown,Near-edge motion visible,No isolated lethal contact sequence
+V1,Curve Fever Pro Trailer,25,28,self_collision_grace,,,seconds,unknown,No controlled self-intersection,No defensible value
+V1,Curve Fever Pro Trailer,5,6,round_start_countdown,,,seconds,unknown,Opening sparse field only,No complete numerical countdown
+V1,Curve Fever Pro Trailer,36,40,round_end_delay,,,seconds,unknown,Promotional Win overlay while play continues,No complete round-end transition

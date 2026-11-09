@@ -1,0 +1,47 @@
+# Shipped client gameplay investigation — 2026-11-09
+
+Scope: read-only installed Curve Fever Pro Steam app 1133700, build 26292297. No execution, attachment, extraction of source files, security changes or online gameplay actions. Original prose below distinguishes client declarations from authoritative behavior. Raw syntax excerpts and REA records stay in ignored private/ and must not be published.
+
+## REA readiness and evidence
+
+REA 6.8.0 advertises 229 tools. binary_session returned open=false, cleanup_pending=false and no selected provider. Ghidra candidate unavailable/not_configured because GHIDRA_INSTALL_DIR is absent; Hopper unavailable/unsupported_host on win32; IDA unavailable/not_configured because REA_IDA_MCP_CONFIG is absent. Candidate capability lists are not an active provider. No setup/install attempted; no native session opened, so no close_binary needed. Session response saved in private/rea-session.json.
+
+Actual analyze_javascript_application schema supports input_path, source_paths and detail summary. Selected package.json in app.asar; parent Evidence ev_6c7711e452a7e6a81d4bdf4567d7d94b0d39f26101c471242bec646ba47da5cd, summary ev_24c2a0a185ad94a56834d35b2886dec0a5d42ef1cff1c1de8209bb2ff5dadcb8. Identity unchanged; 248 other files unselected.
+
+Selected resources/build/assets/app-pNpNNO1T.js through directory analysis; parent Evidence ev_e37e5570f638d11588023315eb0f5496fa80c7ecc50dbd2ef88c2ff4facbac5b; summary ev_55553a2325c0ddc717c0d25ad6ab21b2db0a407ba49473c894f360688a1a919a. One parsed JavaScript file, 17,705 AST nodes, 81 findings, zero parse failures; 14 inventoried files outside scope. Application/semantic coverage partial; 14 application and 4,668 semantic unknowns. Complete canonical records exported private/rea-evidence.json (4 records). No whole 7.7 MB renderer semantic analysis attempted.
+
+Important provenance distinction: REA establishes selected artifact identity/analysis coverage; exact gameplay facts below were read with ordinary Python byte searches and inert adjacent syntax inspection. They are **not** invented REA semantic findings. Ordinary-source records use local IDs SRC01–SRC05 below. All offsets are zero-based UTF-8 bytes, not characters. Static facts do not prove live reachability, server values or execution.
+
+## Finding ledger
+
+Paths below are relative to installed resources/build/assets/.
+
+| ID | Recovered declaration / original interpretation | Source + location | Confidence and runtime test needed |
+| --- | --- | --- | --- |
+| G01 | Fixed simulation cadence declared 50 ticks/sec, 20 ms/tick; separate rendering FPS declaration 60. Ticker advances discrete steps to floor(round elapsed time / tick duration), with rollback state machinery. | SRC01 app-pNpNNO1T.js bytes 9609–9850; SRC04 PlatformService-zkTPtK_x.js bytes 6469900–6471600 and 6472465 | High static; measure displacement at differing display FPS and under frame stalls. Actual server cadence unobserved. |
+| G02 | Normal base ship config: speed 2.1, radius 4, turning radius field 4, rotation 3 degrees per tick, initial ramp 500 ms, subsequent ramp 2000 ms. Tutorial override declares speed 1.47. Constructor selects normal stats with false; modifiers/debug/effects can alter them. | SRC02 PlatformService-zkTPtK_x.js bytes 2962350–2962850, 2971462, 5404303, 5409093 | High static; normal speed units inferred from per-tick integration. Identify reachable practice/tutorial mode and compare straight travel. |
+| G03 | Steering value is clamped to [-1,1]; left=-1, right=1, neutral=0. Rotation changes heading each simulation tick, then velocity projects speed along heading; neutral preserves heading. Step order: ramp, hole, rotate, velocity, move, effects, collision, abilities. Same-tick press/release bookkeeping exists. | SRC02 bytes 5224783, 5410200–5411000, 5416500–5417900, 5420869, 5421957 | High static; test held, released, simultaneous opposite directions and short taps. Simultaneous keyboard policy unresolved. |
+| G04 | Integer math precision 1000; direction uses fixed angle trig tables. At normal settings, declared 3 degrees becomes truncated 52 angle units = 0.052 rad/tick. Inferred full-speed travel 105 world units/sec, turn rate approximately 149 degrees/sec, circle radius approximately 40.4 units; a full circle approximately 2.42 sec. These are derived calibration candidates, not measured reference performance. | SRC02 byte 4107506 and 5409093; G01–G03 | Medium derived; measure a full circle and stationary frame scale. Roblox world scale remains a design choice. |
+| G05 | Drawing gaps use time scheduling between gaps and distance to finish each gap: nominal interval 100–4000 ms, pseudorandom seed derived from tick/player, arena gap travel length 19 units in every declared ranked arena. Gaps can be disabled or modified. Declared collision while drawing a gap is false. At full normal speed gap travel is roughly 0.18 sec (quantized to ticks). | SRC01 byte 10683; SRC02 bytes 2962435, 5404433, 5418345–5419300 | High static, medium duration inference; observe multiple gaps, including while turning and speeding. First gap schedule and all modes remain unresolved. CAMP branch excludes this scheduler. |
+| G06 | Ship collision circle radius uses 0.7 times current visual/stat radius (base 2.8 units). Trail collision circle radius normally uses 0.5 times stat radius (base 2 units); enlarged trails use an adjusted formula. Nominal visible trail radius is 4 (8-wide interpretation), but exact renderer width was not inspected. Trail bodies are placed by travel spacing, not one circle per display frame. New-start and end-body placement depend on head/cap reach; newest self-trail grace duration was **not recovered**. | SRC01 byte 10777; SRC03 bytes 5322150–5328000 and 5328100–5328900 | High static collider values; medium visual-width interpretation. Test grazing, immediate U-turns, self crossing and collision at gap ends. Never treat base visual width as fatal hitbox width. |
+| G07 | Fatal curve/ship/border checks are empty in this renderer; tryKill returns false. Generic client checkCollision only visits collectables, abilities and gaps. Thus client geometry and declarations do not recover authoritative fatal collision or newest-self exclusion policy. selfCollisionDist and sweepFilterOffset appear only initialized in bounded renderer searches. | SRC03 bytes 5322588, 5329000–5330300; SRC02 byte 5419301; SRC05 bounded searches | High static, high boundary conclusion. Observe deaths through permitted practice gameplay; server implementation unavailable. |
+| G08 | Normal constructor is shared by client curves; a tutorial override exists in configuration but this constructor asks for normal stats. AI supplies direction/action events to a curve and does not by itself prove different speed. No independent local authoritative practice physics engine established. | SRC02 bytes 5388747–5402163, 5404303, 5405692; G07 | Medium inferred; compare actual bot room against tutorial/preview. Do not assume a bot room is offline or authoritative locally. |
+| G09 | World uses fixed-point numeric coordinates and field-size settings; no trustworthy arena width/height recovered within capped search. A UI helper converts dimensions above 10000 using fixed-point conversion, which is not a world-size declaration. | SRC05 bytes 6566842 and bounded term search; MathI precision G04 | Unresolved dimensions; use screenshots or new focused source pass around field construction if necessary. |
+
+## Source evidence inventory
+
+SRC01: private/collision-and-timing.json, app-pNpNNO1T.js SHA256 67e91c459da916e8224f4ad266378bedee7974a524fc6fbef2c4daa0b7356bf6; selected by REA parent above.
+
+SRC02: private/static-parameter-evidence.json, static-algorithm-evidence.json and bounded-gameplay-search.json; renderer SHA256 fcaee093cbf48ccaa625c6a2016ed2f05669276402ebb01eb9eb4d90658ec5d6. Some precise offsets also transcribed from inert tool reads; renderer not semantically analyzed by REA.
+
+SRC03: private/static-algorithm-evidence.json and collision-and-timing.json; additional bounded read 5328100–5330300 confirms empty fatal checks. These are local source observations, no separate REA Evidence ID.
+
+SRC04: bounded ticker read 6469900–6471600 plus prior original 07_runtime_findings.md context; no runtime observation in this pass.
+
+SRC05: private/arena-self-collision.json and arena-last-search.json. Negative claims apply only to named terms/selected source and cannot establish server absence.
+
+## Reconstruction implications and open questions
+
+Use independent tunable steering and speed parameters, original server-owned collision geometry and measured local visuals. A 50 Hz reference-inspired calibration can start at 105 units/sec and about 2.6 rad/sec before mapping scale. A 4-unit visual radius with a smaller head collider is supported as a hypothesis; self-trail immunity and authoritative swept collision remain independent design decisions pending runtime evidence. Preserve a separate visual path and authoritative trail representation.
+
+Answered statically: cadence declaration, normal movement config, steering update, gap scheduler, basic client collider sizing. Partially answered: visual width, mode differences, practical turn radius. Unresolved: arena dimensions, authoritative collision/death, newest-self-trail policy, actual network corrections and touch/controller response.
