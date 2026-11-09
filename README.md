@@ -60,3 +60,5 @@ Python3 and PowerShell7 are required. Tool binaries are local and ignored; offic
 ```
 
 Checks run StyLua, Selene, the official Luau compiler, deterministic existing foundation tests through a minimal service/module adapter, both Rojo builds, and a production-artifact boundary check. Headless mocks do not emulate the Roblox engine or prove live DataStore/Marketplace behavior. The compiler verifies parsing/bytecode generation, not full Roblox typechecking. GitHub Actions runs the same source checks on pushes and pull requests.
+
+The completed bundled Studio checkpoint, corrected small-phone case, functional results and limitations are recorded in [qa/studio_verification.md](qa/studio_verification.md). Remaining release gates are in [qa/remaining_risks.md](qa/remaining_risks.md).

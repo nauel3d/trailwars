@@ -20,4 +20,4 @@ The foundation suite preserves the prior29 assertions and adds recovery/busy/del
 
 Before the workflow change, isolated Studio tests passed29 assertions. An actual server-backed Studio mock purchase spent150 of200 fixture coins, granted the ring core and equipped it. The original fixed-height large-text defect was found and corrected. Earlier timeout/fault observations motivated subsequent source recovery barriers. Raw runtime evidence is retained locally and excluded from the public repository.
 
-These earlier checks apply to the preserved prototype, not automatically to the newly styled App. The bundled final engine checkpoint is recorded separately after execution. No physical device or real-money test is claimed.
+These earlier checks apply to the preserved prototype, not automatically to the newly styled App. The bundled final engine checkpoint is recorded in [studio_verification.md](studio_verification.md). No physical device or real-money test is claimed.

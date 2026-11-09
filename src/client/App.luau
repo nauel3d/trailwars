@@ -178,7 +178,7 @@ function App.mount(target: Instance, options: any?)
 		W.primary(play)
 		W.text(body, "Steer left or right. Your trail becomes a wall. Don't crash.", 54, 18)
 		local row = W.frame(body, "HomeLinks", 54)
-		for index, entry in { { "YOUR LOOK", "Customize" }, { "YOUR PROGRESS", "Profile" } } do
+		for index, entry in { { "YOUR LOOK", "Customize" }, { "PROGRESS", "Profile" } } do
 			local b = W.button(row, entry[1], function()
 				navigate(entry[2])
 			end)
