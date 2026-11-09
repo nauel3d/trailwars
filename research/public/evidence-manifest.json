@@ -8,33 +8,33 @@
     },
     {
       "path": "01_screen_catalog.md",
-      "bytes": 21058,
-      "sha256": "7132339e8786ae92a024ff47c5ccfa04e515bf337791dcc9e23181b91901c362"
+      "bytes": 21102,
+      "sha256": "26be34dcbe7a9b7985d6117c0d9ef03ed5c4780639583c6fa1f531b903e8c503"
     },
     {
       "path": "02_navigation_graph.md",
-      "bytes": 5470,
-      "sha256": "2e2792ff4f06029fe932b1ce6036f549aef814e5256d302712341e72b6b4da4a"
+      "bytes": 5469,
+      "sha256": "fa45f34ea133d42f979f0ad4335d0be87dcf2a4a392fa3d384aa9e770d230a24"
     },
     {
       "path": "03_interactions.csv",
-      "bytes": 1955853,
-      "sha256": "7d31d565a7e50b24d86097b12b57c3994f65f85c0bc030f08fc3c2d3d2339b44"
+      "bytes": 1962303,
+      "sha256": "9b54ea7cf0a5559f1a2be58c0d430bf0b9657bd468bec806478ab88f76a9c851"
     },
     {
       "path": "04_gameplay_and_controls.md",
-      "bytes": 8557,
-      "sha256": "7d0895dd3869ece4bd746a0eb64204e5ff28cde3e3fa9011a56d8922ad45c168"
+      "bytes": 9058,
+      "sha256": "e53c20bc6ee9951a806a406524366575f1f7b0c096deeb0f13fc7b62df0b7d89"
     },
     {
       "path": "05_economy_monetization.md",
-      "bytes": 11028,
-      "sha256": "d08ebd47edfff569060cad2b963f9a7074fdc0c44da21a917125336b83d3f322"
+      "bytes": 11392,
+      "sha256": "4a54c5a22e1343b47547cb8528318efa553f83103c647365a76cb9c5eb3a1ba7"
     },
     {
       "path": "06_social_progression_and_retention.md",
-      "bytes": 10593,
-      "sha256": "513e3b22430cc9f2a870b55359ce5fc93a0851ae8430ff80d8d503ceba0d9fee"
+      "bytes": 11413,
+      "sha256": "a301213ef48e74ca6288fbeb8b4a2564e18b75da08c6b5c4be9ee5f2cdab87e1"
     },
     {
       "path": "07_runtime_findings.md",
@@ -43,8 +43,8 @@
     },
     {
       "path": "08_unknowns_blockers.md",
-      "bytes": 6497,
-      "sha256": "6029527ae87fce1251f00882785a09992e14436fd299890615486ae229e13856"
+      "bytes": 6754,
+      "sha256": "7029c8ed580ce9e695ee59b13874e1b61f80a27d261b1b5404d4f5140a65c9b2"
     },
     {
       "path": "evidence/action_ledger.json",
@@ -483,8 +483,8 @@
     },
     {
       "path": "route_queue.json",
-      "bytes": 1496957,
-      "sha256": "2e1d41ac013755a8e91c2e6fbbd554d84468218af533765e7f782169fea90ef5"
+      "bytes": 1353683,
+      "sha256": "f5637001d656f5fab0173e2354ef0aa41bb243bedc32a89ba14ba7f8831c33f7"
     },
     {
       "path": "screenshots/S00_home_2026-11-08T23-15-54-553Z.jpg",

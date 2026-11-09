@@ -1,0 +1,37 @@
+{
+  "name": "TrailWarsPreview",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "TrailWars": {
+        "$path": "src/shared"
+      },
+      "TrailWarsUI": {
+        "$path": "src/client"
+      },
+      "TrailWarsDev": {
+        "$path": "dev"
+      }
+    },
+    "ServerScriptService": {
+      "TrailWars": {
+        "$path": "src/server"
+      }
+    },
+    "StarterGui": {
+      "$properties": {
+        "ScreenOrientation": "Sensor"
+      }
+    },
+    "StarterPlayer": {
+      "$properties": {
+        "LoadCharacterAppearance": false
+      },
+      "StarterPlayerScripts": {
+        "TrailWars": {
+          "$path": "src/bootstrap"
+        }
+      }
+    }
+  }
+}

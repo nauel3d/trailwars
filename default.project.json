@@ -2,12 +2,33 @@
   "name": "TrailWars",
   "tree": {
     "$className": "DataModel",
-    "ReplicatedStorage": { "TrailWars": { "$path": "src/shared" } },
-    "ServerScriptService": { "TrailWars": { "$path": "src/server" } },
-    "StarterGui": { "$properties": { "ScreenOrientation": "Sensor" } },
+    "ReplicatedStorage": {
+      "TrailWars": {
+        "$path": "src/shared"
+      },
+      "TrailWarsUI": {
+        "$path": "src/client"
+      }
+    },
+    "ServerScriptService": {
+      "TrailWars": {
+        "$path": "src/server"
+      }
+    },
+    "StarterGui": {
+      "$properties": {
+        "ScreenOrientation": "Sensor"
+      }
+    },
     "StarterPlayer": {
-      "$properties": { "LoadCharacterAppearance": false },
-      "StarterPlayerScripts": { "TrailWars": { "$path": "src/client" } }
+      "$properties": {
+        "LoadCharacterAppearance": false
+      },
+      "StarterPlayerScripts": {
+        "TrailWars": {
+          "$path": "src/bootstrap"
+        }
+      }
     }
   }
 }

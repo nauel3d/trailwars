@@ -12,7 +12,7 @@ Workflow authority: [issue #1](https://github.com/nauel3d/trailwars/issues/1). S
 - Rojo build passed. Production data and live purchases are disabled; no real product IDs exist.
 - Design explorations, responsive specifications, monetization requirements and research findings are retained.
 
-The visual design at this checkpoint is a neutral wireframe. Source-first visual development follows this preservation commit.
+The current source implements the original Course markings visual system: charcoal, warm white, sharp yellow actions and geometric trail previews. The preserved neutral-wireframe baseline remains in commit d4aff77. See design/07_source_first_stack.md for the stack decision.
 
 ## Local build
 
@@ -31,3 +31,32 @@ Raw screenshots, accessibility captures, REA exports, and original machine repor
 ## Limits
 
 Mock UI stages are demonstrations, not multiplayer. Live persistence, regional purchase prices, actual receipt fulfillment, physical-device behavior and full reference coverage are not claimed. See `design/` and `qa/` for the implementation boundary and pending validation.
+
+## Source and preview layout
+
+- `src/client/App.luau`: mountable application, navigation, request reconciliation and screen composition.
+- `src/client/Widgets.luau` and `Theme.luau`: reusable native components, scoped disposal, accessible text sizing and reduced-motion feedback.
+- `src/bootstrap/Main.client.luau`: player entry point; server integration is unchanged.
+- `src/shared` and `src/server`: catalog/contracts and authoritative profile/economy services.
+- `dev/Stories`: fourteen UI Labs function stories with isolated mock transport; excluded from production.
+- `preview.project.json`: optional edit-mode UI Labs project. UI Labs needs its Studio plugin once; no runtime framework/package is required.
+
+```powershell
+rojo build preview.project.json -o dist/TrailWarsPreview.rbxlx
+rojo serve preview.project.json
+```
+
+Create `dist` first when building manually. Stories return cleanup and never invoke live remotes. Source is authored without Studio; one bundled visual pass remains essential for geometry/input checks.
+
+## Reproducible automated checks
+
+Python3 and PowerShell7 are required. Tool binaries are local and ignored; official release URLs, versions and archive SHA256 values are committed in `scripts/tools.lock.json`.
+
+```powershell
+./scripts/bootstrap.ps1
+./scripts/check.ps1
+# To intentionally apply formatting:
+./scripts/check.ps1 -Format
+```
+
+Checks run StyLua, Selene, the official Luau compiler, deterministic existing foundation tests through a minimal service/module adapter, both Rojo builds, and a production-artifact boundary check. Headless mocks do not emulate the Roblox engine or prove live DataStore/Marketplace behavior. The compiler verifies parsing/bytecode generation, not full Roblox typechecking. GitHub Actions runs the same source checks on pushes and pull requests.

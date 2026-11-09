@@ -1,3 +1,5 @@
+> Updated workflow: issue #1 supersedes the audit-closure gate below. Direction A is selected; see 07_source_first_stack.md and 04_selected_design_system.md. The original exploration is preserved as research history.
+
 # Original visual directions — provisional exploration
 
 The reference audit remains open. These are independently authored alternatives, not a selected brand, approved palette, mascot, or sellable bundle. The current implementation uses a neutral wireframe treatment so system work can proceed without passing the audit gate prematurely. Nothing below reuses reference artwork, names of cosmetics, audio, typography treatments, layout, or source.

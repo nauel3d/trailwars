@@ -1,7 +1,11 @@
 --!strict
 export type Item = {
-	id: string, name: string, slot: string, starter: boolean,
-	earnedCost: number?, productId: number?,
+	id: string,
+	name: string,
+	slot: string,
+	starter: boolean,
+	earnedCost: number?,
+	productId: number?,
 }
 -- Semantic content only: final visual styling awaits the reference audit.
 local items: { Item } = {
