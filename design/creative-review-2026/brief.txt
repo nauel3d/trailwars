@@ -1,0 +1,368 @@
+# TRAIL WARS — INDEPENDENT UI/UX RESEARCH & CREATIVE DIRECTION
+
+## Your assignment
+
+You are taking over as the **Creative Director, Senior Roblox UI/UX Designer, Visual Design Researcher, and Player Acquisition Strategist** for TRAIL WARS.
+
+Our current UI is functional, but I am dissatisfied with its visual quality. It looks too plain, generic, and unexciting.
+
+I want you to independently determine what a truly outstanding Roblox game interface should look like in 2026.
+
+**Do not ask me to pick colors, fonts, themes, layouts, or design inspirations before you've done the research. That is your job.**
+
+Do not simply polish the current interface.
+
+I want you to challenge the entire visual direction and discover something substantially better.
+
+## Project context
+
+Repository: https://github.com/nauel3d/trailwars
+
+The project already contains a working Roblox UI foundation built using native Luau components and Rojo.
+
+It also contains research on Curve Fever Pro, existing menus, customization, monetization foundations, navigation, settings, and UI tests.
+
+Preserve all existing work.
+
+The game is a fast-paced, top-down multiplayer arcade survival game where players steer moving cores, leave trails, trap opponents, and try to become the last survivor.
+
+It does not require Roblox avatars, a physical 3D lobby, or humanoid characters.
+
+The intended experience is simple to understand, exciting to play, and optimized for mobile, desktop, and controller.
+
+We want an original game identity, not a Curve Fever clone.
+
+---
+
+# PHASE 1 — RESEARCH WHAT ACTUALLY WORKS ON ROBLOX
+
+Before designing anything, conduct serious research into current Roblox game presentation, UI quality, visual appeal, and player acquisition.
+
+Study successful and emerging Roblox experiences relevant to:
+
+- Casual competitive multiplayer games.
+- Fast arcade games.
+- Short-session PvP games.
+- Skill-based games.
+- Popular games with strong visual identities.
+- Games with effective cosmetic shops.
+- Games that convert visitors into active players.
+- Games with excellent mobile interfaces.
+
+Do not study only games in our exact genre. Investigate why visually successful Roblox games in other genres attract attention.
+
+Use current information and distinguish measurable evidence from subjective design judgments.
+
+## Research questions
+
+Investigate:
+
+1. What makes someone click a Roblox game icon or thumbnail?
+2. What visual characteristics make a Roblox game immediately recognizable?
+3. How do successful Roblox games communicate their core gameplay in one glance?
+4. What UI styles are currently popular, and which are becoming generic or overused?
+5. How do successful games make their Play buttons prominent?
+6. How do they design menus without overwhelming younger players?
+7. How do they communicate progression, rewards, currency, and customization?
+8. How do their shops present cosmetics in an attractive but understandable way?
+9. What makes a game feel premium rather than like a generic Roblox simulator?
+10. How do excellent interfaces adapt to small phones?
+11. What makes victory screens and rewards satisfying?
+12. How do visuals, loading times, accessibility, and perceived quality influence retention?
+13. Which design approaches are technically realistic in Roblox Studio?
+14. What design decisions would make TRAIL WARS stand out?
+
+Research Roblox's official Creator Hub documentation, relevant platform analytics guidance, actual Roblox game examples, and credible professional game UI design resources.
+
+Do not claim a design increases clicks, conversion, or revenue without supporting data. Form hypotheses where direct evidence is unavailable.
+
+## Competitor analysis
+
+Choose a meaningful sample of relevant Roblox games.
+
+For every game, record:
+
+- Game name and URL.
+- Why it was selected.
+- Actual game icon and thumbnail presentation.
+- Homepage or menu structure, where verifiable.
+- Typography, color, composition, contrast, and visual hierarchy.
+- Progression and store presentation.
+- Mobile considerations.
+- Distinctive design strengths.
+- Weaknesses or overused patterns.
+- What lessons can be applied to TRAIL WARS without copying.
+
+Make a comparative research report.
+
+Do not invent screenshots or interface details for games you cannot inspect.
+
+---
+
+# PHASE 2 — AUDIT OUR CURRENT UI
+
+Inspect the GitHub repository and existing design files.
+
+Understand all current UI screens and functional systems.
+
+Determine why the current interface feels unexciting.
+
+Critically evaluate:
+
+- First impressions.
+- Logo and branding.
+- Main menu composition.
+- Navigation.
+- Button design.
+- Color hierarchy.
+- Background imagery.
+- Motion and feedback.
+- Progression presentation.
+- Shop and customization.
+- Match results.
+- Visual identity.
+- Consistency between screens.
+- Mobile usability.
+- Readability.
+- Technical performance.
+
+Do not assume the existing Course Markings visual direction is correct merely because it was previously selected.
+
+It is not approved.
+
+Preserve the functional code, but treat its visual presentation as open for redesign.
+
+Deliver an honest visual audit with prioritized improvements.
+
+---
+
+# PHASE 3 — DEVELOP ORIGINAL CREATIVE DIRECTIONS
+
+Using your research, independently create at least **three substantially different, high-quality visual directions** for TRAIL WARS.
+
+These must not simply be the same UI recolored three times.
+
+Each direction must have its own visual philosophy, personality, composition, branding approach, and presentation strategy.
+
+You decide what they should be.
+
+Do not default automatically to neon cyberpunk because the game features trails.
+
+Explore unexpected visual approaches if your research supports them.
+
+For each direction, define:
+
+- Core creative concept.
+- Intended audience appeal.
+- Visual personality.
+- Logo treatment.
+- Color system.
+- Typography.
+- Shape language.
+- Navigation structure.
+- Button treatment.
+- Background composition.
+- Cosmetic presentation.
+- Motion principles.
+- Mobile adaptation.
+- Technical feasibility.
+- Performance implications.
+- Expected advantages and risks.
+
+Critically compare the directions.
+
+Recommend the strongest candidate, but do not finalize it without my approval.
+
+**One-of-one means a distinctive and cohesive identity, not excessive effects or visual clutter.**
+
+---
+
+# PHASE 4 — GENERATE ACTUAL VISUAL MOCKUPS
+
+This is a mandatory phase.
+
+**Do not implement your design directly in Roblox Studio before I see and approve it.**
+
+Use the best available image-generation or design tools to create high-fidelity visual mockups for each creative direction.
+
+Use actual generated images, not descriptions, ASCII diagrams, or generic wireframes.
+
+At minimum, generate:
+
+1. Main menu / Home.
+2. Shop.
+3. Customization / Inventory.
+4. Profile / Progression.
+5. Settings.
+6. Match HUD.
+7. Elimination / Spectator.
+8. Victory / Results.
+9. A representative mobile version.
+
+Where appropriate, create individual full-resolution screen mockups rather than putting every screen into one crowded collage.
+
+Create a consistent visual language across each direction.
+
+The designs must look like realistic, polished game interfaces that could be implemented in Roblox—not arbitrary concept art with fake controls.
+
+Ensure that the game depicted is actually TRAIL WARS: moving cores and top-down trail survival, not an unrelated avatar racing or combat game.
+
+Do not invent gameplay systems simply to make a mockup more exciting.
+
+Any speculative features must be explicitly marked as proposals.
+
+Store the generated images and design specifications in the project workspace.
+
+---
+
+# PHASE 5 — PROFESSIONAL SELF-REVIEW
+
+Before presenting anything to me, critically review the concepts.
+
+Assess them against:
+
+- Visual originality.
+- Immediate appeal.
+- Click-through potential.
+- Clarity of gameplay.
+- Premium appearance.
+- Consistency across screens.
+- Readability.
+- Mobile usability.
+- Accessibility.
+- Roblox implementation feasibility.
+- Performance cost.
+- Monetization clarity.
+- Long-term brand recognition.
+
+Identify and correct weak designs.
+
+Do not present your first generation as automatically final.
+
+Improve the candidates when necessary.
+
+Use the strongest actual evidence available, but do not manufacture data or claim that aesthetic preferences are proven conversion improvements.
+
+---
+
+# PHASE 6 — PRESENT THE DESIGNS FOR APPROVAL
+
+Prepare a professional visual presentation containing:
+
+- Research summary.
+- Competitor analysis.
+- Current UI critique.
+- Three creative directions.
+- High-quality generated UI mockups.
+- Side-by-side comparisons.
+- Your recommended direction.
+- Explanation of why you recommend it.
+- Implementation feasibility.
+- Performance considerations.
+- Potential weaknesses.
+
+Make it easy for me to inspect every design.
+
+**STOP HERE AND WAIT FOR MY APPROVAL.**
+
+Do not implement the final designs until I approve a direction.
+
+I may select one direction, reject all three, or ask you to combine particular elements.
+
+Do not interpret silence as approval.
+
+---
+
+# PHASE 7 — IMPLEMENTATION AFTER APPROVAL ONLY
+
+Once I explicitly approve the design, translate the approved visuals into a working Roblox UI.
+
+Treat the approved mockups as the visual specification.
+
+Do not produce a simplified, generic approximation.
+
+Use Roblox-native UI components, suitable assets, and the existing Luau/Rojo architecture.
+
+Preserve the existing navigation, inventory, economy, and monetization foundations unless a redesign requires changes.
+
+Implement the appearance consistently across all screens.
+
+Ensure the following:
+
+- Responsive mobile layouts.
+- Keyboard, mouse, and controller navigation.
+- Proper safe-area handling.
+- Accessible text.
+- Efficient rendering.
+- Minimal unnecessary animation costs.
+- Reusable UI components.
+- Correct button interactions.
+- Proper screen transitions.
+- Accurate cosmetic previews.
+- Clear loading and purchase states.
+- Server-authoritative data and purchases.
+
+Compare the implemented UI against the approved mockups using screenshots.
+
+Iterate until the visual result closely matches what was approved.
+
+Where Roblox technical limitations require an adjustment, explain the tradeoff rather than silently changing the design.
+
+Run the existing tests and add appropriate visual checks.
+
+Commit verified changes to GitHub.
+
+---
+
+# CREDIT AND TOOL EFFICIENCY
+
+Previous work used too many computer-use and runtime inspection calls.
+
+Use a cost-efficient workflow.
+
+Prioritize:
+
+1. Existing repository research and evidence.
+2. Official documentation and conventional web research.
+3. Existing screenshots and game references.
+4. Image generation for design exploration.
+5. Source-code tools and local automation.
+6. Bundled Roblox Studio verification only when implementation begins.
+
+Avoid unnecessarily repeating the Steam/REA investigation.
+
+Do not continuously launch Roblox Studio or the reference game just to inspect ordinary design details.
+
+Use expensive GUI tools only when their information is genuinely necessary.
+
+Do not sacrifice final design quality merely to minimize tool calls.
+
+---
+
+# CRITICAL DIRECTIVES
+
+- Be the designer. Do your own thinking.
+- Research first, then design.
+- Challenge existing assumptions.
+- Do not copy another game's branding or interface.
+- Do not reuse the previously generated concepts unless your own research independently justifies similar choices.
+- Do not choose a final direction without my approval.
+- Do not implement UI before approval.
+- Do not confuse beautiful concept art with functional UI.
+- Do not use fake player statistics or monetization figures as research evidence.
+- Do not ignore mobile players.
+- Do not overcomplicate a simple arcade game.
+- Do not claim popularity is guaranteed.
+- Do not delete or overwrite existing working systems.
+- Do not spend excessive credits on repetitive computer-use operations.
+- Save your research, image mockups, design files, and decisions so the process remains reproducible.
+
+## Final objective
+
+I want TRAIL WARS to look like a professionally art-directed, distinctive Roblox game with an immediately recognizable identity.
+
+**You are responsible for discovering what that should look like through research, not waiting for me to tell you.**
+
+Your immediate job is to research, evaluate, generate, refine, and present excellent UI mockups.
+
+**Do not write or replace the final Roblox UI until I explicitly approve a design.**

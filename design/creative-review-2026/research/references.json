@@ -1,0 +1,499 @@
+[
+  {
+    "slug": "rivals",
+    "placeId": 17625359962,
+    "url": "https://www.roblox.com/games/17625359962",
+    "retrievedUTC": "2026-11-09T05:38:37.645862+00:00",
+    "images": [
+      {
+        "file": "images/rivals-icon-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-1912e777e949b6490e59fa4ac83b1063/512/512/Image/Png/noFilter",
+        "sha256": "33fe14c4fcfd911f1c3c54185441962807bc5a561dc4df97603d11d76e767e2d",
+        "kind": "icon",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/rivals-thumbnail-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-16cda8092fa0dfd10b938e549d46f97d/768/432/Image/Png/noFilter",
+        "sha256": "b55d44d8573df592ca4e07d38aae5bcd75494bba3549ed2a9c4d3bf9e3028b9e",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/rivals-thumbnail-2.png",
+        "url": "https://tr.rbxcdn.com/180DAY-37eba4415e2668fd17be4cab578eeeae/768/432/Image/Png/noFilter",
+        "sha256": "a8ef87fc69162925bf93db5c9215af1427d62dd1efd4b24884fc29e44e00beca",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      }
+    ],
+    "universeId": 6035872082,
+    "details": {
+      "id": 6035872082,
+      "rootPlaceId": 17625359962,
+      "name": "RIVALS",
+      "description": "Welcome to RIVALS, the most intense first person shooter game on Roblox! Challenge other players in 1v1 to 5v5 FPS duels where the first to 5 wins!\n\n\ud83c\udf83 UPDATE 24 - HAPPY RIVALSWEEN! Our Halloween Update is out now! \ud83c\udf83\n\n\ud83d\udd2b Challenge someone by stepping on a duel pad!\n\ud83d\udd11 Earn keys to unlock new weapons & skins!\n\ud83d\udcdc Complete contracts to unlock exclusive rewards!\n\ud83c\udfc6 Show off your win streak and climb the leaderboards! \n\n\ud83c\udfae Available on Desktop, Phones, Tablets, XBOX, & PlayStation 5!\n\ud83d\udc9c Like and join the group for exclusive rewards!\n\n\u26a0\ufe0f WARNING: Cheaters will be permanently banned with no second chances, our anticheat & moderators will catch you. Abusing glitches & using sketchy farming methods are also not allowed!\n\n\ud83c\udfc6 RIA25 Best Shooter Experience!\n\ud83c\udfc6 RIA26 Best Shooter Experience!",
+      "sourceName": null,
+      "sourceDescription": null,
+      "creator": {
+        "id": 3461453,
+        "name": "Nosniy Games",
+        "type": "Group",
+        "isRNVAccount": false,
+        "hasVerifiedBadge": true
+      },
+      "price": null,
+      "allowedGearGenres": [
+        "FPS"
+      ],
+      "allowedGearCategories": [],
+      "isGenreEnforced": false,
+      "copyingAllowed": false,
+      "playing": 91120,
+      "visits": 19228007246,
+      "maxPlayers": 40,
+      "created": "2024-05-26T16:47:48.617Z",
+      "updated": "2026-11-09T00:10:15.972Z",
+      "studioAccessToApisAllowed": false,
+      "createVipServersAllowed": false,
+      "universeAvatarType": "MorphToR15",
+      "genre": "FPS",
+      "genre_l1": "Shooter",
+      "genre_l2": "Deathmatch Shooter",
+      "untranslated_genre_l1": "shooter",
+      "isAllGenre": false,
+      "isFavoritedByUser": false,
+      "favoritedCount": 97097642,
+      "canonicalUrlPath": "/games/17625359962/RIVALS",
+      "isContentRestricted": false,
+      "isOfficiallyLicensed": false,
+      "isCommunityLicensed": false
+    }
+  },
+  {
+    "slug": "blade-ball",
+    "placeId": 13772394625,
+    "url": "https://www.roblox.com/games/13772394625",
+    "retrievedUTC": "2026-11-09T05:38:37.649852+00:00",
+    "images": [
+      {
+        "file": "images/blade-ball-icon-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-38e75c9ff1051ad6ca868f39be2cf095/512/512/Image/Png/noFilter",
+        "sha256": "3cccc6a8131d998c4da42e0602560ae2004fdc44eb5d6260cf3552c54bb6e433",
+        "kind": "icon",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/blade-ball-thumbnail-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-be150ba07c74cd57deb31791c2675323/768/432/Image/Png/noFilter",
+        "sha256": "5097a8e8b057182b38e456e45485d3333da8866c7dab9e8790922a5bf08bda24",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/blade-ball-thumbnail-2.png",
+        "url": "https://tr.rbxcdn.com/180DAY-9624c15d988e58e5f629fb64e44c83ed/768/432/Image/Png/noFilter",
+        "sha256": "1012760f6f99212363c7004cb2f2d985bf1b5d3ba8453b977ef1ed7e03c8b97f",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      }
+    ],
+    "universeId": 4777817887,
+    "details": {
+      "id": 4777817887,
+      "rootPlaceId": 13772394625,
+      "name": "Blade Ball",
+      "description": "\u26a1  In this game of focus, timing, and strategy, your skill is tested as a deflectable homing ball hunts players with increasing speed. But there's more than what meets the eye.\n\n\ud83d\udd25  Gain new abilities and upgrade them to compliment your playstyle. Rise through the ranks by mastering your skill, and stand out with a variety of iconic weapon skins and finisher effects.\n\n\ud83c\udfc6 Shoot for the leaderboard or play casually! The choice is yours.\n \nCONTROLS:\nBLOCK - F/R1/Tap Screen/Tap UI Button/Left Click\nABILITY - Q/ButtonX/Tap UI Button/Right Click\nSHIFTLOCK - Shift/Button-Y/Tap UI Button\nEMOTE - R/L1/Tap UI Button\n\ntags: minigame, battle game, pvp, multiplayer, abilities, dodgeball, sports, mobile, console, xbox, pc",
+      "sourceName": null,
+      "sourceDescription": null,
+      "creator": {
+        "id": 12836673,
+        "name": "Wiggity.",
+        "type": "Group",
+        "isRNVAccount": false,
+        "hasVerifiedBadge": true
+      },
+      "price": null,
+      "allowedGearGenres": [
+        "Ninja"
+      ],
+      "allowedGearCategories": [],
+      "isGenreEnforced": false,
+      "copyingAllowed": false,
+      "playing": 10461,
+      "visits": 6533412696,
+      "maxPlayers": 16,
+      "created": "2023-06-17T00:05:26.103Z",
+      "updated": "2026-11-09T00:52:49.446Z",
+      "studioAccessToApisAllowed": false,
+      "createVipServersAllowed": false,
+      "universeAvatarType": "MorphToR6",
+      "genre": "Fighting",
+      "genre_l1": "Action",
+      "genre_l2": "Battlegrounds & Fighting",
+      "untranslated_genre_l1": "action",
+      "isAllGenre": false,
+      "isFavoritedByUser": false,
+      "favoritedCount": 13096984,
+      "canonicalUrlPath": "/games/13772394625/Blade-Ball",
+      "isContentRestricted": false,
+      "isOfficiallyLicensed": false,
+      "isCommunityLicensed": false
+    }
+  },
+  {
+    "slug": "epic-minigames",
+    "placeId": 277751860,
+    "url": "https://www.roblox.com/games/277751860",
+    "retrievedUTC": "2026-11-09T05:38:37.650820+00:00",
+    "images": [
+      {
+        "file": "images/epic-minigames-icon-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-a7cb7bb15c8f29fcfcf39d83800a60df/512/512/Image/Png/noFilter",
+        "sha256": "53e355d90a4633c15f72ed1449a9dd1e0a2fb5844bd580041a4fb035faf7ff46",
+        "kind": "icon",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/epic-minigames-thumbnail-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-7e02ba9a4450da5766206a3800d41f44/768/432/Image/Png/noFilter",
+        "sha256": "19008c41341afa56b848959d348e53415ac7cd8ec1bc044bb0750debf0be99af",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/epic-minigames-thumbnail-2.png",
+        "url": "https://tr.rbxcdn.com/180DAY-6a9eb349a2ba1dcda53374aa05eccd0c/768/432/Image/Png/noFilter",
+        "sha256": "ffd01028c6e7aced2cbb332b1ecbc5f907bdc3515681ccfdfe4e30753fa01c3a",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      }
+    ],
+    "universeId": 110181652,
+    "details": {
+      "id": 110181652,
+      "rootPlaceId": 277751860,
+      "name": "Epic Minigames \u2728",
+      "description": "Welcome to Epic Minigames, the game where you can enjoy a collection of 141 unique and exciting minigames! \ud83d\udd79\ufe0f\n\nLevel up and earn coins by winning rounds, and spend your coins on gear, pets, effects, and other fun stuff for your character. \ud83c\udf1f\n\nAs well as the main minigame mode, there's also Epic Party \ud83c\udfb2, a board game where you can compete against a group of friends or strangers to see who can gather the most crystals! \ud83d\udc8e",
+      "sourceName": null,
+      "sourceDescription": null,
+      "creator": {
+        "id": 2649054,
+        "name": "Typical Games",
+        "type": "Group",
+        "isRNVAccount": false,
+        "hasVerifiedBadge": true
+      },
+      "price": null,
+      "allowedGearGenres": [
+        "All"
+      ],
+      "allowedGearCategories": [],
+      "isGenreEnforced": false,
+      "copyingAllowed": false,
+      "playing": 1250,
+      "visits": 2363122202,
+      "maxPlayers": 12,
+      "created": "2015-07-29T08:46:24.84Z",
+      "updated": "2026-11-09T01:56:49.508Z",
+      "studioAccessToApisAllowed": false,
+      "createVipServersAllowed": false,
+      "universeAvatarType": "PlayerChoice",
+      "genre": "All",
+      "genre_l1": "Party & Casual",
+      "genre_l2": "Minigame",
+      "untranslated_genre_l1": "party_and_casual",
+      "isAllGenre": true,
+      "isFavoritedByUser": false,
+      "favoritedCount": 8634868,
+      "canonicalUrlPath": "/games/277751860/Epic-Minigames",
+      "isContentRestricted": false,
+      "isOfficiallyLicensed": false,
+      "isCommunityLicensed": false
+    }
+  },
+  {
+    "slug": "super-bomb-survival",
+    "placeId": 164051105,
+    "url": "https://www.roblox.com/games/164051105",
+    "retrievedUTC": "2026-11-09T05:38:37.652208+00:00",
+    "images": [
+      {
+        "file": "images/super-bomb-survival-icon-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-f48573f515674c65b8733d91384d79be/512/512/Image/Png/noFilter",
+        "sha256": "ad0565030ed83b19c3d27f7a711f94b9df7e849e78ce611516a047b8b483b8d6",
+        "kind": "icon",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/super-bomb-survival-thumbnail-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-a54150063798c8c4d336e82a9518b758/768/432/Image/Png/noFilter",
+        "sha256": "5e4e17ffc8d95e5fb62a33ab4d12ed673df5d6d4ba717a6c440bcd4ee647ce51",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/super-bomb-survival-thumbnail-2.png",
+        "url": "https://tr.rbxcdn.com/180DAY-294f64d10a58c69af95a934cfa8c8790/768/432/Image/Png/noFilter",
+        "sha256": "f9e5e5ab3aceefb969751e2e3c012d906745f757b04f5c1b1e001098401541e1",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      }
+    ],
+    "universeId": 78351145,
+    "details": {
+      "id": 78351145,
+      "rootPlaceId": 164051105,
+      "name": "Super Bomb Survival",
+      "description": "Super Bomb Survival is a physics-based survival game where it's raining explosives from the sky! Join your friends & enemies alike in this frantic scramble to avoid explosions of all kinds! Battle, escape random events, and become a badge tycoon! \n\nBuy over 70 Skills & over 20 Perks at the game's Survival Shop to tailor your character to your play-style, or hang out in the arcade and goof off. You can even ragdoll at any time!\n\nIf you enjoy the game, leave a like/favorite! It helps a lot!\n\nLogo by tanukizzy",
+      "sourceName": null,
+      "sourceDescription": null,
+      "creator": {
+        "id": 1175207,
+        "name": "Polyhex Games",
+        "type": "Group",
+        "isRNVAccount": false,
+        "hasVerifiedBadge": false
+      },
+      "price": null,
+      "allowedGearGenres": [
+        "All"
+      ],
+      "allowedGearCategories": [],
+      "isGenreEnforced": false,
+      "copyingAllowed": false,
+      "playing": 58,
+      "visits": 219572048,
+      "maxPlayers": 15,
+      "created": "2014-06-29T13:41:19.53Z",
+      "updated": "2026-11-07T00:12:23.988Z",
+      "studioAccessToApisAllowed": false,
+      "createVipServersAllowed": false,
+      "universeAvatarType": "PlayerChoice",
+      "genre": "All",
+      "genre_l1": "Survival",
+      "genre_l2": "",
+      "untranslated_genre_l1": "survival",
+      "isAllGenre": true,
+      "isFavoritedByUser": false,
+      "favoritedCount": 1832336,
+      "canonicalUrlPath": "/games/164051105/Super-Bomb-Survival",
+      "isContentRestricted": false,
+      "isOfficiallyLicensed": false,
+      "isCommunityLicensed": false
+    }
+  },
+  {
+    "slug": "dandys-world",
+    "placeId": 16116270224,
+    "url": "https://www.roblox.com/games/16116270224",
+    "retrievedUTC": "2026-11-09T05:38:45.108146+00:00",
+    "images": [
+      {
+        "file": "images/dandys-world-icon-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-f3ea2e51271c1904847d9c1fca32fcac/512/512/Image/Png/noFilter",
+        "sha256": "9c88c85007e7bef40e455ea0af0da114422fb58a6092b56d3bc18d47c2afa9b3",
+        "kind": "icon",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/dandys-world-thumbnail-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-b796b8c22add1cf2490882637e8be3b4/768/432/Image/Png/noFilter",
+        "sha256": "28b2f3abc862ee541d5d247d84108b5df458b02ee45a4357fb29baf00e8c88a1",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/dandys-world-thumbnail-2.png",
+        "url": "https://tr.rbxcdn.com/180DAY-511e5c6e680e60d7b068cdff1b94a4d8/768/432/Image/Png/noFilter",
+        "sha256": "81a1b7112e10efb915b6a8fe4ed30a355157eeeffe027019c051b1e9d9d4a2bc",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      }
+    ],
+    "universeId": 5569032992,
+    "details": {
+      "id": 5569032992,
+      "rootPlaceId": 16116270224,
+      "name": "\ud83c\udf19 Dandy's World [ALPHA]",
+      "description": "Dandy's World is a Mascot Horror Survival Multiplayer game where you must team up with fellow Toons to complete machines and descend deeper into Gardenview Center.\n\n\u2727---\u2727\nAre you ready to 'See A Very Exciting and Unforgettable Show'? Look no further as Dandy and the Gardenview Crew are ready to give you a performance you don't want to miss!\n\n(\u26a0\ufe0f DISCLAIMER: Experience may include bright/flashing lights and may affect photosensitive users. \u26a0\ufe0f)\n(\u26a0\ufe0f DISCLAIMER 2: The game is still in Alpha, so expect bugs and shutdowns! Report any bugs you find to the BlushCrunch Studio Server! \u26a0\ufe0f)\n\n\u2727---\u2727\n\ud83c\udf3b - Collect Toons with unique stats and abilities!\n\ud83e\udee7 - Complete Machines and collect Research on what lurks below...\n\ud83d\udce6 - Collect Trinkets to customize your playstyle!\n\n\u2727---\u2727\nVERSION 0.30.1\n- 3 Quests with Astro-themed rewards!\n- Toon Astro Ability Rework!\n- New Twisted Astro Ability!\n- Dreamweaver Game Pass Skin with Emote!",
+      "sourceName": null,
+      "sourceDescription": null,
+      "creator": {
+        "id": 14576965,
+        "name": "BlushCrunch Studio",
+        "type": "Group",
+        "isRNVAccount": false,
+        "hasVerifiedBadge": true
+      },
+      "price": null,
+      "allowedGearGenres": [
+        "All"
+      ],
+      "allowedGearCategories": [],
+      "isGenreEnforced": false,
+      "copyingAllowed": false,
+      "playing": 50042,
+      "visits": 7921081065,
+      "maxPlayers": 35,
+      "created": "2024-01-26T03:52:09.063Z",
+      "updated": "2026-11-07T02:00:13.421Z",
+      "studioAccessToApisAllowed": false,
+      "createVipServersAllowed": false,
+      "universeAvatarType": "MorphToR15",
+      "genre": "All",
+      "genre_l1": "Survival",
+      "genre_l2": "Escape",
+      "untranslated_genre_l1": "survival",
+      "isAllGenre": true,
+      "isFavoritedByUser": false,
+      "favoritedCount": 4794363,
+      "canonicalUrlPath": "/games/16116270224/Dandys-World",
+      "isContentRestricted": false,
+      "isOfficiallyLicensed": false,
+      "isCommunityLicensed": false
+    }
+  },
+  {
+    "slug": "dress-to-impress",
+    "placeId": 15101393044,
+    "url": "https://www.roblox.com/games/15101393044",
+    "retrievedUTC": "2026-11-09T05:38:46.124856+00:00",
+    "images": [
+      {
+        "file": "images/dress-to-impress-icon-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-929ff39bc1d926f3de0298cdf3470b41/512/512/Image/Png/noFilter",
+        "sha256": "0b95df6df83e2fad19daf1674d23d489345c31fd123478e62a86ad93c514c3cd",
+        "kind": "icon",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/dress-to-impress-thumbnail-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-d1d34e3e05aa722be00171804119c874/768/432/Image/Png/noFilter",
+        "sha256": "90065608fa2a42319774ee8303c21aafeb8c094393951f9795feb3ef5eba8631",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/dress-to-impress-thumbnail-2.png",
+        "url": "https://tr.rbxcdn.com/180DAY-93dd2075c61008cf59af69d997d0292a/768/432/Image/Png/noFilter",
+        "sha256": "923179d6aca2b7051acba5708646dae6313c0f0f6a04ce0e06f8f14dbf655dea",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      }
+    ],
+    "universeId": 5203828273,
+    "details": {
+      "id": 5203828273,
+      "rootPlaceId": 15101393044,
+      "name": "[\ud83c\udf83] Dress To Impress",
+      "description": "Create stunning outfits \ud83d\udc57\ud83d\udc96\u2b50, and strut the runway to show off your unique style. Collaborate, compete, and explore a world of glamour with friends!\n\n\u2b50 Are you ready to be the TOP MODEL?\n\ud83d\udc57 NEW ITEMS! Check them out.\n\ud83c\udf7f Vote for your favorite outfits!\n\ud83d\udc83 Use poses on the runway to show off your outfit!\n\nFind more about Dress To Impress by joining our community.\nhttps://www.roblox.com/communities/17264167/Dress-To-Impress-Group#!/about",
+      "sourceName": null,
+      "sourceDescription": null,
+      "creator": {
+        "id": 17264167,
+        "name": "Dress To Impress Group",
+        "type": "Group",
+        "isRNVAccount": false,
+        "hasVerifiedBadge": true
+      },
+      "price": null,
+      "allowedGearGenres": [
+        "All"
+      ],
+      "allowedGearCategories": [],
+      "isGenreEnforced": false,
+      "copyingAllowed": false,
+      "playing": 28851,
+      "visits": 11323977104,
+      "maxPlayers": 13,
+      "created": "2023-10-18T09:11:36.563Z",
+      "updated": "2026-11-09T03:09:43.914Z",
+      "studioAccessToApisAllowed": false,
+      "createVipServersAllowed": false,
+      "universeAvatarType": "MorphToR15",
+      "genre": "All",
+      "genre_l1": "Roleplay & Avatar Sim",
+      "genre_l2": "Dress Up",
+      "untranslated_genre_l1": "roleplay_and_avatar_sim",
+      "isAllGenre": true,
+      "isFavoritedByUser": false,
+      "favoritedCount": 7749574,
+      "canonicalUrlPath": "/games/15101393044/Dress-To-Impress",
+      "isContentRestricted": false,
+      "isOfficiallyLicensed": false,
+      "isCommunityLicensed": false
+    }
+  },
+  {
+    "slug": "doors",
+    "placeId": 6516141723,
+    "url": "https://www.roblox.com/games/6516141723",
+    "retrievedUTC": "2026-11-09T05:38:49.588558+00:00",
+    "images": [
+      {
+        "file": "images/doors-icon-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-162de85b0d395c94c02f367b52dc5ddd/512/512/Image/Png/noFilter",
+        "sha256": "e0ecd589b7e1b707ccc6f4f7188ad2822689024f214958c245b6d5a04c1f2854",
+        "kind": "icon",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/doors-thumbnail-1.png",
+        "url": "https://tr.rbxcdn.com/180DAY-e822a794752ce011565eca23a280f4dc/768/432/Image/Png/noFilter",
+        "sha256": "3285a61b64c89a0b34684bc68a0ee3501058a461c5f9769bfa59f361ad4dee2a",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      },
+      {
+        "file": "images/doors-thumbnail-2.png",
+        "url": "https://tr.rbxcdn.com/180DAY-282a51475c2f53acd3c8b6058fb34fa2/768/432/Image/Png/noFilter",
+        "sha256": "63eaed929160fc4ec2cc26ca390bdd7847ba52b8eaf8be025c6f0cd1e63247f1",
+        "kind": "thumbnail",
+        "evidence": "public current API image, not an in-game menu capture"
+      }
+    ],
+    "universeId": 2440500124,
+    "details": {
+      "id": 2440500124,
+      "rootPlaceId": 6516141723,
+      "name": "DOORS \ud83d\udc41\ufe0f",
+      "description": "A horror game involving doors.\n\nWe recommend entering without a guide; use each death as a lesson.\n\u26a0\ufe0f Loud sounds, flashing lights ahead!\n\ud83c\udfa7 \ud83d\udcf7 Headphones & max graphics recommended\n\n\u2764\ufe0f Join the LSPLASH group for a free Revive!\n\u2b50 Buy (and wear) our UGC for some Knobs and a Revive!\n\n\ud83c\udfb5 Music is non-copyright, on Spotify 'LSPLASH'\n\ud83d\udee0\ufe0f Many things are subject to change, and some things may break.",
+      "sourceName": null,
+      "sourceDescription": null,
+      "creator": {
+        "id": 3049798,
+        "name": "LSPLASH",
+        "type": "Group",
+        "isRNVAccount": false,
+        "hasVerifiedBadge": true
+      },
+      "price": null,
+      "allowedGearGenres": [
+        "Adventure"
+      ],
+      "allowedGearCategories": [],
+      "isGenreEnforced": true,
+      "copyingAllowed": false,
+      "playing": 9701,
+      "visits": 8016059181,
+      "maxPlayers": 50,
+      "created": "2021-03-14T02:20:27.43Z",
+      "updated": "2026-11-09T01:26:24.561Z",
+      "studioAccessToApisAllowed": false,
+      "createVipServersAllowed": false,
+      "universeAvatarType": "MorphToR15",
+      "genre": "Adventure",
+      "genre_l1": "Survival",
+      "genre_l2": "Escape",
+      "untranslated_genre_l1": "survival",
+      "isAllGenre": false,
+      "isFavoritedByUser": false,
+      "favoritedCount": 8371982,
+      "canonicalUrlPath": "/games/6516141723/DOORS",
+      "isContentRestricted": false,
+      "isOfficiallyLicensed": false,
+      "isCommunityLicensed": false
+    }
+  }
+]
