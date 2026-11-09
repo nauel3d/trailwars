@@ -1,0 +1,4022 @@
+[
+  {
+    "slug": "00-design-system",
+    "title": "Design system",
+    "viewport": [
+      1672,
+      1080
+    ],
+    "purpose": "Color/type/depth consistency, not a new visual direction.",
+    "states": [
+      "button variants",
+      "type",
+      "palette",
+      "component hierarchy"
+    ],
+    "responsive": "Native text and controls sit on reusable material skins.",
+    "status": "proposal",
+    "actions": [],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          1065,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · TOKENS / COMPONENTS",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "board"
+  },
+  {
+    "slug": "00-component-states",
+    "title": "Component states",
+    "viewport": [
+      1672,
+      1080
+    ],
+    "purpose": "Shared controls across all screens, including unavailable and pending.",
+    "states": [
+      "normal",
+      "hover",
+      "focus",
+      "press",
+      "selected",
+      "disabled",
+      "loading",
+      "owned",
+      "locked",
+      "equipped"
+    ],
+    "responsive": "Focused and selected are distinct contracts; final focus uses a dual cream/plum outline, not color alone.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "item-0",
+        "rect": [
+          34,
+          495,
+          380,
+          300
+        ],
+        "label": "Starter core",
+        "disabled": false
+      },
+      {
+        "id": "item-1",
+        "rect": [
+          442,
+          495,
+          380,
+          300
+        ],
+        "label": "Ring core",
+        "disabled": false
+      },
+      {
+        "id": "item-2",
+        "rect": [
+          850,
+          495,
+          380,
+          300
+        ],
+        "label": "Starter trail",
+        "disabled": false
+      },
+      {
+        "id": "item-3",
+        "rect": [
+          1258,
+          495,
+          380,
+          300
+        ],
+        "label": "Dashed trail",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          1065,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · COMPONENT STATES",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "board"
+  },
+  {
+    "slug": "00-motion-storyboard",
+    "title": "Motion storyboard",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "A storyboard of intended feel, not an implemented animation.",
+    "states": [
+      "rest",
+      "press",
+      "release",
+      "confirmed"
+    ],
+    "responsive": "No whole-screen bounce, loops or animation-gated input.",
+    "status": "proposal",
+    "actions": [],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · TIMINGS ARE HYPOTHESES",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "board"
+  },
+  {
+    "slug": "01-home-desktop",
+    "title": "Home",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "One-screen game menu with a single primary Play action.",
+    "states": [
+      "ready",
+      "profile-loading",
+      "offline-read-only",
+      "input-changed"
+    ],
+    "responsive": "Remove optional summary/decorative area before text or actions. No page scroll in any mode.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Controls",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "HOW TO PLAY",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "Play",
+        "rect": [
+          527.8,
+          821,
+          884.4000000000001,
+          92
+        ],
+        "label": "PLAY",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "02-controls-desktop",
+    "title": "Controls",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Brief playable input explanation, no quiz or forced purchase.",
+    "states": [
+      "keyboard",
+      "touch",
+      "controller",
+      "input-switch",
+      "focus-lost"
+    ],
+    "responsive": "Same rules, hardware-specific controls. Review from Settings. Local intent demonstration only.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "TryLeft",
+        "rect": [
+          450,
+          715,
+          350,
+          66
+        ],
+        "label": "A / ←   LEFT",
+        "disabled": false
+      },
+      {
+        "id": "TryRight",
+        "rect": [
+          1140,
+          715,
+          350,
+          66
+        ],
+        "label": "D / →   RIGHT",
+        "disabled": false
+      },
+      {
+        "id": "Continue",
+        "rect": [
+          594.8,
+          802,
+          750.4000000000001,
+          76
+        ],
+        "label": "READY TO PLAY",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "TWO DIRECTIONS. ONE SURVIVOR.",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "03-queue-desktop",
+    "title": "Quick Play queue",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "One queue, no unnecessary mode selector or Ready page.",
+    "states": [
+      "entering",
+      "searching",
+      "cancel-requested",
+      "canceled",
+      "join-confirmed",
+      "join-failed",
+      "service-unavailable"
+    ],
+    "responsive": "Cancel stays visible. Animation never delays cancellation. Countdown is an authoritative/mocked event, not a local matchmaking simulation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "CancelQueue",
+        "rect": [
+          702.0,
+          715,
+          536.0,
+          76
+        ],
+        "label": "CANCEL",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "04-countdown-desktop",
+    "title": "Countdown",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "One queue, no unnecessary mode selector or Ready page.",
+    "states": [
+      "entering",
+      "searching",
+      "cancel-requested",
+      "canceled",
+      "join-confirmed",
+      "join-failed",
+      "service-unavailable"
+    ],
+    "responsive": "Cancel stays visible. Animation never delays cancellation. Countdown is an authoritative/mocked event, not a local matchmaking simulation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "05-customize-desktop",
+    "title": "MAKE IT YOURS",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Select a real catalog cosmetic; inspect before equipping or buying.",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "responsive": "Portrait replaces the large always-visible preview with an item sheet. The grid alone may scroll; tabs and action dock are fixed.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "FilterALL",
+        "rect": [
+          300.0,
+          222,
+          222.79999999999998,
+          58
+        ],
+        "label": "ALL",
+        "disabled": false
+      },
+      {
+        "id": "FilterCORES",
+        "rect": [
+          529.8,
+          222,
+          222.79999999999998,
+          58
+        ],
+        "label": "CORES",
+        "disabled": false
+      },
+      {
+        "id": "FilterTRAILS",
+        "rect": [
+          759.5999999999999,
+          222,
+          222.79999999999998,
+          58
+        ],
+        "label": "TRAILS",
+        "disabled": false
+      },
+      {
+        "id": "item-0",
+        "rect": [
+          300.0,
+          300,
+          332.7,
+          245
+        ],
+        "label": "Starter core",
+        "disabled": false
+      },
+      {
+        "id": "item-1",
+        "rect": [
+          650.7,
+          300,
+          332.7,
+          245
+        ],
+        "label": "Ring core",
+        "disabled": false
+      },
+      {
+        "id": "item-2",
+        "rect": [
+          300.0,
+          561,
+          332.7,
+          245
+        ],
+        "label": "Starter trail",
+        "disabled": false
+      },
+      {
+        "id": "item-3",
+        "rect": [
+          650.7,
+          561,
+          332.7,
+          245
+        ],
+        "label": "Dashed trail",
+        "disabled": false
+      },
+      {
+        "id": "ItemDetails",
+        "rect": [
+          1032.4,
+          727,
+          582.6,
+          80
+        ],
+        "label": "VIEW ITEM",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "06-item-details-desktop",
+    "title": "Item details",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Honest cosmetic inspection with its source collection preserved.",
+    "states": [
+      "owned/equip",
+      "equipped",
+      "locked",
+      "insufficient",
+      "saving",
+      "failed",
+      "unavailable"
+    ],
+    "responsive": "Phone uses a safe-area sheet with pinned Close and action row; long description scrolls inside only.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "CloseDetails",
+        "rect": [
+          1128.0,
+          155.5,
+          60,
+          58
+        ],
+        "label": "×",
+        "disabled": false
+      },
+      {
+        "id": "Unlock",
+        "rect": [
+          490.0,
+          698.5,
+          692,
+          72
+        ],
+        "label": "UNLOCK WITH COINS",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "YOUR COLLECTION",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "07-shop-desktop",
+    "title": "COSMETIC SHOP",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Select a real catalog cosmetic; inspect before equipping or buying.",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "responsive": "Portrait replaces the large always-visible preview with an item sheet. The grid alone may scroll; tabs and action dock are fixed.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "FilterALL",
+        "rect": [
+          300.0,
+          222,
+          222.79999999999998,
+          58
+        ],
+        "label": "ALL",
+        "disabled": false
+      },
+      {
+        "id": "FilterCORES",
+        "rect": [
+          529.8,
+          222,
+          222.79999999999998,
+          58
+        ],
+        "label": "CORES",
+        "disabled": false
+      },
+      {
+        "id": "FilterTRAILS",
+        "rect": [
+          759.5999999999999,
+          222,
+          222.79999999999998,
+          58
+        ],
+        "label": "TRAILS",
+        "disabled": false
+      },
+      {
+        "id": "item-0",
+        "rect": [
+          300.0,
+          300,
+          332.7,
+          245
+        ],
+        "label": "Starter core",
+        "disabled": false
+      },
+      {
+        "id": "item-1",
+        "rect": [
+          650.7,
+          300,
+          332.7,
+          245
+        ],
+        "label": "Ring core",
+        "disabled": false
+      },
+      {
+        "id": "item-2",
+        "rect": [
+          300.0,
+          561,
+          332.7,
+          245
+        ],
+        "label": "Starter trail",
+        "disabled": false
+      },
+      {
+        "id": "item-3",
+        "rect": [
+          650.7,
+          561,
+          332.7,
+          245
+        ],
+        "label": "Dashed trail",
+        "disabled": false
+      },
+      {
+        "id": "ItemDetails",
+        "rect": [
+          1032.4,
+          727,
+          582.6,
+          80
+        ],
+        "label": "VIEW ITEM",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "08-purchase-confirm",
+    "title": "Purchase confirm",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Purchase status without duplicate charges or false refunds.",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "responsive": "Short phone copy, pinned buttons, controller focus starts on Cancel. Closing presentation cannot cancel an already-submitted write.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "CancelPurchase",
+        "rect": [
+          546.0,
+          605.5,
+          284.0,
+          70
+        ],
+        "label": "CANCEL",
+        "disabled": false
+      },
+      {
+        "id": "ConfirmPurchase",
+        "rect": [
+          842.0,
+          605.5,
+          284.0,
+          70
+        ],
+        "label": "CONFIRM",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "COSMETIC SHOP",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "09-purchase-processing",
+    "title": "Purchase pending",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Purchase status without duplicate charges or false refunds.",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "responsive": "Short phone copy, pinned buttons, controller focus starts on Cancel. Closing presentation cannot cancel an already-submitted write.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "Reconcile",
+        "rect": [
+          546.0,
+          585.5,
+          580,
+          68
+        ],
+        "label": "PLEASE WAIT",
+        "disabled": true
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "COSMETIC SHOP",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "10-purchase-reconcile",
+    "title": "Purchase unknown",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Purchase status without duplicate charges or false refunds.",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "responsive": "Short phone copy, pinned buttons, controller focus starts on Cancel. Closing presentation cannot cancel an already-submitted write.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "Reconcile",
+        "rect": [
+          546.0,
+          585.5,
+          580,
+          68
+        ],
+        "label": "CHECK STATUS",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "COSMETIC SHOP",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "11-profile-desktop",
+    "title": "Profile",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Only supported profile totals, without invented levels or ranks.",
+    "states": [
+      "confirmed",
+      "zero-history",
+      "loading",
+      "stale",
+      "missing",
+      "long-name"
+    ],
+    "responsive": "Identity remains readable. Optional later history is separate content, not a longer Home.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "Customize",
+        "rect": [
+          541.2,
+          750,
+          857.6,
+          84
+        ],
+        "label": "CUSTOMIZE",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "YOUR SIGNATURE",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "12-settings-desktop",
+    "title": "Settings",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Real audio/readability preferences with clear save state.",
+    "states": [
+      "draft",
+      "saving",
+      "saved",
+      "failed",
+      "offline",
+      "partial-default-reset"
+    ],
+    "responsive": "Category tabs and Back fixed; only settings rows may scroll. 150% text version allocates taller rows rather than scaling down the full screen.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabAUDIO",
+        "rect": [
+          300.0,
+          215,
+          438.6666666666667,
+          66
+        ],
+        "label": "AUDIO",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabCONTROLS",
+        "rect": [
+          748.6666666666667,
+          215,
+          438.6666666666667,
+          66
+        ],
+        "label": "CONTROLS",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabREADABILITY",
+        "rect": [
+          1197.3333333333335,
+          215,
+          438.6666666666667,
+          66
+        ],
+        "label": "READABILITY",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "SETTINGS",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "13-hud-desktop",
+    "title": "Match HUD",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Keep trails and cores dominant, with two steering directions only.",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "responsive": "No shop/menu rail. Touch controls use bottom-corner 64px targets, to be verified against actual playfield sightlines. Time is elapsed, no new hard round limit. Spectator cycling deferred.",
+    "status": "proposal",
+    "actions": [],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK MATCH",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "match"
+  },
+  {
+    "slug": "14-elimination-desktop",
+    "title": "Eliminated",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Keep trails and cores dominant, with two steering directions only.",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "responsive": "No shop/menu rail. Touch controls use bottom-corner 64px targets, to be verified against actual playfield sightlines. Time is elapsed, no new hard round limit. Spectator cycling deferred.",
+    "status": "proposal",
+    "actions": [],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK MATCH",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "match"
+  },
+  {
+    "slug": "15-spectator-desktop",
+    "title": "Spectator",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Keep trails and cores dominant, with two steering directions only.",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "responsive": "No shop/menu rail. Touch controls use bottom-corner 64px targets, to be verified against actual playfield sightlines. Time is elapsed, no new hard round limit. Spectator cycling deferred.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "LeaveRound",
+        "rect": [
+          706.0,
+          851,
+          260,
+          60
+        ],
+        "label": "LEAVE ROUND",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK MATCH",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "match"
+  },
+  {
+    "slug": "16-victory-desktop",
+    "title": "Victory",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Distinct victory/defeat mood with the same obvious next actions.",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "responsive": "No invented payout, level or win streak. Confirmation can arrive after returning Home; transaction/state controller outlives presentation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          401.28,
+          809,
+          384.56,
+          84
+        ],
+        "label": "HOME",
+        "disabled": false
+      },
+      {
+        "id": "Rematch",
+        "rect": [
+          852.72,
+          809,
+          418.0,
+          84
+        ],
+        "label": "PLAY AGAIN",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK OUTCOME",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "outcome"
+  },
+  {
+    "slug": "17-defeat-desktop",
+    "title": "Defeat",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Distinct victory/defeat mood with the same obvious next actions.",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "responsive": "No invented payout, level or win streak. Confirmation can arrive after returning Home; transaction/state controller outlives presentation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          401.28,
+          809,
+          384.56,
+          84
+        ],
+        "label": "HOME",
+        "disabled": false
+      },
+      {
+        "id": "Rematch",
+        "rect": [
+          852.72,
+          809,
+          418.0,
+          84
+        ],
+        "label": "PLAY AGAIN",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK OUTCOME",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "outcome"
+  },
+  {
+    "slug": "18-rewards-pending-desktop",
+    "title": "Rewards pending",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Distinct victory/defeat mood with the same obvious next actions.",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "responsive": "No invented payout, level or win streak. Confirmation can arrive after returning Home; transaction/state controller outlives presentation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          401.28,
+          809,
+          384.56,
+          84
+        ],
+        "label": "HOME",
+        "disabled": false
+      },
+      {
+        "id": "Rematch",
+        "rect": [
+          852.72,
+          809,
+          418.0,
+          84
+        ],
+        "label": "PLAY AGAIN",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK OUTCOME",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "outcome"
+  },
+  {
+    "slug": "19-loading-desktop",
+    "title": "Loading",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Honest profile status and recovery without invented data.",
+    "states": [
+      "loading",
+      "failed",
+      "leased",
+      "unsupported-schema",
+      "offline",
+      "retrying",
+      "service-unavailable"
+    ],
+    "responsive": "No arbitrary countdown or percentage. Decorative asset loading cannot block readable recovery controls indefinitely.",
+    "status": "proposal",
+    "actions": [],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "20-error-recovery-desktop",
+    "title": "Profile recovery",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Honest profile status and recovery without invented data.",
+    "states": [
+      "loading",
+      "failed",
+      "leased",
+      "unsupported-schema",
+      "offline",
+      "retrying",
+      "service-unavailable"
+    ],
+    "responsive": "No arbitrary countdown or percentage. Decorative asset loading cannot block readable recovery controls indefinitely.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Retry",
+        "rect": [
+          630,
+          598,
+          412,
+          84
+        ],
+        "label": "TRY AGAIN",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "21-leave-confirm",
+    "title": "Leave confirmation",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "A safe leave choice without falsely pausing multiplayer.",
+    "states": [
+      "open",
+      "stay-focused",
+      "leaving",
+      "leave-failed"
+    ],
+    "responsive": "Stay receives initial focus. Back cancels the dialog and clears held steering intent.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Stay",
+        "rect": [
+          520,
+          543,
+          300,
+          84
+        ],
+        "label": "STAY",
+        "disabled": false
+      },
+      {
+        "id": "Leave",
+        "rect": [
+          850,
+          543,
+          300,
+          84
+        ],
+        "label": "LEAVE",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "dialog"
+  },
+  {
+    "slug": "22-insufficient-funds",
+    "title": "Item details",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Honest cosmetic inspection with its source collection preserved.",
+    "states": [
+      "owned/equip",
+      "equipped",
+      "locked",
+      "insufficient",
+      "saving",
+      "failed",
+      "unavailable"
+    ],
+    "responsive": "Phone uses a safe-area sheet with pinned Close and action row; long description scrolls inside only.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "CloseDetails",
+        "rect": [
+          1128.0,
+          155.5,
+          60,
+          58
+        ],
+        "label": "×",
+        "disabled": false
+      },
+      {
+        "id": "Unlock",
+        "rect": [
+          490.0,
+          698.5,
+          692,
+          72
+        ],
+        "label": "NOT ENOUGH COINS",
+        "disabled": true
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "YOUR COLLECTION",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m01-home-390",
+    "title": "Home",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "One-screen game menu with a single primary Play action.",
+    "states": [
+      "ready",
+      "profile-loading",
+      "offline-read-only",
+      "input-changed"
+    ],
+    "responsive": "Remove optional summary/decorative area before text or actions. No page scroll in any mode.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Controls",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "CONTROLS",
+        "disabled": false
+      },
+      {
+        "id": "Play",
+        "rect": [
+          24,
+          502,
+          342,
+          64
+        ],
+        "label": "PLAY",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16.0,
+          578,
+          175.0,
+          56
+        ],
+        "label": "CUSTOMIZE",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          199.0,
+          578,
+          175.0,
+          56
+        ],
+        "label": "SHOP",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16.0,
+          642,
+          175.0,
+          56
+        ],
+        "label": "PROFILE",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          199.0,
+          642,
+          175.0,
+          56
+        ],
+        "label": "SETTINGS",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m02-home-320",
+    "title": "Home",
+    "viewport": [
+      320,
+      568
+    ],
+    "purpose": "One-screen game menu with a single primary Play action.",
+    "states": [
+      "ready",
+      "profile-loading",
+      "offline-read-only",
+      "input-changed"
+    ],
+    "responsive": "Remove optional summary/decorative area before text or actions. No page scroll in any mode.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Controls",
+        "rect": [
+          180,
+          76,
+          132,
+          50
+        ],
+        "label": "CONTROLS",
+        "disabled": false
+      },
+      {
+        "id": "Play",
+        "rect": [
+          24,
+          308,
+          272,
+          64
+        ],
+        "label": "PLAY",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16.0,
+          384,
+          140.0,
+          56
+        ],
+        "label": "CUSTOMIZE",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          164.0,
+          384,
+          140.0,
+          56
+        ],
+        "label": "SHOP",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16.0,
+          448,
+          140.0,
+          56
+        ],
+        "label": "PROFILE",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          164.0,
+          448,
+          140.0,
+          56
+        ],
+        "label": "SETTINGS",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          553,
+          292,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "c01-home-844-landscape",
+    "title": "Home · compact landscape",
+    "viewport": [
+      844,
+      390
+    ],
+    "purpose": "One-screen game menu with a single primary Play action.",
+    "states": [
+      "ready",
+      "profile-loading",
+      "offline-read-only",
+      "input-changed"
+    ],
+    "responsive": "Remove optional summary/decorative area before text or actions. No page scroll in any mode.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Play",
+        "rect": [
+          160,
+          299,
+          639,
+          58
+        ],
+        "label": "PLAY",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          8,
+          102,
+          116,
+          54
+        ],
+        "label": "CUSTOMIZE",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          8,
+          163,
+          116,
+          54
+        ],
+        "label": "SHOP",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          8,
+          224,
+          116,
+          54
+        ],
+        "label": "PROFILE",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          8,
+          285,
+          116,
+          54
+        ],
+        "label": "SETTINGS",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          375,
+          816,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "u01-home-ultrawide",
+    "title": "Home",
+    "viewport": [
+      2560,
+      1080
+    ],
+    "purpose": "One-screen game menu with a single primary Play action.",
+    "states": [
+      "ready",
+      "profile-loading",
+      "offline-read-only",
+      "input-changed"
+    ],
+    "responsive": "Remove optional summary/decorative area before text or actions. No page scroll in any mode.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "Play",
+        "rect": [
+          678.76,
+          960,
+          1470.48,
+          92
+        ],
+        "label": "PLAY",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          1065,
+          2532,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m03-customize-390",
+    "title": "MAKE IT YOURS",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Select a real catalog cosmetic; inspect before equipping or buying.",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "responsive": "Portrait replaces the large always-visible preview with an item sheet. The grid alone may scroll; tabs and action dock are fixed.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "FilterALL",
+        "rect": [
+          16.0,
+          200,
+          115.33333333333333,
+          50
+        ],
+        "label": "ALL",
+        "disabled": false
+      },
+      {
+        "id": "FilterCORES",
+        "rect": [
+          137.33333333333331,
+          200,
+          115.33333333333333,
+          50
+        ],
+        "label": "CORES",
+        "disabled": false
+      },
+      {
+        "id": "FilterTRAILS",
+        "rect": [
+          258.66666666666663,
+          200,
+          115.33333333333333,
+          50
+        ],
+        "label": "TRAILS",
+        "disabled": false
+      },
+      {
+        "id": "item-0",
+        "rect": [
+          16.0,
+          266,
+          174.0,
+          190
+        ],
+        "label": "Starter core",
+        "disabled": false
+      },
+      {
+        "id": "item-1",
+        "rect": [
+          200.0,
+          266,
+          174.0,
+          190
+        ],
+        "label": "Ring core",
+        "disabled": false
+      },
+      {
+        "id": "item-2",
+        "rect": [
+          16.0,
+          468,
+          174.0,
+          190
+        ],
+        "label": "Starter trail",
+        "disabled": false
+      },
+      {
+        "id": "item-3",
+        "rect": [
+          200.0,
+          468,
+          174.0,
+          190
+        ],
+        "label": "Dashed trail",
+        "disabled": false
+      },
+      {
+        "id": "ItemDetails",
+        "rect": [
+          16,
+          729,
+          358,
+          60
+        ],
+        "label": "VIEW ITEM",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m04-shop-390",
+    "title": "COSMETIC SHOP",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Select a real catalog cosmetic; inspect before equipping or buying.",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "responsive": "Portrait replaces the large always-visible preview with an item sheet. The grid alone may scroll; tabs and action dock are fixed.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "FilterALL",
+        "rect": [
+          16.0,
+          200,
+          115.33333333333333,
+          50
+        ],
+        "label": "ALL",
+        "disabled": false
+      },
+      {
+        "id": "FilterCORES",
+        "rect": [
+          137.33333333333331,
+          200,
+          115.33333333333333,
+          50
+        ],
+        "label": "CORES",
+        "disabled": false
+      },
+      {
+        "id": "FilterTRAILS",
+        "rect": [
+          258.66666666666663,
+          200,
+          115.33333333333333,
+          50
+        ],
+        "label": "TRAILS",
+        "disabled": false
+      },
+      {
+        "id": "item-0",
+        "rect": [
+          16.0,
+          266,
+          174.0,
+          190
+        ],
+        "label": "Starter core",
+        "disabled": false
+      },
+      {
+        "id": "item-1",
+        "rect": [
+          200.0,
+          266,
+          174.0,
+          190
+        ],
+        "label": "Ring core",
+        "disabled": false
+      },
+      {
+        "id": "item-2",
+        "rect": [
+          16.0,
+          468,
+          174.0,
+          190
+        ],
+        "label": "Starter trail",
+        "disabled": false
+      },
+      {
+        "id": "item-3",
+        "rect": [
+          200.0,
+          468,
+          174.0,
+          190
+        ],
+        "label": "Dashed trail",
+        "disabled": false
+      },
+      {
+        "id": "ItemDetails",
+        "rect": [
+          16,
+          729,
+          358,
+          60
+        ],
+        "label": "VIEW ITEM",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m05-item-details-390",
+    "title": "Item details",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Honest cosmetic inspection with its source collection preserved.",
+    "states": [
+      "owned/equip",
+      "equipped",
+      "locked",
+      "insufficient",
+      "saving",
+      "failed",
+      "unavailable"
+    ],
+    "responsive": "Phone uses a safe-area sheet with pinned Close and action row; long description scrolls inside only.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CloseDetails",
+        "rect": [
+          300.0,
+          85.0,
+          60,
+          58
+        ],
+        "label": "×",
+        "disabled": false
+      },
+      {
+        "id": "Unlock",
+        "rect": [
+          36.0,
+          672.0,
+          318,
+          72
+        ],
+        "label": "UNLOCK WITH COINS",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          34,
+          147,
+          322,
+          34.16
+        ],
+        "text": "YOUR COLLECTION",
+        "fontSize": 28
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m06-purchase-390",
+    "title": "Purchase confirm",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Purchase status without duplicate charges or false refunds.",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "responsive": "Short phone copy, pinned buttons, controller focus starts on Cancel. Closing presentation cannot cancel an already-submitted write.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CancelPurchase",
+        "rect": [
+          42.0,
+          557.0,
+          147.0,
+          70
+        ],
+        "label": "CANCEL",
+        "disabled": false
+      },
+      {
+        "id": "ConfirmPurchase",
+        "rect": [
+          201.0,
+          557.0,
+          147.0,
+          70
+        ],
+        "label": "CONFIRM",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          34,
+          147,
+          322,
+          34.16
+        ],
+        "text": "COSMETIC SHOP",
+        "fontSize": 28
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m07-profile-390",
+    "title": "Profile",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Only supported profile totals, without invented levels or ranks.",
+    "states": [
+      "confirmed",
+      "zero-history",
+      "loading",
+      "stale",
+      "missing",
+      "long-name"
+    ],
+    "responsive": "Identity remains readable. Optional later history is separate content, not a longer Home.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "Customize",
+        "rect": [
+          16,
+          724,
+          358,
+          64
+        ],
+        "label": "CUSTOMIZE",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          34,
+          147,
+          322,
+          34.16
+        ],
+        "text": "YOUR SIGNATURE",
+        "fontSize": 28
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m08-settings-390",
+    "title": "Settings",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Real audio/readability preferences with clear save state.",
+    "states": [
+      "draft",
+      "saving",
+      "saved",
+      "failed",
+      "offline",
+      "partial-default-reset"
+    ],
+    "responsive": "Category tabs and Back fixed; only settings rows may scroll. 150% text version allocates taller rows rather than scaling down the full screen.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabAUDIO",
+        "rect": [
+          16.0,
+          197,
+          115.33333333333333,
+          54
+        ],
+        "label": "AUDIO",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabCONTROLS",
+        "rect": [
+          137.33333333333331,
+          197,
+          115.33333333333333,
+          54
+        ],
+        "label": "CONTROLS",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabTEXT",
+        "rect": [
+          258.66666666666663,
+          197,
+          115.33333333333333,
+          54
+        ],
+        "label": "TEXT",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          34,
+          147,
+          322,
+          34.16
+        ],
+        "text": "SETTINGS",
+        "fontSize": 28
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m09-settings-150",
+    "title": "Settings",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Real audio/readability preferences with clear save state.",
+    "states": [
+      "draft",
+      "saving",
+      "saved",
+      "failed",
+      "offline",
+      "partial-default-reset"
+    ],
+    "responsive": "Category tabs and Back fixed; only settings rows may scroll. 150% text version allocates taller rows rather than scaling down the full screen.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabAUDIO",
+        "rect": [
+          16.0,
+          197,
+          115.33333333333333,
+          54
+        ],
+        "label": "AUDIO",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabCONTROLS",
+        "rect": [
+          137.33333333333331,
+          197,
+          115.33333333333333,
+          54
+        ],
+        "label": "CONTROLS",
+        "disabled": false
+      },
+      {
+        "id": "SettingsTabTEXT",
+        "rect": [
+          258.66666666666663,
+          197,
+          115.33333333333333,
+          54
+        ],
+        "label": "TEXT",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          34,
+          147,
+          322,
+          34.16
+        ],
+        "text": "SETTINGS",
+        "fontSize": 28
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m10-queue-390",
+    "title": "Quick Play queue",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "One queue, no unnecessary mode selector or Ready page.",
+    "states": [
+      "entering",
+      "searching",
+      "cancel-requested",
+      "canceled",
+      "join-confirmed",
+      "join-failed",
+      "service-unavailable"
+    ],
+    "responsive": "Cancel stays visible. Animation never delays cancellation. Countdown is an authoritative/mocked event, not a local matchmaking simulation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CancelQueue",
+        "rect": [
+          24,
+          722,
+          342,
+          64
+        ],
+        "label": "CANCEL",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "c02-hud-844-landscape",
+    "title": "Match HUD",
+    "viewport": [
+      844,
+      390
+    ],
+    "purpose": "Keep trails and cores dominant, with two steering directions only.",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "responsive": "No shop/menu rail. Touch controls use bottom-corner 64px targets, to be verified against actual playfield sightlines. Time is elapsed, no new hard round limit. Spectator cycling deferred.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Steer‹",
+        "rect": [
+          16,
+          304,
+          64,
+          64
+        ],
+        "label": "‹",
+        "disabled": false
+      },
+      {
+        "id": "Steer›",
+        "rect": [
+          764,
+          304,
+          64,
+          64
+        ],
+        "label": "›",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          375,
+          816,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK MATCH",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "match"
+  },
+  {
+    "slug": "m11-victory-390",
+    "title": "Victory",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Distinct victory/defeat mood with the same obvious next actions.",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "responsive": "No invented payout, level or win streak. Confirmation can arrive after returning Home; transaction/state controller outlives presentation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Rematch",
+        "rect": [
+          20,
+          699,
+          350,
+          64
+        ],
+        "label": "PLAY AGAIN",
+        "disabled": false
+      },
+      {
+        "id": "Home",
+        "rect": [
+          20,
+          770,
+          350,
+          50
+        ],
+        "label": "HOME",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK OUTCOME",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "outcome"
+  },
+  {
+    "slug": "m12-loading-390",
+    "title": "Loading",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Readable recovery on a narrow screen without fabricated counters.",
+    "states": [
+      "loading",
+      "failed",
+      "retrying",
+      "unavailable"
+    ],
+    "responsive": "No balance, ownership or fake progress percentage. Retry stays inside the safe action area.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Retry",
+        "rect": [
+          28,
+          550,
+          334,
+          68
+        ],
+        "label": "PLEASE WAIT",
+        "disabled": true
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · NO PROFILE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m13-recovery-390",
+    "title": "Recovery",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Readable recovery on a narrow screen without fabricated counters.",
+    "states": [
+      "loading",
+      "failed",
+      "retrying",
+      "unavailable"
+    ],
+    "responsive": "No balance, ownership or fake progress percentage. Retry stays inside the safe action area.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Retry",
+        "rect": [
+          28,
+          550,
+          334,
+          68
+        ],
+        "label": "TRY AGAIN",
+        "disabled": false
+      },
+      {
+        "id": "Controls",
+        "rect": [
+          28,
+          715,
+          334,
+          60
+        ],
+        "label": "REVIEW CONTROLS",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · NO PROFILE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m14-controls-390",
+    "title": "Controls",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Two touch steering examples and a clear Continue action.",
+    "states": [
+      "touch",
+      "input-switch",
+      "focus-loss"
+    ],
+    "responsive": "No joystick, ability buttons or gameplay implementation.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          250,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "TryLeft",
+        "rect": [
+          16,
+          630,
+          175,
+          64
+        ],
+        "label": "‹ LEFT",
+        "disabled": false
+      },
+      {
+        "id": "TryRight",
+        "rect": [
+          199,
+          630,
+          175,
+          64
+        ],
+        "label": "RIGHT ›",
+        "disabled": false
+      },
+      {
+        "id": "Continue",
+        "rect": [
+          24,
+          729,
+          342,
+          64
+        ],
+        "label": "READY TO PLAY",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          34,
+          147,
+          322,
+          34.16
+        ],
+        "text": "HOW TO STEER",
+        "fontSize": 28
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "c03-leave-568-landscape",
+    "title": "Leave confirmation · compact",
+    "viewport": [
+      568,
+      320
+    ],
+    "purpose": "Short-landscape dialog preserves both 64px actions.",
+    "states": [
+      "stay-focused",
+      "leave",
+      "cancel"
+    ],
+    "responsive": "No desktop dialog uniformly shrunk into a short screen.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Stay",
+        "rect": [
+          52,
+          200,
+          220,
+          64
+        ],
+        "label": "STAY",
+        "disabled": false
+      },
+      {
+        "id": "Leave",
+        "rect": [
+          296,
+          200,
+          220,
+          64
+        ],
+        "label": "LEAVE",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          305,
+          540,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "dialog"
+  },
+  {
+    "slug": "t01-customize-768",
+    "title": "MAKE IT YOURS",
+    "viewport": [
+      768,
+      1024
+    ],
+    "purpose": "Select a real catalog cosmetic; inspect before equipping or buying.",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "responsive": "Portrait replaces the large always-visible preview with an item sheet. The grid alone may scroll; tabs and action dock are fixed.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          628,
+          76,
+          132,
+          50
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "FilterALL",
+        "rect": [
+          16.0,
+          200,
+          241.33333333333334,
+          50
+        ],
+        "label": "ALL",
+        "disabled": false
+      },
+      {
+        "id": "FilterCORES",
+        "rect": [
+          263.33333333333337,
+          200,
+          241.33333333333334,
+          50
+        ],
+        "label": "CORES",
+        "disabled": false
+      },
+      {
+        "id": "FilterTRAILS",
+        "rect": [
+          510.6666666666667,
+          200,
+          241.33333333333334,
+          50
+        ],
+        "label": "TRAILS",
+        "disabled": false
+      },
+      {
+        "id": "item-0",
+        "rect": [
+          16.0,
+          266,
+          363.0,
+          190
+        ],
+        "label": "Starter core",
+        "disabled": false
+      },
+      {
+        "id": "item-1",
+        "rect": [
+          389.0,
+          266,
+          363.0,
+          190
+        ],
+        "label": "Ring core",
+        "disabled": false
+      },
+      {
+        "id": "item-2",
+        "rect": [
+          16.0,
+          468,
+          363.0,
+          190
+        ],
+        "label": "Starter trail",
+        "disabled": false
+      },
+      {
+        "id": "item-3",
+        "rect": [
+          389.0,
+          468,
+          363.0,
+          190
+        ],
+        "label": "Dashed trail",
+        "disabled": false
+      },
+      {
+        "id": "ItemDetails",
+        "rect": [
+          16,
+          909,
+          736,
+          60
+        ],
+        "label": "VIEW ITEM",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          1009,
+          740,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  },
+  {
+    "slug": "m15-spectator-390",
+    "title": "Spectator",
+    "viewport": [
+      390,
+      844
+    ],
+    "purpose": "Keep trails and cores dominant, with two steering directions only.",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "responsive": "No shop/menu rail. Touch controls use bottom-corner 64px targets, to be verified against actual playfield sightlines. Time is elapsed, no new hard round limit. Spectator cycling deferred.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "LeaveRound",
+        "rect": [
+          65.0,
+          754,
+          260,
+          60
+        ],
+        "label": "LEAVE ROUND",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          829,
+          362,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · MOCK MATCH",
+        "fontSize": 13
+      }
+    ],
+    "warnings": [],
+    "kind": "match"
+  },
+  {
+    "slug": "23-profile-empty",
+    "title": "Profile",
+    "viewport": [
+      1672,
+      941
+    ],
+    "purpose": "Only supported profile totals, without invented levels or ranks.",
+    "states": [
+      "confirmed",
+      "zero-history",
+      "loading",
+      "stale",
+      "missing",
+      "long-name"
+    ],
+    "responsive": "Identity remains readable. Optional later history is separate content, not a longer Home.",
+    "status": "proposal",
+    "actions": [
+      {
+        "id": "Home",
+        "rect": [
+          300,
+          16,
+          218,
+          66
+        ],
+        "label": "‹ HOME",
+        "disabled": false
+      },
+      {
+        "id": "CUSTOMIZE",
+        "rect": [
+          16,
+          260,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SHOP",
+        "rect": [
+          16,
+          372,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "PROFILE",
+        "rect": [
+          16,
+          484,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "SETTINGS",
+        "rect": [
+          16,
+          596,
+          250,
+          94
+        ],
+        "label": "",
+        "disabled": false
+      },
+      {
+        "id": "Customize",
+        "rect": [
+          541.2,
+          750,
+          857.6,
+          84
+        ],
+        "label": "CUSTOMIZE",
+        "disabled": false
+      }
+    ],
+    "textBoxes": [
+      {
+        "id": "proposal-label",
+        "rect": [
+          14,
+          926,
+          1644,
+          15.86
+        ],
+        "text": "DESIGN PROPOSAL · SAMPLE DATA",
+        "fontSize": 13
+      },
+      {
+        "id": "screen-title",
+        "rect": [
+          318,
+          135,
+          1004,
+          53.68
+        ],
+        "text": "YOUR SIGNATURE",
+        "fontSize": 44
+      }
+    ],
+    "warnings": [],
+    "kind": "menu"
+  }
+]
