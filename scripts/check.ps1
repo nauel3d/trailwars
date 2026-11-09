@@ -39,10 +39,12 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Nov10 playtest build failed.' }
     & $RojoPath build playtest-tests.project.json -o dist/TrailWarsNov10EngineTests.rbxlx
     if ($LASTEXITCODE -ne 0) { throw 'Nov10 engine test build failed.' }
+    & $RojoPath build candy-comet.project.json -o dist/TrailWarsCandyCometReview.rbxlx
+    if ($LASTEXITCODE -ne 0) { throw 'Candy Comet review build failed.' }
     python scripts/check_artifacts.py
     if ($LASTEXITCODE -ne 0) { throw 'Artifact boundary validation failed.' }
     python scripts/gameplay/check_research.py
     if ($LASTEXITCODE -ne 0) { throw 'Research/prototype isolation validation failed.' }
-    Write-Output "PASS: format, lint, $($sources.Count) Luau files compiled, foundation/gameplay tests, seven builds and artifact boundaries."
+    Write-Output "PASS: format, lint, $($sources.Count) Luau files compiled, foundation/gameplay tests, eight builds and artifact boundaries."
     Write-Output 'Compile/lint success is not Roblox typechecking or engine/device validation.'
 } finally { Pop-Location }

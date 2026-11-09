@@ -1,0 +1,47 @@
+{
+  "name": "TrailWarsCandyCometReview",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "TrailWars": {
+        "$path": "src/shared"
+      },
+      "TrailWarsUI": {
+        "$path": "src/client",
+        "CandyBaselineApp": {
+          "$path": "dev/CandyBaselineApp.luau"
+        },
+        "CandyBenchmark": {
+          "$path": "dev/CandyBenchmark.luau"
+        },
+        "CandyArtBoard": {
+          "$path": "dev/CandyArtBoard.luau"
+        }
+      },
+      "TrailWarsDev": {
+        "$path": "dev/PolishProof",
+        "$className": "Folder"
+      }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService"
+    },
+    "StarterGui": {
+      "$properties": {
+        "ScreenOrientation": "Sensor"
+      }
+    },
+    "StarterPlayer": {
+      "$properties": {
+        "LoadCharacterAppearance": false,
+        "DevTouchMovementMode": "Scriptable",
+        "DevComputerMovementMode": "Scriptable"
+      },
+      "StarterPlayerScripts": {
+        "CandyReplay": {
+          "$path": "dev/CandyReplay.client.luau"
+        }
+      }
+    }
+  }
+}

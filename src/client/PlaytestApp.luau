@@ -5,11 +5,13 @@ local GuiService = game:GetService("GuiService")
 local Round = require(RS.TrailWars.RoundSession)
 local Config = require(RS.TrailWars.GameplayConfig)
 local Stepper = require(RS.TrailWars.FixedStepper)
-local Layout = require(RS.TrailWars.GameplayLayout)
+local Layout = require(RS.TrailWars.CandyLayout)
 local Input = require(script.Parent.GameplayInput)
-local Renderer = require(script.Parent.GameplayRenderer)
+local Renderer = require(script.Parent.CandyCometRenderer)
 local App = {}
 function App.mount(parent: Instance, components: Instance, transport: any?)
+	-- This is a 2D game: unrelated avatar fall damage must not flash over the arena.
+	game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Health, false)
 	local Kit = require(components.Components)
 	local Home = require(components.Home)
 	local Demos = require(components.Demos)
@@ -32,11 +34,39 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	screen.Visible = false
 	local preferences = { reducedMotion = GuiService.ReducedMotionEnabled, volume = 0.22, muted = false }
 	local scope = Kit.new(preferences.reducedMotion, preferences)
-	local field = Kit.frame(screen, "Arena", Kit.colors.mint)
+	local fieldShadow = Kit.frame(screen, "BoardShadow", Kit.colors.ink)
+	Kit.round(fieldShadow, 18)
+	local fieldFrame = Kit.frame(screen, "BoardFrame", Kit.colors.paper)
+	Kit.round(fieldFrame, 18)
+	Kit.outline(fieldFrame, Kit.colors.ink, 2)
+	local field = Kit.frame(screen, "Arena", Color3.fromRGB(233, 247, 237))
 	field.ClipsDescendants = true
-	Kit.round(field, 12)
-	Kit.outline(field)
-	local renderer = Renderer.new(field, Kit, Config)
+	Kit.round(field, 4)
+	Kit.outline(field, Kit.colors.ink, 1)
+	local renderer = Renderer.new(
+		field,
+		Kit,
+		Config,
+		{ selfId = if transport then transport.selfId else "you", preferences = preferences }
+	)
+	local Art = require(script.Parent.CandyCometArt)
+	local pilot = Kit.frame(screen, "PilotCard", Kit.colors.mint)
+	Kit.round(pilot, 18)
+	local portrait = Kit.frame(pilot, "Portrait")
+	portrait.Size = UDim2.fromOffset(56, 56)
+	portrait.Position = UDim2.fromOffset(8, 8)
+	portrait.Rotation = -15
+	local pilotArt = Art.core(portrait, Kit, Kit.colors.coral)
+	local pilotRocket = Kit.frame(pilot, "RocketPortrait")
+	pilotRocket.Size = UDim2.fromOffset(56, 38)
+	pilotRocket.Position = UDim2.fromOffset(8, 20)
+	Art.rocket(pilotRocket, Kit, true)
+	local pilotLabel = Kit.text(pilot, "PilotLabel", "YOUR COMET\nHOMING + JUMP", 16)
+	pilotLabel.Position = UDim2.fromOffset(72, 8)
+	pilotLabel.Size = UDim2.new(1, -80, 1, -16)
+	pilotLabel.TextXAlignment = Enum.TextXAlignment.Left
+	local feedback = Kit.text(screen, "ImpactFeedback", "", 14)
+	feedback.TextColor3 = Kit.colors.ink
 	local clock = Kit.text(screen, "Clock", "", 20)
 	local status = Kit.text(screen, "Status", "", 16)
 	local center = Kit.text(screen, "Countdown", "", 54)
@@ -66,6 +96,20 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			transport:send("Activate", nil, slot)
 		end)
 		powerButtons[slot].label.TextSize = 16
+		local badge = Kit.frame(powerButtons[slot].face, "PowerBadge")
+		badge.Size = UDim2.fromOffset(26, 24)
+		badge.Position = UDim2.new(0, 10, 0.5, -12)
+		if slot == "Homing" then
+			Art.rocket(badge, Kit, false)
+		else
+			Kit.round(badge, 99)
+			badge.BackgroundTransparency = 0
+			badge.BackgroundColor3 = Kit.colors.blue
+			local arrow = Kit.text(badge, "AirArrow", "↑", 22, Kit.colors.paper)
+			arrow.ZIndex = 9
+		end
+		powerButtons[slot].label.Position = UDim2.fromOffset(42, 0)
+		powerButtons[slot].label.Size = UDim2.new(1, -48, 1, 0)
 	end
 	scope:connect(game:GetService("UserInputService").InputBegan, function(i, processed)
 		if processed or not input.enabled then
@@ -105,30 +149,35 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		local origin = area.Min - full.Min
 		Kit.box(safe, { origin.X, origin.Y, area.Width, area.Height })
 		local w, h = area.Width, area.Height
-		local l = Layout.compute(w, h - 54)
-		l.bottom += 54
+		local l = Layout.compute(w, h)
 		Kit.box(field, l.field)
-		Kit.box(clock, { l.pad, 0, math.max(80, w - 120), l.top })
+		local f = l.field
+		Kit.box(fieldFrame, { f[1] - 6, f[2] - 6, f[3] + 12, f[4] + 12 })
+		Kit.box(fieldShadow, { f[1] - 6, f[2], f[3] + 12, f[4] + 12 })
+		Kit.box(clock, l.header)
 		clock.TextXAlignment = Enum.TextXAlignment.Left
-		Kit.box(back.root, { w - 100 - l.pad, 4, 100, l.top - 8 })
+		Kit.box(back.root, l.home)
 		back.label.TextSize = 16
-		local controlW = math.clamp(w * 0.19, 64, 112)
-		Kit.box(left.root, { l.pad, h - l.bottom + 8, controlW, l.bottom - 16 })
-		Kit.box(right.root, { w - controlW - l.pad, h - l.bottom + 8, controlW, l.bottom - 16 })
-		Kit.box(status, { controlW + l.pad + 4, h - l.bottom + 4, w - 2 * (controlW + l.pad + 4), l.bottom - 8 })
+		Kit.box(left.root, l.left)
+		Kit.box(right.root, l.right)
+		Kit.box(status, l.status)
+		status.TextSize = if l.landscape then 12 else 14
+		Kit.box(feedback, l.feedback)
+		feedback.Visible = not l.landscape
+		pilot.Visible = l.desktop or (not l.landscape and h - 144 - (f[2] + f[4] + 44) >= 76)
+		if l.desktop then
+			Kit.box(pilot, { w - 212, 380, 192, 76 })
+			Kit.box(feedback, { w - 212, 470, 192, 70 })
+		else
+			Kit.box(pilot, { (w - math.min(280, w - 24)) / 2, f[2] + f[4] + 44, math.min(280, w - 24), 76 })
+		end
 		Kit.box(center, { l.field[1] + 4, l.field[2] + l.field[4] * 0.3, l.field[3] - 8, l.field[4] * 0.4 })
-		Kit.box(board.root, { w - l.side + l.pad, l.top, l.side - 2 * l.pad, 180 })
+		Kit.box(board.root, l.standings)
 		Kit.box(replay.root, { math.max(8, (w - 200) / 2), h - 60, math.min(200, w - 16), 48 })
 		skip.root.Position = replay.root.Position
 		skip.root.Size = replay.root.Size
-		for i, slot in { "Homing", "Jump" } do
-			Kit.box(powerButtons[slot].root, { l.pad + (i - 1) * (w / 2), h - 132, w / 2 - l.pad * 2, 48 })
-		end
-		left.root.Position = UDim2.fromOffset(l.pad, h - 76)
-		left.root.Size = UDim2.fromOffset(controlW, 64)
-		right.root.Position = UDim2.fromOffset(w - controlW - l.pad, h - 76)
-		right.root.Size = UDim2.fromOffset(controlW, 64)
-		Kit.box(status, { controlW + l.pad + 4, h - 78, w - 2 * (controlW + l.pad + 4), 66 })
+		Kit.box(powerButtons.Homing.root, l.homing)
+		Kit.box(powerButtons.Jump.root, l.jump)
 	end
 	showHome = function()
 		mode = "Home"
@@ -203,6 +252,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			renderer:append(delta)
 		end
 		renderer:draw(state.players)
+		renderer:events(state.roundId, state.visualEvents or {})
+		feedback.Text = renderer:feedback()
 		local me: any = nil
 		local alive = 0
 		for _, p in state.players do
@@ -217,6 +268,20 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		local results = state.phase == "Final"
 		local intermission = state.phase == "Intermission"
 		local actor = state.powers and state.powers.actors[selfId]
+		local localSprite = renderer.sprites[selfId]
+		if localSprite then
+			pilotArt.shell.BackgroundColor3 = localSprite.color
+			pilotArt.shade.BackgroundColor3 = localSprite.color:Lerp(Kit.colors.ink, 0.22)
+			pilotArt.face.BackgroundColor3 = localSprite.color
+			pilotArt.rim.BackgroundColor3 = localSprite.color:Lerp(Kit.colors.paper, 0.55)
+		end
+		portrait.Visible = me ~= nil and me.alive
+		pilotRocket.Visible = actor ~= nil and actor.state == "EliminatedTurret"
+		pilotLabel.Text = if actor and actor.state == "EliminatedTurret"
+			then "ROCKET PILOT\nTURN TO TAG!"
+			elseif me and me.jumping then "UP & OVER!\nWALLS STILL HURT"
+			elseif me and not me.alive then "NICE RUN!\nSPECTATING"
+			else "YOUR COMET\nTURN. TAG. SURVIVE."
 		input.enabled = active and me ~= nil and (me.alive or actor and actor.state == "EliminatedTurret")
 		if not input.enabled then
 			input:clear()
@@ -248,13 +313,16 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			state.settings.target,
 			alive
 		)
-		clock.TextSize = if safe.AbsoluteSize.X < 500 then 14 else 18
+		clock.TextSize = if safe.AbsoluteSize.X < 500 then 14 elseif safe.AbsoluteSize.Y < 500 then 16 else 22
 		center.Text = if state.phase == "Queue"
 			then "FINDING PLAYERS…"
 			elseif state.phase == "Countdown" then tostring(state.remaining)
 			else ""
 		local large = results or intermission
-		board.root.Visible = large or (safe.AbsoluteSize.X >= 700 and safe.AbsoluteSize.Y >= 500)
+		if large then
+			pilot.Visible = false
+		end
+		board.root.Visible = large or (safe.AbsoluteSize.X >= 1000 and safe.AbsoluteSize.Y >= 600)
 		if large then
 			local w, h = safe.AbsoluteSize.X, safe.AbsoluteSize.Y
 			local bw = math.min(w - 24, 540)
@@ -266,7 +334,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 					else "PLACEMENTS")
 				else "ROUND COMPLETE · NEXT IN " .. state.intermission
 		else
-			Kit.box(board.root, { safe.AbsoluteSize.X - 184, 60, 168, 230 })
+			Kit.box(board.root, Layout.compute(safe.AbsoluteSize.X, safe.AbsoluteSize.Y).standings)
 			board.title.Text = "SCORES"
 		end
 		if state.series then
@@ -276,11 +344,14 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			button.root.Visible = not large
 			local cooldown = if actor then actor[slot] else 0
 			button.label.Text = string.upper(slot)
-				.. (if cooldown > 0 then string.format(" · %.1fs", cooldown) else " · READY")
+				.. (if cooldown > 0 then string.format("\n%.1fs", cooldown) else "\nREADY")
 			local enabled = active and me and me.alive and cooldown <= 0
 			button.root.Active = enabled == true
 			button.root.Selectable = enabled == true
-			button.face.BackgroundColor3 = if enabled then Kit.colors.mint else Kit.colors.paper
+			button.face.BackgroundColor3 = if enabled
+				then (if slot == "Jump" then Kit.colors.blue else Kit.colors.coral)
+				else Kit.colors.paper
+			button.label.TextColor3 = if enabled then Kit.colors.paper else Kit.colors.ink
 			button.label.TextTransparency = if enabled then 0 else 0.4
 		end
 		renderer:projectiles(state.powers.projectiles)
@@ -299,6 +370,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		if mode ~= "Match" then
 			return
 		end
+		renderer:step(dt)
 		if round then
 			round.inputs[selfId] = debugTurn or input:value()
 			acc:advance(dt, function()
@@ -330,6 +402,10 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	showHome()
 	return {
 		gui = gui,
+		setReducedMotion = function(value)
+			preferences.reducedMotion = value == true
+			board.setReducedMotion(preferences.reducedMotion)
+		end,
 		start = start,
 		home = showHome,
 		snapshot = function()

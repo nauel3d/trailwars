@@ -223,10 +223,16 @@ function Match:_beginRound()
 			d[if kind == "Turret" then "turretHits" else "powerHits"] += 1
 			d.scoreStolen += taken
 		end
-		table.insert(
-			self.log,
-			{ kind = kind, owner = owner, victim = victim, points = taken, roundId = id, tick = self.tick }
-		)
+		table.insert(self.log, {
+			kind = kind,
+			owner = owner,
+			victim = victim,
+			points = taken,
+			roundId = id,
+			tick = self.tick,
+			x = self.round.sim.byId[victim].x,
+			y = self.round.sim.byId[victim].y,
+		})
 	end)
 	self.phase = "Countdown"
 	self.wait = 0
@@ -397,6 +403,8 @@ function Match:step()
 			victim = e.id,
 			owner = e.killerId,
 			cause = e.cause,
+			x = r.sim.byId[e.id].x,
+			y = r.sim.byId[e.id].y,
 			roundId = r.matchId,
 			tick = self.tick,
 		})
@@ -427,6 +435,17 @@ function Match:snapshot()
 		state.reason = self.series.reason
 	end
 	state.powers = if self.powers then self.powers:snapshot() else { actors = {}, projectiles = {} }
+	-- Bounded presentation metadata only; clients cannot submit hits or request effects.
+	state.visualEvents = {}
+	for i = math.max(1, #self.log - 15), #self.log do
+		local e = self.log[i]
+		if e.roundId == state.roundId then
+			table.insert(
+				state.visualEvents,
+				{ sequence = i, kind = e.kind, victim = e.victim, cause = e.cause, x = e.x, y = e.y, points = e.points }
+			)
+		end
+	end
 	state.intermission = math.max(0, math.ceil((self.config.IntermissionSeconds or 4) - self.wait))
 	return state
 end

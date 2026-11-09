@@ -32,3 +32,9 @@ assert "Nov10Test" not in playtest_names, "Controlled test fixture leaked into p
 assert "Main" not in playtest_names, "Production backend must not run alongside mock playtest"
 assert "PlaytestMatchService" in playtest_names and "PowerService" in playtest_names
 print("PLAYTEST BOUNDARY: integrated powers mode; mock adapter; controlled fixtures excluded")
+
+candy = ET.parse(root / "dist" / "TrailWarsCandyCometReview.rbxlx")
+assert "CandyReplay" in names(candy) and "CandyArtBoard" in names(candy)
+assert "PlaytestProbe" not in names(candy) and "Gameplay" not in names(candy)
+assert "CandyReplayProbe" not in playtest_names and "CandyArtBoard" not in playtest_names
+print("CANDY BOUNDARY: standalone engine replay; art board and benchmark excluded from playable bootstrap")
