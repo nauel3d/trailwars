@@ -3,16 +3,11 @@ local Kit = require(script.Parent.Components)
 local Layout = require(script.Parent.Layout)
 local GuiService = game:GetService("GuiService")
 local Home = {}
+local Demos = require(script.Parent.Demos)
 local C = Kit.colors
-local function curve(a: Vector2, b: Vector2, c: Vector2, d: Vector2, t: number): Vector2
-	return a * (1 - t) ^ 3 + b * (3 * (1 - t) ^ 2 * t) + c * (3 * (1 - t) * t ^ 2) + d * t ^ 3
-end
-local function derivative(a: Vector2, b: Vector2, c: Vector2, d: Vector2, t: number): Vector2
-	return (b - a) * (3 * (1 - t) ^ 2) + (c - b) * (6 * (1 - t) * t) + (d - c) * (3 * t ^ 2)
-end
 function Home.mount(parent: Instance, options: any?)
 	local opts = options or {}
-	local scope = Kit.new(opts.reducedMotion)
+	local scope = Kit.new(opts.reducedMotion, opts.preferences)
 	local root = Kit.frame(parent, "SnapArcadeProof", C.paper)
 	root.Size = UDim2.fromScale(1, 1)
 	root.ClipsDescendants = true
@@ -43,40 +38,20 @@ function Home.mount(parent: Instance, options: any?)
 	local balanceLabel = currency:FindFirstChild("Balance") :: TextLabel
 	local heading = Kit.text(content, "Heading", "LAST CORE STANDING", 34)
 	local hero = Kit.frame(content, "TrailIllustration")
-	local paths = {}
-	for i, color in { C.blue, C.coral, C.yellow } do
-		local border = Instance.new("Path2D")
-		border.Name = "Path" .. i .. "Outline"
-		border.Color3 = C.ink
-		border.ZIndex = 1
-		border.Parent = hero
-		local fill = Instance.new("Path2D")
-		fill.Name = "Path" .. i .. "Color"
-		fill.Color3 = color
-		fill.ZIndex = 2
-		fill.Parent = hero
-		local core = Kit.panel(hero, "Core" .. i)
-		core.BackgroundColor3 = C.paper
-		Kit.round(core, 99)
-		core.AnchorPoint = Vector2.new(0.5, 0.5)
-		local center = Kit.frame(core, "Color", color)
-		center.Size = UDim2.new(1, -10, 1, -10)
-		center.Position = UDim2.fromOffset(5, 5)
-		Kit.round(center, 99)
-		core.ZIndex = 3
-		table.insert(paths, { border = border, fill = fill, core = core })
-	end
-	local you = Kit.panel(hero, "YouBadge")
-	Kit.text(you, "Label", "YOU", 19)
+	local arena = require(script.Parent.AnimatedArena).mount(hero, opts)
 	local modal: Frame? = nil
-	local modalScope: any = nil
+	local activeDemo: any = nil
 	local previous: GuiObject? = nil
 	local buttons = {}
 	local function close()
-		if modalScope then
-			modalScope:destroy()
-			modalScope = nil
+		if activeDemo then
+			activeDemo.destroy()
+			activeDemo = nil
+			modal = nil
 		end
+		content.Visible = true
+		arena.setActive(true)
+
 		if modal then
 			modal:Destroy()
 			modal = nil
@@ -99,36 +74,15 @@ function Home.mount(parent: Instance, options: any?)
 		for _, control in buttons do
 			control.root.Selectable = false
 		end
-		modalScope = Kit.new(opts.reducedMotion)
-		modal = Kit.frame(root, "ProofDialog", C.ink)
-		modal.BackgroundTransparency = 0.25
-		modal.Size = UDim2.fromScale(1, 1)
-		local shield = Instance.new("TextButton")
-		shield.Name = "InputShield"
-		shield.Text = ""
-		shield.Modal = true
-		shield.BackgroundTransparency = 1
-		shield.Size = UDim2.fromScale(1, 1)
-		shield.Selectable = false
-		shield.Parent = modal
-		local panel = Kit.panel(modal, "Dialog")
-		panel.AnchorPoint = Vector2.new(0.5, 0.5)
-		panel.Position = UDim2.fromScale(0.5, 0.5)
-		panel.Size = UDim2.new(1, -32, 0, 260)
-		local max = Instance.new("UISizeConstraint")
-		max.MaxSize = Vector2.new(520, 400)
-		max.Parent = panel
-		local title = Kit.text(panel, "Title", route, 28)
-		title.Position = UDim2.fromOffset(12, 16)
-		title.Size = UDim2.new(1, -24, 0, 44)
-		local copy =
-			Kit.text(panel, "Explanation", "Component proof only. Remaining screens wait for visual approval.", 18)
-		copy.Position = UDim2.fromOffset(20, 76)
-		copy.Size = UDim2.new(1, -40, 0, 70)
-		local back = modalScope:button(panel, "Close", "BACK", false, close)
-		back.root.Position = UDim2.new(0, 20, 1, -80)
-		back.root.Size = UDim2.new(1, -40, 0, 60)
-		GuiService.SelectedObject = back.root
+		content.Visible = false
+		arena.setActive(false)
+		activeDemo = Demos.mount(
+			root,
+			route,
+			{ preferences = opts.preferences, reducedMotion = opts.reducedMotion, close = close, navigate = open }
+		)
+		modal = activeDemo.root
+		GuiService.SelectedObject = activeDemo.root:FindFirstChild("Back") :: GuiButton
 	end
 	local play = scope:button(content, "Play", "PLAY  ▶", true, function()
 		open("PLAY")
@@ -166,40 +120,7 @@ function Home.mount(parent: Instance, options: any?)
 			return
 		end
 		Kit.box(hero, l.preview)
-		local w, h = l.preview[3], l.preview[4]
-		local specs = {
-			{ Vector2.new(0.02, 0.33), Vector2.new(0.35, 0.36), Vector2.new(0.12, -0.05), Vector2.new(0.66, 0.16) },
-			{ Vector2.new(0.05, 0.87), Vector2.new(0.62, 0.47), Vector2.new(0.06, 0.25), Vector2.new(0.88, 0.57) },
-			{ Vector2.new(0.22, 0.92), Vector2.new(0.58, 0.55), Vector2.new(0.55, 0.96), Vector2.new(0.90, 0.80) },
-		}
-		local thickness = math.clamp(w * 0.029, 7, 23)
-		for i, path in paths do
-			local spec = specs[i]
-			local points = {}
-			for step = 0, 16 do
-				local t = step / 16
-				local p = curve(spec[1], spec[2], spec[3], spec[4], t)
-				local tangent = derivative(spec[1], spec[2], spec[3], spec[4], t) / 48
-				table.insert(
-					points,
-					Path2DControlPoint.new(
-						UDim2.fromScale(p.X, p.Y),
-						UDim2.fromScale(-tangent.X, -tangent.Y),
-						UDim2.fromScale(tangent.X, tangent.Y)
-					)
-				)
-			end
-			path.border:SetControlPoints(points)
-			path.border.Thickness = thickness + 3
-			path.fill:SetControlPoints(points)
-			path.fill.Thickness = thickness
-			local endpoint = spec[4] * Vector2.new(w, h)
-			local size = math.clamp(w * 0.08, 26, 64)
-			path.core.Position = UDim2.fromOffset(endpoint.X, endpoint.Y)
-			path.core.Size = UDim2.fromOffset(size, size)
-		end
-		local endpoint = specs[2][4] * Vector2.new(w, h)
-		Kit.box(you, { endpoint.X - 33, endpoint.Y - math.clamp(w * 0.04, 13, 32) - 46, 66, 34 })
+		arena.arrange()
 	end
 	scope:connect(root:GetPropertyChangedSignal("AbsoluteSize"), arrange)
 	scope:connect(game:GetService("UserInputService").InputBegan, function(input: InputObject, processed: boolean)
@@ -217,6 +138,7 @@ function Home.mount(parent: Instance, options: any?)
 		close = close,
 		destroy = function()
 			close()
+			arena.destroy()
 			scope:destroy()
 			root:Destroy()
 		end,

@@ -1,0 +1,41 @@
+{
+  "origin": "Original additive synthesis, no samples",
+  "rate": 44100,
+  "cues": {
+    "select": [
+      [
+        660,
+        0.045
+      ],
+      [
+        880,
+        0.055
+      ]
+    ],
+    "confirm": [
+      [
+        660,
+        0.06
+      ],
+      [
+        880,
+        0.06
+      ],
+      [
+        1100,
+        0.11
+      ]
+    ],
+    "warning": [
+      [
+        440,
+        0.08
+      ],
+      [
+        370,
+        0.1
+      ]
+    ]
+  },
+  "robloxStatus": "Upload pending asset scopes/directory approval; no fabricated IDs"
+}

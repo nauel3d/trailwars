@@ -1,6 +1,7 @@
 --!strict
 -- Development-only native UI proof. No production routing or economy changes.
-local TweenService = game:GetService("TweenService")
+local Motion = require(script.Parent.Motion)
+local Cues = require(script.Parent.UICues)
 local Kit = {}
 Kit.colors = {
 	ink = Color3.fromRGB(25, 42, 70),
@@ -51,7 +52,7 @@ function Kit.text(parent: Instance, name: string, value: string, size: number, c
 	t.Parent = parent
 	return t
 end
-function Kit.new(reducedMotion: boolean?)
+function Kit.new(reducedMotion: boolean?, preferences: any?)
 	local scope: any = { connections = {}, tweens = {}, reducedMotion = reducedMotion == true, controls = {} }
 	function scope:connect(signal: RBXScriptSignal, fn: (...any) -> ())
 		local c = signal:Connect(fn)
@@ -59,22 +60,12 @@ function Kit.new(reducedMotion: boolean?)
 		return c
 	end
 	function scope:move(face: GuiObject, y: number)
-		if self.tweens[face] then
-			self.tweens[face]:Cancel()
-			self.tweens[face] = nil
+		if not self.motion then
+			self.motion =
+				Motion.new(face.Parent.Parent, { reducedMotion = self.reducedMotion, preferences = preferences })
 		end
-		local target = UDim2.fromOffset(0, y)
-		if self.reducedMotion then
-			face.Position = target
-			return
-		end
-		local tween = TweenService:Create(
-			face,
-			TweenInfo.new(if y == 0 then 0.12 else 0.045, Enum.EasingStyle.Quad),
-			{ Position = target }
-		)
-		self.tweens[face] = tween
-		tween:Play()
+		self.motion.reducedMotion = self.reducedMotion
+		self.motion:to(face, { Position = UDim2.fromOffset(0, y) }, if y == 0 then "release" else "press")
 	end
 	function scope:button(parent: Instance, name: string, label: string, primary: boolean?, callback: () -> ())
 		local root = Instance.new("TextButton")
@@ -121,6 +112,7 @@ function Kit.new(reducedMotion: boolean?)
 		end
 		function control.activate(_control: any)
 			if state ~= "Disabled" and state ~= "Loading" then
+				Cues.play(root, "select", preferences)
 				callback()
 			end
 		end
@@ -168,6 +160,9 @@ function Kit.new(reducedMotion: boolean?)
 		return control
 	end
 	function scope:destroy()
+		if self.motion then
+			self.motion:destroy()
+		end
 		for _, tween in self.tweens do
 			tween:Cancel()
 		end

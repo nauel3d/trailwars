@@ -27,7 +27,14 @@ function Shell.mount(parent: Instance)
 		GuiService:GetPropertyChangedSignal("TopbarInset"):Connect(arrange),
 	}
 	arrange()
-	local proof = Home.mount(safe)
+	local preferences = { reducedMotion = GuiService.ReducedMotionEnabled, muted = false, volume = 0.22 }
+	local proof = Home.mount(safe, { preferences = preferences })
+	table.insert(
+		connections,
+		GuiService:GetPropertyChangedSignal("ReducedMotionEnabled"):Connect(function()
+			preferences.reducedMotion = GuiService.ReducedMotionEnabled
+		end)
+	)
 	return {
 		gui = gui,
 		proof = proof,

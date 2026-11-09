@@ -22,6 +22,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Headless foundation tests failed.' }
     & '.tools/luau/luau.exe' 'tests/SnapLayoutTests.luau'
     if ($LASTEXITCODE -ne 0) { throw 'Snap responsive layout tests failed.' }
+    & '.tools/luau/luau.exe' 'tests/MotionModelTests.luau'
+    if ($LASTEXITCODE -ne 0) { throw 'Decorative motion/rank model tests failed.' }
     New-Item -ItemType Directory -Path dist -Force | Out-Null
     & $RojoPath build default.project.json -o dist/TrailWars.rbxlx
     if ($LASTEXITCODE -ne 0) { throw 'Production Rojo build failed.' }
