@@ -100,7 +100,7 @@ while os.clock() < deadline do
 				bot.heading = 0
 				sim.byId.bot4.x = 1000
 				sim.byId.bot4.y = 650
-				sim.index:insert({ owner = b, ax = 325, ay = 280, bx = 325, by = 320, endDistance = 0 })
+				sim.index:insert({ owner = b, ax = 315, ay = 280, bx = 315, by = 320, endDistance = 0 })
 				sim.index:insert({ owner = a, ax = 500, ay = 280, bx = 500, by = 320, endDistance = 0 })
 				m.powers.actors[a].ready.Jump = 0
 				m.powers.actors[a].ready.Homing = 0
@@ -114,7 +114,7 @@ while os.clock() < deadline do
 				released = true
 			end
 			local player = sim.byId[a]
-			if player.x > 335 and player.alive and not flags.jumpCross then
+			if player.x > 330 and player.alive and not flags.jumpCross then
 				flags.jumpCross = true
 				crossedTick = m.tick
 				sim.byId[b].x = 510

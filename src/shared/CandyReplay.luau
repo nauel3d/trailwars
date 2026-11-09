@@ -65,7 +65,10 @@ function Replay.new()
 	function replay:snapshot()
 		local s = Round.snapshot(r)
 		s.roundId = r.matchId
-		s.settings = { target = 40 }
+		s.settings = { target = 40, rounds = 3, overtime = false, turrets = true }
+		s.hostId = "comet"
+		s.storage = "ENGINE REPLAY · no saved statistics"
+		s.statistics = {}
 		s.powers = replay.powers:snapshot()
 		s.visualEvents = replay.events
 		local players = {}

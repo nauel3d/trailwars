@@ -1,0 +1,38 @@
+[
+  {
+    "name": "portrait",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"viewport\":\"389, 844\",\"arena\":\"373, 230\",\"safe\":\"389, 786\",\"controls\":{\"Home\":{\"position\":\"293, 0\",\"size\":\"88, 44\"},\"Jump\":{\"position\":\"201, 650\",\"size\":\"181, 54\"},\"Right\":{\"position\":\"311, 714\",\"size\":\"70, 60\"},\"Left\":{\"position\":\"8, 714\",\"size\":\"70, 60\"},\"Homing\":{\"position\":\"8, 650\",\"size\":\"181, 54\"}}}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "small-phone",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"viewport\":\"320, 567\",\"arena\":\"304, 187\",\"safe\":\"320, 509\",\"controls\":{\"Home\":{\"position\":\"224, 0\",\"size\":\"88, 44\"},\"Jump\":{\"position\":\"166, 373\",\"size\":\"146, 54\"},\"Right\":{\"position\":\"248, 437\",\"size\":\"64, 60\"},\"Left\":{\"position\":\"8, 437\",\"size\":\"64, 60\"},\"Homing\":{\"position\":\"8, 373\",\"size\":\"146, 54\"}}}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "landscape",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"viewport\":\"749, 381\",\"arena\":\"408, 251\",\"safe\":\"749, 323\",\"controls\":{\"Home\":{\"position\":\"653, 0\",\"size\":\"88, 44\"},\"Jump\":{\"position\":\"597, 122\",\"size\":\"140, 54\"},\"Right\":{\"position\":\"669, 257\",\"size\":\"64, 56\"},\"Left\":{\"position\":\"597, 257\",\"size\":\"64, 56\"},\"Homing\":{\"position\":\"597, 60\",\"size\":\"140, 54\"}}}"
+        }
+      ],
+      "isError": false
+    }
+  }
+]
