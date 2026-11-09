@@ -1,0 +1,28 @@
+{
+  "kind": "Original HTML research proposal; not Roblox",
+  "results": [
+    {
+      "viewport": {
+        "width": 1080,
+        "height": 1060
+      },
+      "interRoundLeader": "SUN",
+      "interRoundLeaderPoints": 9,
+      "finalLeaderPoints": 15,
+      "reducedMotion": true,
+      "horizontalOverflow": false
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 1120
+      },
+      "interRoundLeader": "SUN",
+      "interRoundLeaderPoints": 9,
+      "finalLeaderPoints": 15,
+      "reducedMotion": true,
+      "horizontalOverflow": false
+    }
+  ],
+  "errors": []
+}

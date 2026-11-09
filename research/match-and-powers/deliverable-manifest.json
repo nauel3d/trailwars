@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-09",
+  "baseline": "5deed16a19afaed00e24460d83fb00eb0f089a2c",
+  "catalog_rows": 33,
+  "concrete_factory_ids": 31,
+  "category_counts": {
+    "Bombs": 4,
+    "Fevers": 8,
+    "Powers": 10,
+    "Shots": 9
+  },
+  "fields_per_row": 39,
+  "private_not_redistributed": true,
+  "deliverables": [
+    {
+      "file": "00-evidence-index.md",
+      "bytes": 6901,
+      "sha256": "7f81ea062832e69229e0ec71f92aa4bd8118b68832aa8414b3b83410c090bd78"
+    },
+    {
+      "file": "01-round-state-machine.md",
+      "bytes": 7806,
+      "sha256": "f896b8cf14419c0edf8a6da64ee3eb6132fb36b1be58bc30e9ded036087b17f4"
+    },
+    {
+      "file": "02-match-lifecycle-and-score.md",
+      "bytes": 10553,
+      "sha256": "7c9c27776e0122401be10b146c75ce0f14ebfb249760c4e54220e4719918212a"
+    },
+    {
+      "file": "03-modes-and-variants.md",
+      "bytes": 4841,
+      "sha256": "a3b6b607c3142cfed2d34b512e0f9e28847d6db09f544f7e9db73ca85ed91ec7"
+    },
+    {
+      "file": "04-complete-power-catalog.csv",
+      "bytes": 77042,
+      "sha256": "153912f82c8878c12e3fa423531bd0306c7c21dcbb027a61d7cfdd61d95f72cf"
+    },
+    {
+      "file": "04-complete-power-catalog.md",
+      "bytes": 12823,
+      "sha256": "356bbc0eb1e06245f4fd5fbd751a98474eaa81790106066929212332f7d5f9c6"
+    },
+    {
+      "file": "05-power-interactions.md",
+      "bytes": 12621,
+      "sha256": "425d8d47594786c25f005e5a717f372d24cc5987c02e9ceb75cfe6202aa7bd7d"
+    },
+    {
+      "file": "06-pickups-and-modifiers.md",
+      "bytes": 8464,
+      "sha256": "68a1d36b33cb83af59011f7ea5550640a2cf9b501582e0886f4952e923d1afa1"
+    },
+    {
+      "file": "07-video-and-rea-findings.md",
+      "bytes": 9021,
+      "sha256": "aec066f1790147dbc6f77a7bec026ea7726052144c268c5673609cf023bda820"
+    },
+    {
+      "file": "08-open-questions.md",
+      "bytes": 8025,
+      "sha256": "657ed6e954c76297413ca0a127c281a0b4fea656179d58ff95f30317f8f21783"
+    },
+    {
+      "file": "09-trailwars-options.md",
+      "bytes": 4695,
+      "sha256": "2c9a1d4532de1f8c98752bdab112529679313086434fd5befa6064befd707750"
+    },
+    {
+      "file": "10-implementation-blueprint.md",
+      "bytes": 9138,
+      "sha256": "6006e844497458f0a5211376e88edcf456a51a54efad8bcc6a91d55bfe9a8797"
+    },
+    {
+      "file": "11-review-1080.png",
+      "bytes": 87077,
+      "sha256": "fe89c8bd0280283690e02e2918c38d7bc95ff602fc555f9b0df7cd702ea233ce"
+    },
+    {
+      "file": "11-review-320.png",
+      "bytes": 72513,
+      "sha256": "c77700a67a83064daec9451955f7f8ce24017b0a386d13b864bed735aaa78262"
+    },
+    {
+      "file": "11-review-gallery.html",
+      "bytes": 8312,
+      "sha256": "5a2deaa4bb18e6079ac15db5e7cd1cca5e3c4ec530c282b7009b426f87ce5153"
+    },
+    {
+      "file": "11-review-verification.json",
+      "bytes": 594,
+      "sha256": "27643b003dd5f7df0db31f3fdac407079baa5453a87baaed1713ed14f7989e94"
+    }
+  ]
+}
