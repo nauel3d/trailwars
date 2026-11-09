@@ -46,7 +46,7 @@ Independent normalized 2D kinematics with three fictitious competitors and a few
 
 ## Leaderboard contract
 
-`setRows(rows, options)` takes stable string IDs, names, score, elimination state, optional self ID and final rank. Deterministic tie order. Move rows, not identity; replacement updates cancel older tweens. Placement feedback is textual as well as colored. Final placement does not bounce repeatedly. HUD mode suppresses flourish. Home uses fixture rows only. Real standings require future authoritative match events; no new server event or invented rank formula in this task.
+`setRows(rows, instant?)` takes stable string IDs, names, score, elimination state and optional final rank. Mount options supply self ID, HUD behavior and motion preferences. Deterministic tie order. Move rows, not identity; replacement updates cancel older tweens. Placement feedback is textual as well as colored. Final placement does not bounce repeatedly. HUD mode suppresses flourish. Home uses fixture rows only. Real standings require future authoritative match events; no new server event or invented rank formula in this task.
 
 ## Lifecycle and budgets
 

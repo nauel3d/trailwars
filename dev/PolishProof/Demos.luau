@@ -48,6 +48,12 @@ function Demos.mount(parent: Instance, route: string, options: any?)
 	list.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	list.ScrollBarThickness = 3
 	list.Parent = root
+	local inset = Instance.new("UIPadding")
+	inset.PaddingTop = UDim.new(0, 4)
+	inset.PaddingBottom = UDim.new(0, 8)
+	inset.PaddingLeft = UDim.new(0, 4)
+	inset.PaddingRight = UDim.new(0, 4)
+	inset.Parent = list
 	local layout = Instance.new("UIListLayout")
 	layout.Padding = UDim.new(0, 10)
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -85,9 +91,46 @@ function Demos.mount(parent: Instance, route: string, options: any?)
 	board.root.LayoutOrder = 1
 	board.root.Visible = route == "RESULTS"
 	local generation = 0
+	local rewards = {}
+	local outcomeTitle = Kit.text(stage, "OutcomeTitle", "VICTORY!", 32)
+	outcomeTitle.Visible = route == "RESULTS"
+	outcomeTitle.Position = UDim2.new(0.06, 0, 0, 12)
+	outcomeTitle.Size = UDim2.new(0.88, 0, 0, 66)
+	local podium = Kit.panel(stage, "Podium")
+	podium.BackgroundColor3 = Kit.colors.yellow
+	podium.AnchorPoint = Vector2.new(0.5, 0.5)
+	podium.Position = UDim2.fromScale(0.5, 0.68)
+	podium.Size = UDim2.fromOffset(108, 46)
+	podium.Visible = route == "RESULTS"
+	local place = Kit.text(podium, "Place", "#1", 26)
+	if route == "RESULTS" then
+		for i, text in { "PREVIEW +120 COINS", "PREVIEW +60 XP" } do
+			local row = Kit.panel(list, "Reward" .. i)
+			row.Size = UDim2.new(1, -8, 0, 50)
+			row.LayoutOrder = i + 1
+			row.BackgroundColor3 = Kit.colors.mint
+			local value = Kit.text(row, "Reward", text, 18)
+			table.insert(rewards, { root = row, value = value })
+		end
+	end
 	local function celebrate()
 		generation += 1
 		local current = generation
+		for i, row in rewards do
+			row.value.TextTransparency = if motion:isReduced() then 0 else 1
+			row.value.Position = if motion:isReduced() then UDim2.new() else UDim2.fromOffset(0, 6)
+			local function reveal()
+				if current ~= generation then
+					return
+				end
+				motion:to(row.value, { TextTransparency = 0, Position = UDim2.new() }, "confirm")
+			end
+			if motion:isReduced() then
+				reveal()
+			else
+				motion:after(i * 0.09, reveal)
+			end
+		end
 		core.Rotation = -8
 		motion:to(core, { Rotation = 0 }, "settle")
 		for i, p in particles do
@@ -112,7 +155,11 @@ function Demos.mount(parent: Instance, route: string, options: any?)
 	end
 	local function refresh()
 		if route == "RESULTS" then
-			label.Text = if outcome then "VICTORY!" else "NEXT ROUND, NEW CHANCE"
+			label.Text = if outcome then "YOU · FIRST PLACE" else "NEXT ROUND, NEW CHANCE"
+			outcomeTitle.Text = if outcome then "VICTORY!" else "ROUND COMPLETE"
+			place.Text = if outcome then "#1" else "#3"
+			rewards[1].value.Text = if outcome then "PREVIEW +120 COINS" else "PREVIEW +40 COINS"
+			rewards[2].value.Text = if outcome then "PREVIEW +60 XP" else "PREVIEW +20 XP"
 			liveStatus.Text = "DEMO RESULT · NO REWARD GRANTED"
 			board.setRows({
 				{ id = "coral", name = "YOU · DEMO", score = 42, finalRank = if outcome then 1 else 3 },
@@ -166,7 +213,7 @@ function Demos.mount(parent: Instance, route: string, options: any?)
 					end
 					phase = "inspect"
 					action:setState("Default")
-					liveStatus.Text = "SIMULATED SUCCESS · NO PURCHASE MADE"
+					liveStatus.Text = "DEMO SUCCESS · NO PURCHASE"
 					core.Rotation = -8
 					motion:to(core, { Rotation = 0 }, "confirm")
 					refresh()
@@ -209,6 +256,23 @@ function Demos.mount(parent: Instance, route: string, options: any?)
 			b.root.Size = UDim2.new(1, -6, 0, 70)
 			b.root.LayoutOrder = i
 			b.label.TextSize = 17
+			b.label.Position = UDim2.fromOffset(68, 0)
+			b.label.Size = UDim2.new(1, -80, 1, 0)
+			b.label.TextXAlignment = Enum.TextXAlignment.Left
+			local icon = Kit.frame(b.face, "CosmeticIcon", if i % 2 == 0 then Kit.colors.blue else Kit.colors.coral)
+			Kit.box(icon, { 16, 14, 36, 36 })
+			Kit.round(icon, 99)
+			Kit.outline(icon)
+			if i == 2 then
+				local hole = Kit.frame(icon, "Hole", Kit.colors.paper)
+				Kit.round(hole, 99)
+				Kit.box(hole, { 9, 9, 18, 18 })
+			end
+			if i >= 3 then
+				icon.Size = UDim2.fromOffset(38, 8)
+				icon.Position = UDim2.fromOffset(14, 28)
+				icon.Rotation = -15
+			end
 			table.insert(itemButtons, b)
 		end
 		if route == "SHOP" then
@@ -249,32 +313,47 @@ function Demos.mount(parent: Instance, route: string, options: any?)
 	local angle = 0
 	motion:loop(function(dt: number)
 		angle += dt * 0.8
-		core.Position = UDim2.fromScale(0.5 + math.cos(angle) * 0.14, 0.43 + math.sin(angle) * 0.10)
+		core.Position = if route == "RESULTS"
+			then UDim2.fromScale(0.5, (if stage.AbsoluteSize.Y < 190 then 0.32 else 0.40) + math.sin(angle) * 0.025)
+			else UDim2.fromScale(0.5 + math.cos(angle) * 0.14, 0.43 + math.sin(angle) * 0.10)
 		progress.Rotation = math.deg(angle)
 		progress.Position = UDim2.fromScale(0.5 - math.cos(angle) * 0.15, 0.43 - math.sin(angle) * 0.10)
 	end, 30)
 	local function arrange()
 		local w, h = root.AbsoluteSize.X, root.AbsoluteSize.Y
 		local compact = w > h
-		local bottom = h - 106
-		local bodyH = math.max(60, bottom - 90)
+		local top = if h >= 650 then 96 else 78
+		local bodyH = math.max(60, h - 128 - top)
+		local cw = math.min(w - 24, 1040)
+		local left = (w - cw) / 2
 		if w >= 900 or compact then
-			local pw = math.min(w * 0.44, 500)
-			Kit.box(stage, { 12, 78, pw - 18, bodyH })
-			Kit.box(list, { pw + 12, 78, w - pw - 24, bodyH })
+			local pw = math.min(cw * 0.44, 440)
+			Kit.box(stage, { left, top, pw - 12, bodyH })
+			Kit.box(list, { left + pw, top, cw - pw, bodyH })
 		else
 			local ph = math.min(190, bodyH * 0.44)
-			Kit.box(stage, { 12, 78, w - 24, ph })
-			Kit.box(list, { 12, ph + 88, w - 24, math.max(48, bodyH - ph - 10) })
+			Kit.box(stage, { left, top, cw, ph })
+			Kit.box(list, { left, top + ph + 10, cw, math.max(48, bodyH - ph - 10) })
 		end
-		Kit.box(action.root, { 16, h - 76, w - 32, 62 })
-		Kit.box(liveStatus, { 16, h - 116, w - 32, 36 })
+		local aw = math.min(w - 32, 520)
+		Kit.box(action.root, { (w - aw) / 2, h - 76, aw, 62 })
+		Kit.box(liveStatus, { left, h - 116, cw, 36 })
 		info.Visible = h >= 650
-		Kit.box(info, { 12, bodyH + 82, w - 24, 30 })
+		Kit.box(info, { 108, 62, w - 120, 24 })
 		local s = math.clamp(math.min(stage.AbsoluteSize.X, stage.AbsoluteSize.Y) * 0.28, 26, 100)
 		core.Size = UDim2.fromOffset(s, s)
 		core.Position = UDim2.fromScale(0.5, 0.43)
 		label.TextSize = if stage.AbsoluteSize.Y < 170 then 16 else 22
+		label.Size = UDim2.new(1, -12, 0, if stage.AbsoluteSize.Y < 190 then 24 else 42)
+		outcomeTitle.Visible = route == "RESULTS" and stage.AbsoluteSize.Y >= 190
+		podium.Position = UDim2.fromScale(0.5, if stage.AbsoluteSize.Y < 190 then 0.63 else 0.68)
+		outcomeTitle.TextSize = if stage.AbsoluteSize.Y < 190 then 18 else 32
+		outcomeTitle.Size = UDim2.new(0.88, 0, 0, if stage.AbsoluteSize.Y < 190 then 32 else 66)
+		podium.Size = UDim2.fromOffset(
+			math.clamp(stage.AbsoluteSize.X * 0.28, 64, 120),
+			if stage.AbsoluteSize.Y < 190 then 26 else 46
+		)
+		place.TextSize = if stage.AbsoluteSize.Y < 190 then 17 else 26
 		if route == "RESULTS" then
 			board.setRows({
 				{ id = "coral", name = "YOU · DEMO", score = 42, finalRank = if outcome then 1 else 3 },

@@ -1,0 +1,34 @@
+{
+  "home": {
+    "note": "Roblox engine frame-size tests and callback/state checks; not hardware, safe-area, mouse, touch or controller certification.",
+    "callbacks": 165,
+    "failures": [],
+    "cases": 33,
+    "states": 4
+  },
+  "motion": {
+    "leaderboard": {
+      "finalPlacement": true,
+      "latestOrder": true,
+      "elimination": true,
+      "stableIdentity": true
+    },
+    "note": "Engine diagnostics, not hardware performance certification. Audio upload remains separate.",
+    "cancellation": true,
+    "hidden": true,
+    "demos": 16,
+    "reduced": true,
+    "disposed": true,
+    "failures": [],
+    "arena": {
+      "instancesAfter": 56,
+      "wallSeconds": 1.2662329000013415,
+      "simulationSteps": 73,
+      "instancesBefore": 56
+    }
+  },
+  "notes": [
+    "Final visible-Edit engine diagnostics; native play also checked on desktop and iPhone 13 portrait/landscape.",
+    "Audio upload still denied after creator confirmation and retries; no audio IDs fabricated."
+  ]
+}

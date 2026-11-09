@@ -3,6 +3,7 @@ local Motion = require(script.Parent.Motion)
 local Kit = require(script.Parent.Components)
 local Demos = require(script.Parent.Demos)
 local Arena = require(script.Parent.AnimatedArena)
+local Leaderboard = require(script.Parent.Leaderboard)
 return function(parent: Instance)
 	local report: any =
 		{ failures = {}, demos = 0, cancellation = false, hidden = false, reduced = false, disposed = false }
@@ -11,7 +12,8 @@ return function(parent: Instance)
 			local host = Kit.frame(parent, "DemoCase")
 			host.Size = UDim2.fromOffset(size[1], size[2])
 			local demo = Demos.mount(host, route, { reducedMotion = true })
-			task.wait(0.06)
+			-- Let native text/layout settle; client rendering may run below 60Hz.
+			task.wait(0.3)
 			for _, v in host:GetDescendants() do
 				if v:IsA("TextLabel") and v.Visible then
 					local visible = true
@@ -86,6 +88,42 @@ return function(parent: Instance)
 		and next(scope.loops) == nil
 		and #scope.connections == 0
 	host:Destroy()
+	local rankHost = Kit.frame(parent, "LeaderboardLifecycle")
+	rankHost.Size = UDim2.fromOffset(320, 180)
+	local board = Leaderboard.mount(rankHost, { selfId = "a" })
+	board.root.Size = UDim2.fromOffset(310, 160)
+	local function rows(a: number, b: number, c: number)
+		local first = { id = "a", name = "ALPHA", score = a }
+		local second = { id = "b", name = "BETA", score = b }
+		local third = { id = "c", name = "GAMMA", score = c }
+		return { first, second, third }
+	end
+	board.setRows(rows(30, 20, 10), true)
+	task.wait(0.1)
+	local identity = board.root:FindFirstChild("a")
+	board.setRows(rows(1, 40, 20))
+	board.setRows(rows(9, 1, 20))
+	task.wait(0.4)
+	local a = board.root:FindFirstChild("a") :: Frame
+	local c = board.root:FindFirstChild("c") :: Frame
+	report.leaderboard = { stableIdentity = identity == a, latestOrder = c.Position.Y.Offset < a.Position.Y.Offset }
+	local final = rows(30, 20, 10)
+	final[1].finalRank = 3
+	final[2].finalRank = 1
+	final[2].eliminated = true
+	final[3].finalRank = 2
+	board.setRows(final, true)
+	report.leaderboard.elimination = (board.root:FindFirstChild("b") :: Frame).Score.Text == "OUT"
+	report.leaderboard.finalPlacement = string.sub(a.Competitor.Text, 1, 1) == "3"
+	assert(
+		report.leaderboard.stableIdentity
+			and report.leaderboard.latestOrder
+			and report.leaderboard.elimination
+			and report.leaderboard.finalPlacement,
+		"Leaderboard identity/order/final placement regression"
+	)
+	board.destroy()
+	rankHost:Destroy()
 	local space = Kit.frame(parent, "ArenaBudget")
 	space.Size = UDim2.fromOffset(800, 400)
 	local arena = Arena.mount(space)

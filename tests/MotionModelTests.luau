@@ -41,10 +41,10 @@ local final = Rank.order({
 })
 assert(final[1].id == "b", "Explicit final placement beats preview scores")
 assert(not pcall(function()
-	Rank.order({ { id = "a", score = 1 }, { id = "a", score = 2 } })
+	Rank.order({ { id = "a", name = "A", score = 1 }, { id = "a", name = "A again", score = 2 } })
 end), "Duplicate identities rejected")
 assert(not pcall(function()
-	Rank.order({ { id = "a", score = 0 / 0 } })
+	Rank.order({ { id = "a", name = "A", score = 0 / 0 } })
 end), "NaN score rejected")
 print(
 	string.format(
