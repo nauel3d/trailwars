@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trail Wars — replacement design review</title><style>
+*{box-sizing:border-box}body{margin:0;background:#dff4e8;color:#192a46;font:17px/1.5 Arial,sans-serif}main{max-width:1500px;margin:auto;padding:28px}h1{font-size:clamp(30px,5vw,60px);line-height:1.1;margin:15px 0}h2{margin-top:42px}a{color:#233d87}p{max-width:85ch}header{background:#fffcf3;padding:25px;border:2px solid #192a46;border-radius:18px;box-shadow:0 5px #192a46}label{display:block;margin:28px 0 12px}input{font:inherit;width:min(100%,600px);padding:12px;border:2px solid #192a46;border-radius:10px}.concepts,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}article,figure{margin:0;background:#fffcf3;border:2px solid #192a46;border-radius:14px;padding:15px;overflow:hidden}img{max-width:100%;height:auto;display:block;margin:auto}.grid img{height:280px;width:100%;object-fit:contain}.concepts img{height:320px;width:100%;object-fit:contain}h3{margin:0 0 12px;font-size:20px}article p{font-size:14px}button{font:inherit;background:#ff6957;color:#192a46;border:2px solid #192a46;border-radius:8px;padding:10px 18px;cursor:pointer}footer{padding:30px 0} [hidden]{display:none!important}
+</style><main><header><h1>A fresh Trail Wars</h1><p>Mint, warm white, ink and coral. Crisp controls, open space, circular cores and separate layouts for desktop and phone.</p><p><strong>Design proposals only.</strong> These are not Roblox captures. This page is a review gallery; the proposed Home screen has no page scrolling.</p><p><a href="README.md">Design and implementation decision</a> · <a href="qa/layout-checks.json">Static layout checks</a> · <a href="../ui-master-plan/navigation-and-state-machine.md">Navigation and states</a></p></header>
+<h2>Art direction</h2><div class="concepts"><figure><a href="home-desktop.png"><img src="home-desktop.png" alt="New desktop Home concept"></a><figcaption>Desktop Home — art direction</figcaption></figure><figure><a href="home-mobile.png"><img src="home-mobile.png" alt="New portrait Home concept"></a><figcaption>Portrait Home — art direction</figcaption></figure><figure><a href="customize-desktop.png"><img src="customize-desktop.png" alt="New Customize concept"></a><figcaption>Customize — art direction</figcaption></figure></div>
+<h2>Complete screen and state proposals</h2><p>The editable layouts below specify placement and state coverage. They use simpler artwork than the concept paintings. Open an image at its authored size to inspect it.</p><label for="search">Filter screens</label><input id="search" type="search" placeholder="Home, Customize, settings, mobile…"><p id="count" aria-live="polite"></p><div class="grid"><article data-name="design system 00-design-system"><h3>Design system</h3>
+<a href="mockups/00-design-system.png"><img loading="lazy" src="mockups/00-design-system.png" alt="Design system, 1672 by 1080 proposal"></a>
+<p>1672 × 1080 · <a href="mockups/00-design-system.svg">Editable SVG</a></p><p>button variants, type, palette, component hierarchy</p></article>
+<article data-name="component states 00-component-states"><h3>Component states</h3>
+<a href="mockups/00-component-states.png"><img loading="lazy" src="mockups/00-component-states.png" alt="Component states, 1672 by 1080 proposal"></a>
+<p>1672 × 1080 · <a href="mockups/00-component-states.svg">Editable SVG</a></p><p>normal, hover, focus, press, selected, disabled, loading, owned, locked, equipped</p></article>
+<article data-name="motion storyboard 00-motion-storyboard"><h3>Motion storyboard</h3>
+<a href="mockups/00-motion-storyboard.png"><img loading="lazy" src="mockups/00-motion-storyboard.png" alt="Motion storyboard, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/00-motion-storyboard.svg">Editable SVG</a></p><p>rest, press, release, confirmed</p></article>
+<article data-name="home 01-home-desktop"><h3>Home</h3>
+<a href="mockups/01-home-desktop.png"><img loading="lazy" src="mockups/01-home-desktop.png" alt="Home, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/01-home-desktop.svg">Editable SVG</a></p><p>ready, loading-profile, offline, input-changed</p></article>
+<article data-name="controls 02-controls-desktop"><h3>Controls</h3>
+<a href="mockups/02-controls-desktop.png"><img loading="lazy" src="mockups/02-controls-desktop.png" alt="Controls, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/02-controls-desktop.svg">Editable SVG</a></p><p>keyboard, touch, controller, input-switch, focus-lost</p></article>
+<article data-name="quick play queue 03-queue-desktop"><h3>Quick Play queue</h3>
+<a href="mockups/03-queue-desktop.png"><img loading="lazy" src="mockups/03-queue-desktop.png" alt="Quick Play queue, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/03-queue-desktop.svg">Editable SVG</a></p><p>entering, searching, cancel-requested, canceled, join-confirmed, join-failed, service-unavailable</p></article>
+<article data-name="countdown 04-countdown-desktop"><h3>Countdown</h3>
+<a href="mockups/04-countdown-desktop.png"><img loading="lazy" src="mockups/04-countdown-desktop.png" alt="Countdown, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/04-countdown-desktop.svg">Editable SVG</a></p><p>entering, searching, cancel-requested, canceled, join-confirmed, join-failed, service-unavailable</p></article>
+<article data-name="make it yours 05-customize-desktop"><h3>MAKE IT YOURS</h3>
+<a href="mockups/05-customize-desktop.png"><img loading="lazy" src="mockups/05-customize-desktop.png" alt="MAKE IT YOURS, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/05-customize-desktop.svg">Editable SVG</a></p><p>owned, locked, equipped, affordable, insufficient, empty, loading, unavailable</p></article>
+<article data-name="item details 06-item-details-desktop"><h3>Item details</h3>
+<a href="mockups/06-item-details-desktop.png"><img loading="lazy" src="mockups/06-item-details-desktop.png" alt="Item details, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/06-item-details-desktop.svg">Editable SVG</a></p><p>owned/equip, equipped, locked, insufficient, saving, failed, unavailable</p></article>
+<article data-name="cosmetic shop 07-shop-desktop"><h3>COSMETIC SHOP</h3>
+<a href="mockups/07-shop-desktop.png"><img loading="lazy" src="mockups/07-shop-desktop.png" alt="COSMETIC SHOP, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/07-shop-desktop.svg">Editable SVG</a></p><p>owned, locked, equipped, affordable, insufficient, empty, loading, unavailable</p></article>
+<article data-name="purchase confirm 08-purchase-confirm"><h3>Purchase confirm</h3>
+<a href="mockups/08-purchase-confirm.png"><img loading="lazy" src="mockups/08-purchase-confirm.png" alt="Purchase confirm, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/08-purchase-confirm.svg">Editable SVG</a></p><p>confirm, cancel-before-submit, submitting, business-rejection, unknown, reconciling, owned-confirmed</p></article>
+<article data-name="purchase pending 09-purchase-processing"><h3>Purchase pending</h3>
+<a href="mockups/09-purchase-processing.png"><img loading="lazy" src="mockups/09-purchase-processing.png" alt="Purchase pending, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/09-purchase-processing.svg">Editable SVG</a></p><p>confirm, cancel-before-submit, submitting, business-rejection, unknown, reconciling, owned-confirmed</p></article>
+<article data-name="purchase unknown 10-purchase-reconcile"><h3>Purchase unknown</h3>
+<a href="mockups/10-purchase-reconcile.png"><img loading="lazy" src="mockups/10-purchase-reconcile.png" alt="Purchase unknown, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/10-purchase-reconcile.svg">Editable SVG</a></p><p>confirm, cancel-before-submit, submitting, business-rejection, unknown, reconciling, owned-confirmed</p></article>
+<article data-name="profile 11-profile-desktop"><h3>Profile</h3>
+<a href="mockups/11-profile-desktop.png"><img loading="lazy" src="mockups/11-profile-desktop.png" alt="Profile, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/11-profile-desktop.svg">Editable SVG</a></p><p>confirmed, zero-history, loading, stale, missing, long-name</p></article>
+<article data-name="settings 12-settings-desktop"><h3>Settings</h3>
+<a href="mockups/12-settings-desktop.png"><img loading="lazy" src="mockups/12-settings-desktop.png" alt="Settings, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/12-settings-desktop.svg">Editable SVG</a></p><p>draft, saving, saved, failed, offline, partial-default-reset</p></article>
+<article data-name="match hud 13-hud-desktop"><h3>Match HUD</h3>
+<a href="mockups/13-hud-desktop.png"><img loading="lazy" src="mockups/13-hud-desktop.png" alt="Match HUD, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/13-hud-desktop.svg">Editable SVG</a></p><p>active, remaining-known/unknown, elapsed-known/unknown, round-ending, eliminated, spectating, disconnect</p></article>
+<article data-name="eliminated 14-elimination-desktop"><h3>Eliminated</h3>
+<a href="mockups/14-elimination-desktop.png"><img loading="lazy" src="mockups/14-elimination-desktop.png" alt="Eliminated, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/14-elimination-desktop.svg">Editable SVG</a></p><p>active, remaining-known/unknown, elapsed-known/unknown, round-ending, eliminated, spectating, disconnect</p></article>
+<article data-name="spectator 15-spectator-desktop"><h3>Spectator</h3>
+<a href="mockups/15-spectator-desktop.png"><img loading="lazy" src="mockups/15-spectator-desktop.png" alt="Spectator, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/15-spectator-desktop.svg">Editable SVG</a></p><p>active, remaining-known/unknown, elapsed-known/unknown, round-ending, eliminated, spectating, disconnect</p></article>
+<article data-name="victory 16-victory-desktop"><h3>Victory</h3>
+<a href="mockups/16-victory-desktop.png"><img loading="lazy" src="mockups/16-victory-desktop.png" alt="Victory, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/16-victory-desktop.svg">Editable SVG</a></p><p>victory, defeat, placement-unknown, settlement-pending, confirmed, refresh-failed</p></article>
+<article data-name="defeat 17-defeat-desktop"><h3>Defeat</h3>
+<a href="mockups/17-defeat-desktop.png"><img loading="lazy" src="mockups/17-defeat-desktop.png" alt="Defeat, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/17-defeat-desktop.svg">Editable SVG</a></p><p>victory, defeat, placement-unknown, settlement-pending, confirmed, refresh-failed</p></article>
+<article data-name="rewards pending 18-rewards-pending-desktop"><h3>Rewards pending</h3>
+<a href="mockups/18-rewards-pending-desktop.png"><img loading="lazy" src="mockups/18-rewards-pending-desktop.png" alt="Rewards pending, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/18-rewards-pending-desktop.svg">Editable SVG</a></p><p>victory, defeat, placement-unknown, settlement-pending, confirmed, refresh-failed</p></article>
+<article data-name="loading 19-loading-desktop"><h3>Loading</h3>
+<a href="mockups/19-loading-desktop.png"><img loading="lazy" src="mockups/19-loading-desktop.png" alt="Loading, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/19-loading-desktop.svg">Editable SVG</a></p><p>loading, failed, leased, unsupported-schema, offline, retrying, service-unavailable</p></article>
+<article data-name="profile recovery 20-error-recovery-desktop"><h3>Profile recovery</h3>
+<a href="mockups/20-error-recovery-desktop.png"><img loading="lazy" src="mockups/20-error-recovery-desktop.png" alt="Profile recovery, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/20-error-recovery-desktop.svg">Editable SVG</a></p><p>loading, failed, leased, unsupported-schema, offline, retrying, service-unavailable</p></article>
+<article data-name="leave confirmation 21-leave-confirm"><h3>Leave confirmation</h3>
+<a href="mockups/21-leave-confirm.png"><img loading="lazy" src="mockups/21-leave-confirm.png" alt="Leave confirmation, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/21-leave-confirm.svg">Editable SVG</a></p><p>open, stay-focused, leaving, leave-failed</p></article>
+<article data-name="item details 22-insufficient-funds"><h3>Item details</h3>
+<a href="mockups/22-insufficient-funds.png"><img loading="lazy" src="mockups/22-insufficient-funds.png" alt="Item details, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/22-insufficient-funds.svg">Editable SVG</a></p><p>owned/equip, equipped, locked, insufficient, saving, failed, unavailable</p></article>
+<article data-name="home m01-home-390"><h3>Home</h3>
+<a href="mockups/m01-home-390.png"><img loading="lazy" src="mockups/m01-home-390.png" alt="Home, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m01-home-390.svg">Editable SVG</a></p><p>ready, loading-profile, offline, input-changed</p></article>
+<article data-name="home m02-home-320"><h3>Home</h3>
+<a href="mockups/m02-home-320.png"><img loading="lazy" src="mockups/m02-home-320.png" alt="Home, 320 by 568 proposal"></a>
+<p>320 × 568 · <a href="mockups/m02-home-320.svg">Editable SVG</a></p><p>ready, loading-profile, offline, input-changed</p></article>
+<article data-name="home c01-home-844-landscape"><h3>Home</h3>
+<a href="mockups/c01-home-844-landscape.png"><img loading="lazy" src="mockups/c01-home-844-landscape.png" alt="Home, 844 by 390 proposal"></a>
+<p>844 × 390 · <a href="mockups/c01-home-844-landscape.svg">Editable SVG</a></p><p>ready, loading-profile, offline, input-changed</p></article>
+<article data-name="home u01-home-ultrawide"><h3>Home</h3>
+<a href="mockups/u01-home-ultrawide.png"><img loading="lazy" src="mockups/u01-home-ultrawide.png" alt="Home, 2560 by 1080 proposal"></a>
+<p>2560 × 1080 · <a href="mockups/u01-home-ultrawide.svg">Editable SVG</a></p><p>ready, loading-profile, offline, input-changed</p></article>
+<article data-name="make it yours m03-customize-390"><h3>MAKE IT YOURS</h3>
+<a href="mockups/m03-customize-390.png"><img loading="lazy" src="mockups/m03-customize-390.png" alt="MAKE IT YOURS, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m03-customize-390.svg">Editable SVG</a></p><p>owned, locked, equipped, affordable, insufficient, empty, loading, unavailable</p></article>
+<article data-name="cosmetic shop m04-shop-390"><h3>COSMETIC SHOP</h3>
+<a href="mockups/m04-shop-390.png"><img loading="lazy" src="mockups/m04-shop-390.png" alt="COSMETIC SHOP, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m04-shop-390.svg">Editable SVG</a></p><p>owned, locked, equipped, affordable, insufficient, empty, loading, unavailable</p></article>
+<article data-name="item details m05-item-details-390"><h3>Item details</h3>
+<a href="mockups/m05-item-details-390.png"><img loading="lazy" src="mockups/m05-item-details-390.png" alt="Item details, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m05-item-details-390.svg">Editable SVG</a></p><p>owned/equip, equipped, locked, insufficient, saving, failed, unavailable</p></article>
+<article data-name="purchase confirm m06-purchase-390"><h3>Purchase confirm</h3>
+<a href="mockups/m06-purchase-390.png"><img loading="lazy" src="mockups/m06-purchase-390.png" alt="Purchase confirm, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m06-purchase-390.svg">Editable SVG</a></p><p>confirm, cancel-before-submit, submitting, business-rejection, unknown, reconciling, owned-confirmed</p></article>
+<article data-name="profile m07-profile-390"><h3>Profile</h3>
+<a href="mockups/m07-profile-390.png"><img loading="lazy" src="mockups/m07-profile-390.png" alt="Profile, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m07-profile-390.svg">Editable SVG</a></p><p>confirmed, zero-history, loading, stale, missing, long-name</p></article>
+<article data-name="settings m08-settings-390"><h3>Settings</h3>
+<a href="mockups/m08-settings-390.png"><img loading="lazy" src="mockups/m08-settings-390.png" alt="Settings, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m08-settings-390.svg">Editable SVG</a></p><p>draft, saving, saved, failed, offline, partial-default-reset</p></article>
+<article data-name="settings m09-settings-150"><h3>Settings</h3>
+<a href="mockups/m09-settings-150.png"><img loading="lazy" src="mockups/m09-settings-150.png" alt="Settings, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m09-settings-150.svg">Editable SVG</a></p><p>draft, saving, saved, failed, offline, partial-default-reset</p></article>
+<article data-name="quick play queue m10-queue-390"><h3>Quick Play queue</h3>
+<a href="mockups/m10-queue-390.png"><img loading="lazy" src="mockups/m10-queue-390.png" alt="Quick Play queue, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m10-queue-390.svg">Editable SVG</a></p><p>entering, searching, cancel-requested, canceled, join-confirmed, join-failed, service-unavailable</p></article>
+<article data-name="match hud c02-hud-844-landscape"><h3>Match HUD</h3>
+<a href="mockups/c02-hud-844-landscape.png"><img loading="lazy" src="mockups/c02-hud-844-landscape.png" alt="Match HUD, 844 by 390 proposal"></a>
+<p>844 × 390 · <a href="mockups/c02-hud-844-landscape.svg">Editable SVG</a></p><p>active, remaining-known/unknown, elapsed-known/unknown, round-ending, eliminated, spectating, disconnect</p></article>
+<article data-name="victory m11-victory-390"><h3>Victory</h3>
+<a href="mockups/m11-victory-390.png"><img loading="lazy" src="mockups/m11-victory-390.png" alt="Victory, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m11-victory-390.svg">Editable SVG</a></p><p>victory, defeat, placement-unknown, settlement-pending, confirmed, refresh-failed</p></article>
+<article data-name="loading m12-loading-390"><h3>Loading</h3>
+<a href="mockups/m12-loading-390.png"><img loading="lazy" src="mockups/m12-loading-390.png" alt="Loading, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m12-loading-390.svg">Editable SVG</a></p><p>loading, failed, retrying, unavailable</p></article>
+<article data-name="recovery m13-recovery-390"><h3>Recovery</h3>
+<a href="mockups/m13-recovery-390.png"><img loading="lazy" src="mockups/m13-recovery-390.png" alt="Recovery, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m13-recovery-390.svg">Editable SVG</a></p><p>loading, failed, retrying, unavailable</p></article>
+<article data-name="controls m14-controls-390"><h3>Controls</h3>
+<a href="mockups/m14-controls-390.png"><img loading="lazy" src="mockups/m14-controls-390.png" alt="Controls, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m14-controls-390.svg">Editable SVG</a></p><p>touch, input-switch, focus-loss</p></article>
+<article data-name="leave confirmation · compact c03-leave-568-landscape"><h3>Leave confirmation · compact</h3>
+<a href="mockups/c03-leave-568-landscape.png"><img loading="lazy" src="mockups/c03-leave-568-landscape.png" alt="Leave confirmation · compact, 568 by 320 proposal"></a>
+<p>568 × 320 · <a href="mockups/c03-leave-568-landscape.svg">Editable SVG</a></p><p>stay-focused, leave, cancel</p></article>
+<article data-name="make it yours t01-customize-768"><h3>MAKE IT YOURS</h3>
+<a href="mockups/t01-customize-768.png"><img loading="lazy" src="mockups/t01-customize-768.png" alt="MAKE IT YOURS, 768 by 1024 proposal"></a>
+<p>768 × 1024 · <a href="mockups/t01-customize-768.svg">Editable SVG</a></p><p>owned, locked, equipped, affordable, insufficient, empty, loading, unavailable</p></article>
+<article data-name="spectator m15-spectator-390"><h3>Spectator</h3>
+<a href="mockups/m15-spectator-390.png"><img loading="lazy" src="mockups/m15-spectator-390.png" alt="Spectator, 390 by 844 proposal"></a>
+<p>390 × 844 · <a href="mockups/m15-spectator-390.svg">Editable SVG</a></p><p>active, remaining-known/unknown, elapsed-known/unknown, round-ending, eliminated, spectating, disconnect</p></article>
+<article data-name="profile 23-profile-empty"><h3>Profile</h3>
+<a href="mockups/23-profile-empty.png"><img loading="lazy" src="mockups/23-profile-empty.png" alt="Profile, 1672 by 941 proposal"></a>
+<p>1672 × 941 · <a href="mockups/23-profile-empty.svg">Editable SVG</a></p><p>confirmed, zero-history, loading, stale, missing, long-name</p></article></div><footer>Approval checkpoint: approve the replacement design before production implementation. Existing gameplay, server economy and tests remain preserved.</footer></main><script>
+const input=document.querySelector('#search'),cards=[...document.querySelectorAll('article')],count=document.querySelector('#count');function filter(){let n=0;for(const c of cards){c.hidden=!c.dataset.name.includes(input.value.toLowerCase());if(!c.hidden)n++}count.textContent=n+' proposals shown'}input.addEventListener('input',filter);filter();
+</script></html>

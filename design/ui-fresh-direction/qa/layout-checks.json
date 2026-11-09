@@ -1,0 +1,47 @@
+{
+  "kind": "static design geometry checks; not Roblox verification",
+  "screens": 46,
+  "homeChecks": [
+    {
+      "slug": "01-home-desktop",
+      "viewport": [
+        1672,
+        941
+      ],
+      "actions": 5
+    },
+    {
+      "slug": "m01-home-390",
+      "viewport": [
+        390,
+        844
+      ],
+      "actions": 5
+    },
+    {
+      "slug": "m02-home-320",
+      "viewport": [
+        320,
+        568
+      ],
+      "actions": 5
+    },
+    {
+      "slug": "c01-home-844-landscape",
+      "viewport": [
+        844,
+        390
+      ],
+      "actions": 5
+    },
+    {
+      "slug": "u01-home-ultrawide",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "actions": 5
+    }
+  ],
+  "errors": []
+}
