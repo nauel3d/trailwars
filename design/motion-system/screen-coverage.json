@@ -1,0 +1,604 @@
+[
+  {
+    "slug": "00-design-system",
+    "policy": "components",
+    "states": [
+      "button variants",
+      "type",
+      "palette",
+      "component hierarchy"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "00-component-states",
+    "policy": "components",
+    "states": [
+      "normal",
+      "hover",
+      "focus",
+      "press",
+      "selected",
+      "disabled",
+      "loading",
+      "owned",
+      "locked",
+      "equipped"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "00-motion-storyboard",
+    "policy": "components",
+    "states": [
+      "rest",
+      "press",
+      "release",
+      "confirmed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "01-home-desktop",
+    "policy": "home-navigation",
+    "states": [
+      "ready",
+      "loading-profile",
+      "offline",
+      "input-changed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "02-controls-desktop",
+    "policy": "controls",
+    "states": [
+      "keyboard",
+      "touch",
+      "controller",
+      "input-switch",
+      "focus-lost"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "03-queue-desktop",
+    "policy": "queue-countdown",
+    "states": [
+      "entering",
+      "searching",
+      "cancel-requested",
+      "canceled",
+      "join-confirmed",
+      "join-failed",
+      "service-unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "04-countdown-desktop",
+    "policy": "queue-countdown",
+    "states": [
+      "entering",
+      "searching",
+      "cancel-requested",
+      "canceled",
+      "join-confirmed",
+      "join-failed",
+      "service-unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "05-customize-desktop",
+    "policy": "customize-preview",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "06-item-details-desktop",
+    "policy": "customize-preview",
+    "states": [
+      "owned/equip",
+      "equipped",
+      "locked",
+      "insufficient",
+      "saving",
+      "failed",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "07-shop-desktop",
+    "policy": "shop-transaction",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "08-purchase-confirm",
+    "policy": "shop-transaction",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "09-purchase-processing",
+    "policy": "shop-transaction",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "10-purchase-reconcile",
+    "policy": "shop-transaction",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "11-profile-desktop",
+    "policy": "profile-standings",
+    "states": [
+      "confirmed",
+      "zero-history",
+      "loading",
+      "stale",
+      "missing",
+      "long-name"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "12-settings-desktop",
+    "policy": "settings",
+    "states": [
+      "draft",
+      "saving",
+      "saved",
+      "failed",
+      "offline",
+      "partial-default-reset"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "13-hud-desktop",
+    "policy": "hud",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "14-elimination-desktop",
+    "policy": "elimination-spectator",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "15-spectator-desktop",
+    "policy": "elimination-spectator",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "16-victory-desktop",
+    "policy": "results-rewards",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "17-defeat-desktop",
+    "policy": "results-rewards",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "18-rewards-pending-desktop",
+    "policy": "results-rewards",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "19-loading-desktop",
+    "policy": "loading-recovery",
+    "states": [
+      "loading",
+      "failed",
+      "leased",
+      "unsupported-schema",
+      "offline",
+      "retrying",
+      "service-unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "20-error-recovery-desktop",
+    "policy": "loading-recovery",
+    "states": [
+      "loading",
+      "failed",
+      "leased",
+      "unsupported-schema",
+      "offline",
+      "retrying",
+      "service-unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "21-leave-confirm",
+    "policy": "confirmation",
+    "states": [
+      "open",
+      "stay-focused",
+      "leaving",
+      "leave-failed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "22-insufficient-funds",
+    "policy": "shop-transaction",
+    "states": [
+      "owned/equip",
+      "equipped",
+      "locked",
+      "insufficient",
+      "saving",
+      "failed",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m01-home-390",
+    "policy": "home-navigation",
+    "states": [
+      "ready",
+      "loading-profile",
+      "offline",
+      "input-changed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m02-home-320",
+    "policy": "home-navigation",
+    "states": [
+      "ready",
+      "loading-profile",
+      "offline",
+      "input-changed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "c01-home-844-landscape",
+    "policy": "home-navigation",
+    "states": [
+      "ready",
+      "loading-profile",
+      "offline",
+      "input-changed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "u01-home-ultrawide",
+    "policy": "home-navigation",
+    "states": [
+      "ready",
+      "loading-profile",
+      "offline",
+      "input-changed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m03-customize-390",
+    "policy": "customize-preview",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m04-shop-390",
+    "policy": "shop-transaction",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m05-item-details-390",
+    "policy": "customize-preview",
+    "states": [
+      "owned/equip",
+      "equipped",
+      "locked",
+      "insufficient",
+      "saving",
+      "failed",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m06-purchase-390",
+    "policy": "shop-transaction",
+    "states": [
+      "confirm",
+      "cancel-before-submit",
+      "submitting",
+      "business-rejection",
+      "unknown",
+      "reconciling",
+      "owned-confirmed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m07-profile-390",
+    "policy": "profile-standings",
+    "states": [
+      "confirmed",
+      "zero-history",
+      "loading",
+      "stale",
+      "missing",
+      "long-name"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m08-settings-390",
+    "policy": "settings",
+    "states": [
+      "draft",
+      "saving",
+      "saved",
+      "failed",
+      "offline",
+      "partial-default-reset"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m09-settings-150",
+    "policy": "settings",
+    "states": [
+      "draft",
+      "saving",
+      "saved",
+      "failed",
+      "offline",
+      "partial-default-reset"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m10-queue-390",
+    "policy": "queue-countdown",
+    "states": [
+      "entering",
+      "searching",
+      "cancel-requested",
+      "canceled",
+      "join-confirmed",
+      "join-failed",
+      "service-unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "c02-hud-844-landscape",
+    "policy": "hud",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m11-victory-390",
+    "policy": "results-rewards",
+    "states": [
+      "victory",
+      "defeat",
+      "placement-unknown",
+      "settlement-pending",
+      "confirmed",
+      "refresh-failed"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m12-loading-390",
+    "policy": "loading-recovery",
+    "states": [
+      "loading",
+      "failed",
+      "retrying",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m13-recovery-390",
+    "policy": "loading-recovery",
+    "states": [
+      "loading",
+      "failed",
+      "retrying",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m14-controls-390",
+    "policy": "controls",
+    "states": [
+      "touch",
+      "input-switch",
+      "focus-loss"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "c03-leave-568-landscape",
+    "policy": "confirmation",
+    "states": [
+      "stay-focused",
+      "leave",
+      "cancel"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "t01-customize-768",
+    "policy": "customize-preview",
+    "states": [
+      "owned",
+      "locked",
+      "equipped",
+      "affordable",
+      "insufficient",
+      "empty",
+      "loading",
+      "unavailable"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "m15-spectator-390",
+    "policy": "elimination-spectator",
+    "states": [
+      "active",
+      "remaining-known/unknown",
+      "elapsed-known/unknown",
+      "round-ending",
+      "eliminated",
+      "spectating",
+      "disconnect"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  },
+  {
+    "slug": "23-profile-empty",
+    "policy": "profile-standings",
+    "states": [
+      "confirmed",
+      "zero-history",
+      "loading",
+      "stale",
+      "missing",
+      "long-name"
+    ],
+    "implementation": "demo-first; remaining routes await visual approval"
+  }
+]
