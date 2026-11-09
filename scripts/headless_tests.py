@@ -46,6 +46,13 @@ parts.append('add("ServerStorage.FoundationTests")\nloaders["ServerStorage.Found
 parts.append((ROOT / "tests" / "FoundationTests.luau").read_text(encoding="utf-8-sig") + "\nend\n")
 parts.append('local result = moduleRequire(nodes["ServerStorage.FoundationTests"])()\n')
 parts.append('assert(result.failed == 0)\nprint(string.format("HEADLESS FOUNDATION: %d assertions passed; official Luau CLI + minimal service/module mocks; NOT Roblox execution", result.passed))\n')
+for suite in ('GameplayTests', 'GameplayEdgeTests', 'MatchServiceTests'):
+    suite_path = ROOT / 'tests' / (suite + '.luau')
+    if suite_path.exists():
+        identity = 'ServerStorage.' + suite
+        parts.append(f'add({json.dumps(identity)})\nloaders[{json.dumps(identity)}] = function(script, require, game, task)\n')
+        parts.append(suite_path.read_text(encoding='utf-8-sig') + '\nend\n')
+        parts.append(f'assert(moduleRequire(nodes[{json.dumps(identity)}])().failed == 0)\n')
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text("\n".join(parts), encoding="utf-8")
 print(OUT)
