@@ -1,0 +1,11 @@
+# Local gameplay checkpoint
+
+Milestone C runs in `local-gameplay.project.json`, separate from the default application and SNAP UI proof. Human slot uses A/D, arrows, D-pad/thumbstick, or two held touch buttons; release/both directions give neutral steering. The existing Home routes PLAY to practice; other routes retain their prior demos. One human competes against three deterministic original bots. Three-second countdown, lethal persistent trails, continuous swept collision, elimination/spectator, a 45-second limit, results and fresh-identity rematch are implemented. Practice grants no rewards.
+
+2026-11-09 Studio API verification: 4 cores entered Active after countdown, steering +1 changed heading, neutral preserved heading; a real Trail collision eliminated the human and entered spectator; bots continued to LastAlive results. Round-reset arena border fix confirmed in Studio. Native Path2D chunks hold at most 48 points and completed chunks retain their geometry. No Parts/Touched or per-frame full UI reconstruction.
+
+Actual Studio recording: `qa/gameplay/local-practice-studio.mp4` (18 seconds, 20fps; includes Studio chrome). Steering in this recording was scheduled through a Studio-only local BindableFunction diagnostic hook, not an externally controlled human playtest. It is real Roblox execution, not a mockup. Frame `local-practice-frame.png` inspected. Physical phone/controller handling and real player usability remain unverified.
+
+Official Luau CLI: 40 pre-existing foundation assertions; 19 kernel assertions and 20 varied six-bot rounds (peak 4,656 segments); 242 geometry/edge assertions; 19 round/layout assertions. Headless service mocks are not engine tests. Studio engine check separately confirmed motion/collision/rendering. Compile, lint and builds are run at checkpoints; native engine/device performance and multiplayer validation follow.
+
+Calibration: speed105 / arena1300 = .0808 arena widths/s; radius40.38 /1300 = .0311 widths; visible trail8/1300=.00615 widths. These sit within the broad measured trailer ranges but do not establish exact parity. Reference server death rules remain unknown. Current collision approximation and custom settings are documented in research.

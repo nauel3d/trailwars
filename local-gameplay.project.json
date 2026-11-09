@@ -1,0 +1,17 @@
+{
+  "name": "TrailWarsLocalGameplay",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "TrailWars": { "$path": "src/shared" },
+      "TrailWarsUI": { "$path": "src/client" },
+      "TrailWarsDev": { "$path": "dev/PolishProof", "$className": "Folder" }
+    },
+    "ServerScriptService": { "NoCharacters": { "$path": "dev/GameplayServer.server.luau" } },
+    "StarterGui": { "$properties": { "ScreenOrientation": "Sensor" } },
+    "StarterPlayer": {
+      "$properties": { "LoadCharacterAppearance": false, "DevTouchMovementMode": "Scriptable", "DevComputerMovementMode": "Scriptable" },
+      "StarterPlayerScripts": { "Gameplay": { "$path": "dev/GameplayBootstrap.client.luau" } }
+    }
+  }
+}

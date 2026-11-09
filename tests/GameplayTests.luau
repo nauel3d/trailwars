@@ -108,15 +108,12 @@ return function()
 	for seed = 1, 20 do
 		local roster = {}
 		for i = 1, 6 do
-			table.insert(
-				roster,
-				{
-					id = tostring(i),
-					name = "BOT" .. i,
-					isBot = true,
-					heading = 2 * math.pi * (i - 1) / 6 + math.pi + (seed - 10) * 0.017,
-				}
-			)
+			table.insert(roster, {
+				id = tostring(i),
+				name = "BOT" .. i,
+				isBot = true,
+				heading = 2 * math.pi * (i - 1) / 6 + math.pi + (seed - 10) * 0.017,
+			})
 		end
 		local state = Sim.new(roster, { MaxRoundSeconds = 20 })
 		while state.phase == "Active" do
