@@ -14,8 +14,8 @@
   "deliverables": [
     {
       "file": "00-evidence-index.md",
-      "bytes": 6901,
-      "sha256": "7f81ea062832e69229e0ec71f92aa4bd8118b68832aa8414b3b83410c090bd78"
+      "bytes": 6900,
+      "sha256": "e50c2f879c130396a7ba7467d006e7a406405cdd72bf056bbb0945cc776d58e4"
     },
     {
       "file": "01-round-state-machine.md",
@@ -29,48 +29,48 @@
     },
     {
       "file": "03-modes-and-variants.md",
-      "bytes": 4841,
-      "sha256": "a3b6b607c3142cfed2d34b512e0f9e28847d6db09f544f7e9db73ca85ed91ec7"
+      "bytes": 4804,
+      "sha256": "9296c747d631764d74dccaf9ad482e02460698c4d6f13f32efea410ba4f9087a"
     },
     {
       "file": "04-complete-power-catalog.csv",
-      "bytes": 77042,
-      "sha256": "153912f82c8878c12e3fa423531bd0306c7c21dcbb027a61d7cfdd61d95f72cf"
+      "bytes": 77008,
+      "sha256": "bae6fe0b332674fb2cf93cd43a41de4fab0f7b0320de3c06fa7f3baabfd45612"
     },
     {
       "file": "04-complete-power-catalog.md",
-      "bytes": 12823,
-      "sha256": "356bbc0eb1e06245f4fd5fbd751a98474eaa81790106066929212332f7d5f9c6"
+      "bytes": 12738,
+      "sha256": "bda4beb159268ec7a1591adf963e7c5b517e7467350281757897e394c175ed64"
     },
     {
       "file": "05-power-interactions.md",
-      "bytes": 12621,
-      "sha256": "425d8d47594786c25f005e5a717f372d24cc5987c02e9ceb75cfe6202aa7bd7d"
+      "bytes": 12545,
+      "sha256": "41812800049e01bbbff4ba87cd6ed48874384432cb744f2414d8db891e088eb4"
     },
     {
       "file": "06-pickups-and-modifiers.md",
-      "bytes": 8464,
-      "sha256": "68a1d36b33cb83af59011f7ea5550640a2cf9b501582e0886f4952e923d1afa1"
+      "bytes": 8384,
+      "sha256": "e6e282bc1dff69f38d4972ab0c587b679a1c673c8567c89b666bf4e33450e524"
     },
     {
       "file": "07-video-and-rea-findings.md",
-      "bytes": 9021,
-      "sha256": "aec066f1790147dbc6f77a7bec026ea7726052144c268c5673609cf023bda820"
+      "bytes": 8965,
+      "sha256": "5f19eeb6bf742c4b35a42d38c8a180e0bf986338558e6d25c715a126f9c146a1"
     },
     {
       "file": "08-open-questions.md",
-      "bytes": 8025,
-      "sha256": "657ed6e954c76297413ca0a127c281a0b4fea656179d58ff95f30317f8f21783"
+      "bytes": 8024,
+      "sha256": "3fa5d485622abe0faa397d16d1d1e465a9e25f7d06159f0106a73cf0e2d5c75d"
     },
     {
       "file": "09-trailwars-options.md",
-      "bytes": 4695,
-      "sha256": "2c9a1d4532de1f8c98752bdab112529679313086434fd5befa6064befd707750"
+      "bytes": 4665,
+      "sha256": "416a1e8079b775bbb7bd459ec64735d2b680c7638090abb6fcf87e1801cb3245"
     },
     {
       "file": "10-implementation-blueprint.md",
-      "bytes": 9138,
-      "sha256": "6006e844497458f0a5211376e88edcf456a51a54efad8bcc6a91d55bfe9a8797"
+      "bytes": 9137,
+      "sha256": "ce259ebd5bf8e4b205a89e83a7355be1ec80cb10c5758025508fe63c892bf237"
     },
     {
       "file": "11-review-1080.png",
@@ -84,13 +84,14 @@
     },
     {
       "file": "11-review-gallery.html",
-      "bytes": 8312,
-      "sha256": "5a2deaa4bb18e6079ac15db5e7cd1cca5e3c4ec530c282b7009b426f87ce5153"
+      "bytes": 8305,
+      "sha256": "2090fae943301a3b64612a6c59cb41a1c47079d4455b40f5c9639924039037fa"
     },
     {
       "file": "11-review-verification.json",
       "bytes": 594,
       "sha256": "27643b003dd5f7df0db31f3fdac407079baa5453a87baaed1713ed14f7989e94"
     }
-  ]
+  ],
+  "hash_basis": "Git blob bytes; UTF-8 text uses LF, independent of checkout line-ending conversion"
 }
