@@ -59,6 +59,7 @@ local released = false
 local crossedTick = nil
 local killed = false
 local lastRocketHeading = nil
+local finalLog = {}
 local finals = nil
 local firstSeries = nil
 deadline = os.clock() + 90
@@ -91,6 +92,7 @@ while os.clock() < deadline do
 			end
 			if m.series.round == 1 then
 				firstId = r.matchId
+				sim.config.MaxRoundSeconds = 15 -- Allow a controlled miss to expire before the next auto-launch.
 				sim.config.Speed = 0
 				local bot = sim.byId.bot3
 				bot.x = 360
@@ -127,6 +129,7 @@ while os.clock() < deadline do
 				if q.kind == "Turret" and q.owner == b then
 					if lastRocketHeading and math.abs(q.heading - lastRocketHeading) > 0.01 then
 						flags.turretSteered = true
+						RS:SetAttribute("Nov10Steered", true)
 					end
 					lastRocketHeading = q.heading
 				end
@@ -169,6 +172,7 @@ while os.clock() < deadline do
 		if m.phase == "Final" and m.series.matchId == firstSeries then
 			flags.final = true
 			finals = m:snapshot()
+			finalLog = table.clone(m.log)
 		end
 		if firstSeries and m.series.matchId ~= firstSeries then
 			flags.rematch = true
@@ -209,15 +213,26 @@ for _, p in saved do
 		ok = false
 		table.insert(errors, "match idempotency " .. p.id)
 	end
-	if p.id == a and (p.stats.kills < 1 or p.stats.powerHits < 1 or p.stats.matchesWon ~= 1) then
-		ok = false
-		table.insert(errors, "winner stats")
+	local expectedKills, expectedPower, expectedTurret = 0, 0, 0
+	for _, e in finalLog do
+		if e.owner == p.id then
+			if e.kind == "Eliminated" and e.cause == "Trail" then
+				expectedKills += 1
+			elseif e.kind == "Homing" then
+				expectedPower += 1
+			elseif e.kind == "Turret" then
+				expectedTurret += 1
+			end
+		end
 	end
-	if
-		p.id == b and (p.stats.deaths < 1 or p.stats.turretHits < 1 or p.stats.matchesLost ~= 1 or p.stats.kills ~= 0)
-	then
+	if p.stats.kills ~= expectedKills or p.stats.powerHits ~= expectedPower or p.stats.turretHits ~= expectedTurret then
 		ok = false
-		table.insert(errors, "turret stats")
+		table.insert(errors, "cause-based stats " .. p.id)
+	end
+	local won = table.find(finals.series.winnerIds, p.id) ~= nil
+	if p.stats.matchesWon ~= (if won then 1 else 0) or p.stats.matchesLost ~= (if won then 0 else 1) then
+		ok = false
+		table.insert(errors, "final stats " .. p.id)
 	end
 end
 for _, p in humans do
@@ -234,5 +249,6 @@ ST:EndTest({
 	statistics = saved,
 	clients = reports,
 	final = finals,
+	events = finalLog,
 	method = "Actual two-client Roblox engine; controlled geometry fixtures, real RemoteEvent intents; no fabricated hit/death/score events",
 })

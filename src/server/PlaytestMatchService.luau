@@ -30,6 +30,7 @@ end
 function Match:_leave(id: string)
 	if self.series and self.series.byId[id] and self.series.byId[id].connected and self.phase ~= "Final" then
 		if self.round and not self.round.finalized and self.delta[id] and self.callbacks.round then
+			self.forfeited[id] = table.clone(self.delta[id])
 			self.callbacks.round(id, self.round.matchId, table.clone(self.delta[id]))
 		end
 		if self.callbacks.match then
@@ -186,6 +187,7 @@ function Match:_beginRound()
 	local roster = {}
 	self.roundStart = {}
 	self.delta = {}
+	self.forfeited = {}
 	self.deathEvent = 0
 	self.hits = {}
 	for _, p in self.series.players do
@@ -293,7 +295,7 @@ function Match:_settle()
 	if self.callbacks.round then
 		for id, d in self.delta do
 			if self.members[id] then
-				self.callbacks.round(id, self.round.matchId, table.clone(d))
+				self.callbacks.round(id, self.round.matchId, table.clone(self.forfeited[id] or d))
 			end
 		end
 	end
@@ -386,6 +388,9 @@ function Match:step()
 		end
 		if e.killerId and e.killerId ~= e.id and self.delta[e.killerId] then
 			self.delta[e.killerId].kills += 1
+			if not self.series.byId[e.killerId].connected and self.callbacks.round then
+				self.callbacks.round(e.killerId, r.matchId .. ":late-kill:" .. e.id, { kills = 1 })
+			end
 		end
 		table.insert(self.log, {
 			kind = "Eliminated",

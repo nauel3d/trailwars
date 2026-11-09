@@ -27,7 +27,6 @@ local result = {
 local fired = false
 local rematched = false
 local first = nil
-local rocketTicks = 0
 local deadline = os.clock() + 85
 while os.clock() < deadline do
 	local s = probe:Invoke("Snapshot")
@@ -53,33 +52,10 @@ while os.clock() < deadline do
 				result.projectiles = true
 			end
 			if me == b and actor and actor.state == "EliminatedTurret" then
-				probe:Invoke("Steer", 1)
-				local rocket = nil
-				for _, q in s.powers.projectiles do
-					if q.owner == me and q.kind == "Turret" then
-						rocket = q
-						break
-					end
-				end
-				if rocket then
-					rocketTicks += 1
-					local target = nil
-					for _, p in s.players do
-						if p.id == a then
-							target = p
-						end
-					end
-					if target then
-						local angle = math.atan2(target.y - rocket.y, target.x - rocket.x) - rocket.heading
-						angle = math.atan2(math.sin(angle), math.cos(angle))
-						probe:Invoke(
-							"Steer",
-							if rocketTicks == 1 then 1 elseif math.abs(angle) < 0.08 then 0 else math.sign(angle)
-						)
-					end
-				end
+				probe:Invoke("Steer", if RS:GetAttribute("Nov10Steered") then 0 else 1)
 			end
 		elseif s.phase == "Intermission" then
+			probe:Invoke("Steer", 0)
 			result.intermission = true
 		elseif s.phase == "Final" then
 			result.final = true

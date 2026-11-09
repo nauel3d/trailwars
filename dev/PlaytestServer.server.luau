@@ -13,6 +13,7 @@ Players.CharacterAutoLoads = false
 local profiles = Profiles.new(Store.new()) -- No DataStore access or production writes.
 local sessions: any = {}
 local pending = {}
+local departed = {}
 local cursors: any = {}
 local function enqueue(id, kind, eventId, value)
 	table.insert(pending, { id = id, kind = kind, eventId = eventId, value = value })
@@ -49,6 +50,7 @@ local function flush(p)
 	end
 end
 local function add(p)
+	departed[p.UserId] = nil
 	local ok = profiles:load(p.UserId)
 	if ok then
 		profiles:transact(p.UserId, function(profile)
@@ -91,7 +93,11 @@ Players.PlayerRemoving:Connect(function(p)
 	flush(p)
 	cursors[p] = nil
 	sessions[p] = nil
-	profiles:release(p.UserId)
+	if match.round and not match.round.finalized then
+		departed[p.UserId] = { roundId = match.round.matchId }
+	else
+		profiles:release(p.UserId)
+	end
 end)
 intent.OnServerEvent:Connect(function(p, message)
 	local ok = match:request("u" .. p.UserId, message)
@@ -113,7 +119,7 @@ local function statistics()
 			stats.totalPlaySeconds += math.max(0, elapsed - (profile.playtest.sessions[session.id] or 0))
 			local id = "u" .. p.UserId
 			local d = match.delta and match.delta[id]
-			if match.round and not match.round.finalized and d then
+			if match.round and not match.round.finalized and d and match.series.byId[id].connected then
 				for key, value in d do
 					stats[key] += value
 				end
@@ -134,6 +140,18 @@ end
 local function publish()
 	if #pending > 0 then
 		drain()
+	end
+	for uid, item in departed do
+		local waiting = false
+		for _, e in pending do
+			if tonumber(e.id:sub(2)) == uid then
+				waiting = true
+			end
+		end
+		if not waiting and (not match.round or match.round.finalized or match.round.matchId ~= item.roundId) then
+			profiles:release(uid)
+			departed[uid] = nil
+		end
 	end
 	local state = match:snapshot()
 	state.statistics = statistics()
@@ -207,5 +225,8 @@ game:BindToClose(function()
 	for p in sessions do
 		flush(p)
 		profiles:release(p.UserId)
+	end
+	for uid in departed do
+		profiles:release(uid)
 	end
 end)

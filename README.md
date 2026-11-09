@@ -1,5 +1,7 @@
 # Trail Wars
 
+**November 10 playtest (Issue #6):** build `playtest.project.json` for the integrated SNAP ARCADE UI, server-owned Homing/Jump, post-elimination rockets, multi-round scoring and current-server statistics. See [playtest instructions, controls and verification](qa/playtest-2026-11-10/README.md). This isolated target supersedes the earlier powers-free recommendation; historical targets and research below are preserved. No publishing, purchases or live persistence are enabled.
+
 Current UI review: the isolated **living SNAP ARCADE proof**, continued from 785b54f, is documented in [qa/motion-proof](qa/motion-proof/README.md). Build `snap-proof.project.json` to preview animated Home and the Customize/Shop/Results demonstrations. The production app below is preserved while this motion direction awaits approval.
 
 Original Roblox arcade UI and server foundations. Steer left or right; your trail becomes a wall. No avatar lobby or final gameplay simulation is implemented in this phase.

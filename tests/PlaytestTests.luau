@@ -244,6 +244,78 @@ return function()
 		m:step()
 	end
 	check(m.series.matchId ~= old, "Rematch creates a new series identity")
+	local extraHits = 0
+	local moving = fixture()
+	moving.byId.b.x = 500
+	moving.byId.b.y = 280
+	local swept = Power.new(moving, "moving", false, function()
+		extraHits += 1
+	end)
+	swept.actors.a.ready.Homing = 0
+	swept:activate("a", "Homing", "moving")
+	swept.projectiles[1].x = 500
+	swept.projectiles[1].y = 300
+	swept:before({})
+	moving.byId.b.y = 320
+	swept:after()
+	check(extraHits == 1, "Projectile sweep includes target motion across its path")
+	local expired = Power.new(fixture(), "expired", false, function()
+		extraHits += 1
+	end)
+	expired.actors.a.ready.Homing = 0
+	expired:activate("a", "Homing", "expired")
+	expired.projectiles[1].expires = 1
+	expired:before({})
+	expired:after()
+	check(#expired.projectiles == 0 and extraHits == 1, "Expiry happens before a last-tick contact")
+	local cleaned = Power.new(fixture(), "death-clean", false, function() end)
+	cleaned.actors.a.ready.Homing = 0
+	cleaned:activate("a", "Homing", "death-clean")
+	cleaned.sim.byId.a.alive = false
+	cleaned:before({})
+	cleaned:after()
+	check(#cleaned.projectiles == 0, "Death cancels remaining equipped projectiles")
+	local departed = Schema.new()
+	Stats.ensure(departed)
+	local offline = Match.new("offline", {
+		round = function(id, event, d)
+			if id == "u1" then
+				Stats.round(departed, event, d)
+			end
+		end,
+		match = function(id, event, won)
+			if id == "u1" then
+				Stats.match(departed, event, won)
+			end
+		end,
+	}, { CountdownSeconds = 0.02, RampSeconds = 0, Speed = 1000 })
+	offline:add("u1", "ONE")
+	offline:add("u2", "TWO")
+	offline:request("u1", { action = "Join", sequence = 1 })
+	offline:request("u2", { action = "Join", sequence = 1 })
+	for _ = 1, 105 do
+		offline:step()
+	end
+	local target = offline.round.sim.byId.u2
+	target.x = 100
+	target.y = 100
+	target.heading = 0
+	offline.round.sim.index:insert({ owner = "u1", ax = 110, ay = 80, bx = 110, by = 120, endDistance = 10 })
+	offline:remove("u1")
+	offline:step()
+	check(
+		departed.playtest.stats.matchesLost == 1 and departed.playtest.stats.matchesPlayed == 1,
+		"Leaving counts exactly one match forfeit"
+	)
+	check(departed.playtest.stats.kills == 1, "A lingering owned trail still credits its departed owner")
+	offline:add("u1", "REJOIN")
+	check(not offline:request("u1", {
+		action = "Steer",
+		sequence = 1,
+		matchId = offline.series.matchId,
+		roundId = offline.round.matchId,
+		turn = 1,
+	}), "Reconnect cannot steer a forfeited old turret")
 	print(string.format("NOV10 PLAYTEST: %d assertions; pure engine/powers/stats integration", n))
 	return { passed = n, failed = 0 }
 end

@@ -51,6 +51,30 @@ function Panels.mount(parent: Instance, Kit: any, transport: any, kind: string, 
 			dirty = false
 		end)
 	end
+	local function arrange()
+		local w, h = root.AbsoluteSize.X, root.AbsoluteSize.Y
+		text.TextSize = if w < 500 or h < 500 then 13 else 16
+		if kind == "SETTINGS" then
+			title.TextSize = 18
+			title.Position = UDim2.fromOffset(10, 4)
+			title.Size = UDim2.new(1, -110, 0, 48)
+			back.root.Position = UDim2.new(1, -96, 0, 6)
+			back.root.Size = UDim2.fromOffset(84, 44)
+			back.label.TextSize = 15
+			text.Position = UDim2.fromOffset(12, 56)
+			text.Size = UDim2.new(1, -24, 0, 48)
+			local cols = if w > h then 2 else 1
+			for i, b in controls do
+				local x = (i - 1) % cols
+				local y = math.floor((i - 1) / cols)
+				b.root.Position = UDim2.fromOffset(12 + x * (w - 12) / cols, 112 + y * 56)
+				b.root.Size = UDim2.fromOffset((w - 12) / cols - 12, 48)
+				b.label.TextSize = if cols == 2 then 14 else 16
+			end
+		end
+	end
+	scope:connect(root:GetPropertyChangedSignal("AbsoluteSize"), arrange)
+	task.defer(arrange)
 	local function update(state)
 		if not state then
 			return
@@ -67,38 +91,44 @@ function Panels.mount(parent: Instance, Kit: any, transport: any, kind: string, 
 					or a.stats.matchesWon == b.stats.matchesWon and a.id < b.id
 			end)
 			for _, p in list do
-				local s = p.stats
+				local st = p.stats
 				table.insert(
 					lines,
 					string.format(
-						"%s · %d wins / %d losses · %d kills / %d deaths",
+						"%s · W%d L%d · K%d D%d",
 						p.name,
-						s.matchesWon,
-						s.matchesLost,
-						s.kills,
-						s.deaths
+						st.matchesWon,
+						st.matchesLost,
+						st.kills,
+						st.deaths
 					)
 				)
 				table.insert(
 					lines,
 					string.format(
-						"Hits %d · Rocket hits %d · Stolen %d · Score %d",
-						s.powerHits,
-						s.turretHits,
-						s.scoreStolen,
-						p.score
+						"Score %d · %dh%02dm · Hits %d / Rockets %d",
+						p.score,
+						math.floor(st.totalPlaySeconds / 3600),
+						math.floor(st.totalPlaySeconds % 3600 / 60),
+						st.powerHits,
+						st.turretHits
 					)
 				)
-				table.insert(
-					lines,
-					string.format(
-						"Session %dh %02dm · Total %dh %02dm",
-						math.floor(s.sessionPlaySeconds / 3600),
-						math.floor(s.sessionPlaySeconds % 3600 / 60),
-						math.floor(s.totalPlaySeconds / 3600),
-						math.floor(s.totalPlaySeconds % 3600 / 60)
+				if p.id == transport.selfId then
+					table.insert(
+						lines,
+						string.format(
+							"Session %dh %02dm %02ds · Total %dh %02dm %02ds",
+							math.floor(st.sessionPlaySeconds / 3600),
+							math.floor(st.sessionPlaySeconds % 3600 / 60),
+							st.sessionPlaySeconds % 60,
+							math.floor(st.totalPlaySeconds / 3600),
+							math.floor(st.totalPlaySeconds % 3600 / 60),
+							st.totalPlaySeconds % 60
+						)
 					)
-				)
+					table.insert(lines, "Stolen score: " .. st.scoreStolen)
+				end
 				table.insert(lines, "")
 			end
 			text.Text = table.concat(lines, "\n")

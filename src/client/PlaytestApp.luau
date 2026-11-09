@@ -52,6 +52,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	local selfId = if transport then transport.selfId else "you"
 	local acc = Stepper.new(Config.Step, Config.MaxCatchupSteps, Config.MaxBacklogSeconds)
 	local mode = "Home"
+	local panelClock = 0
 	local debugTurn: number? = nil
 	local nextRound = 0
 	local left = scope:button(screen, "Left", "◀", false, function() end)
@@ -95,6 +96,9 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		start()
 	end)
 	replay.label.TextSize = 22
+	local skip = scope:button(screen, "SkipAnimation", "SKIP ANIMATION", false, function()
+		board.skip()
+	end)
 	local function arrange()
 		local full = GuiService:GetInsetArea(Enum.ScreenInsets.None)
 		local area = GuiService:GetInsetArea(Enum.ScreenInsets.CoreUISafeInsets)
@@ -115,6 +119,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		Kit.box(center, { l.field[1] + 4, l.field[2] + l.field[4] * 0.3, l.field[3] - 8, l.field[4] * 0.4 })
 		Kit.box(board.root, { w - l.side + l.pad, l.top, l.side - 2 * l.pad, 180 })
 		Kit.box(replay.root, { math.max(8, (w - 200) / 2), h - 60, math.min(200, w - 16), 48 })
+		skip.root.Position = replay.root.Position
+		skip.root.Size = replay.root.Size
 		for i, slot in { "Homing", "Jump" } do
 			Kit.box(powerButtons[slot].root, { l.pad + (i - 1) * (w / 2), h - 132, w / 2 - l.pad * 2, 48 })
 		end
@@ -216,6 +222,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			input:clear()
 		end
 		replay.root.Visible = results
+		skip.root.Visible = intermission
 		left.root.Visible = not results and not intermission
 		right.root.Visible = left.root.Visible
 		status.Visible = not results and not intermission
@@ -284,7 +291,9 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		gui:SetAttribute("Paths", renderer.pathCount)
 	end
 	scope:connect(RunService.Heartbeat, function(dt)
-		if mode == "Panel" and demo and demo.update then
+		panelClock += dt
+		if panelClock >= 0.25 and mode == "Panel" and demo and demo.update then
+			panelClock = 0
 			demo.update(transport.lobby or transport.state)
 		end
 		if mode ~= "Match" then
@@ -315,6 +324,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	scope:connect(GuiService:GetPropertyChangedSignal("TopbarInset"), arrange)
 	scope:connect(GuiService:GetPropertyChangedSignal("ReducedMotionEnabled"), function()
 		preferences.reducedMotion = GuiService.ReducedMotionEnabled
+		board.setReducedMotion(preferences.reducedMotion)
 	end)
 	arrange()
 	showHome()

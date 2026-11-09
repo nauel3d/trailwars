@@ -12,7 +12,21 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 	local generation = 0
 	local lastLedger = nil
 	local busy = false
+	local wasLarge = false
 	local function set(data: any, ledger: any, animate: boolean)
+		data = table.clone(data)
+		table.sort(data, function(a, b)
+			if a.rank ~= b.rank then
+				return a.rank < b.rank
+			end
+			return a.id < b.id
+		end)
+		if not animate and wasLarge then
+			generation += 1
+			busy = false
+			scope:cancel()
+		end
+		wasLarge = animate
 		local fresh = animate and ledger and ledger.roundId ~= lastLedger
 		if fresh then
 			generation += 1
@@ -60,7 +74,11 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 				end
 				row.total.Text = tostring(p.score)
 				scope:to(row.fill, { Size = UDim2.fromScale(math.min(1, p.score / 100), 1) }, "celebrate")
-				scope:to(row.face, { Position = target }, "reorder")
+				scope:after(0.5, function()
+					if gen == generation then
+						scope:to(row.face, { Position = target }, "reorder")
+					end
+				end)
 			end
 			if fresh and a and not scope:isReduced() then
 				row.total.Text = tostring(a.before)
@@ -69,7 +87,7 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 						row.total.Text = string.format("%d %+d", a.before, a.delta)
 					end
 				end)
-				scope:after(0.8, final)
+				scope:after(0.65, final)
 			elseif not busy or scope:isReduced() then
 				row.total.Text = tostring(p.score)
 				row.face.Position = target
@@ -80,7 +98,7 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 			end
 		end
 		if fresh then
-			scope:after(1.3, function()
+			scope:after(1.5, function()
 				if gen == generation then
 					busy = false
 				end
@@ -91,6 +109,9 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 		root = root,
 		title = title,
 		set = set,
+		setReducedMotion = function(value)
+			scope:setReducedMotion(value)
+		end,
 		skip = function()
 			generation += 1
 			busy = false
