@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-09",
+  "baseline": "5deed16a19afaed00e24460d83fb00eb0f089a2c",
+  "catalog_rows": 33,
+  "concrete_factory_ids": 31,
+  "category_counts": {
+    "Bombs": 4,
+    "Fevers": 8,
+    "Powers": 10,
+    "Shots": 9
+  },
+  "fields_per_row": 39,
+  "private_not_redistributed": true,
+  "deliverables": [
+    {
+      "file": "00-evidence-index.md",
+      "bytes": 6900,
+      "sha256": "e50c2f879c130396a7ba7467d006e7a406405cdd72bf056bbb0945cc776d58e4"
+    },
+    {
+      "file": "01-round-state-machine.md",
+      "bytes": 7806,
+      "sha256": "f896b8cf14419c0edf8a6da64ee3eb6132fb36b1be58bc30e9ded036087b17f4"
+    },
+    {
+      "file": "02-match-lifecycle-and-score.md",
+      "bytes": 10553,
+      "sha256": "7c9c27776e0122401be10b146c75ce0f14ebfb249760c4e54220e4719918212a"
+    },
+    {
+      "file": "03-modes-and-variants.md",
+      "bytes": 4804,
+      "sha256": "9296c747d631764d74dccaf9ad482e02460698c4d6f13f32efea410ba4f9087a"
+    },
+    {
+      "file": "04-complete-power-catalog.csv",
+      "bytes": 77008,
+      "sha256": "bae6fe0b332674fb2cf93cd43a41de4fab0f7b0320de3c06fa7f3baabfd45612"
+    },
+    {
+      "file": "04-complete-power-catalog.md",
+      "bytes": 12738,
+      "sha256": "bda4beb159268ec7a1591adf963e7c5b517e7467350281757897e394c175ed64"
+    },
+    {
+      "file": "05-power-interactions.md",
+      "bytes": 12545,
+      "sha256": "41812800049e01bbbff4ba87cd6ed48874384432cb744f2414d8db891e088eb4"
+    },
+    {
+      "file": "06-pickups-and-modifiers.md",
+      "bytes": 8384,
+      "sha256": "e6e282bc1dff69f38d4972ab0c587b679a1c673c8567c89b666bf4e33450e524"
+    },
+    {
+      "file": "07-video-and-rea-findings.md",
+      "bytes": 8965,
+      "sha256": "5f19eeb6bf742c4b35a42d38c8a180e0bf986338558e6d25c715a126f9c146a1"
+    },
+    {
+      "file": "08-open-questions.md",
+      "bytes": 8024,
+      "sha256": "3fa5d485622abe0faa397d16d1d1e465a9e25f7d06159f0106a73cf0e2d5c75d"
+    },
+    {
+      "file": "09-trailwars-options.md",
+      "bytes": 4665,
+      "sha256": "416a1e8079b775bbb7bd459ec64735d2b680c7638090abb6fcf87e1801cb3245"
+    },
+    {
+      "file": "10-implementation-blueprint.md",
+      "bytes": 9137,
+      "sha256": "ce259ebd5bf8e4b205a89e83a7355be1ec80cb10c5758025508fe63c892bf237"
+    },
+    {
+      "file": "11-review-1080.png",
+      "bytes": 87077,
+      "sha256": "fe89c8bd0280283690e02e2918c38d7bc95ff602fc555f9b0df7cd702ea233ce"
+    },
+    {
+      "file": "11-review-320.png",
+      "bytes": 72513,
+      "sha256": "c77700a67a83064daec9451955f7f8ce24017b0a386d13b864bed735aaa78262"
+    },
+    {
+      "file": "11-review-gallery.html",
+      "bytes": 8305,
+      "sha256": "2090fae943301a3b64612a6c59cb41a1c47079d4455b40f5c9639924039037fa"
+    },
+    {
+      "file": "11-review-verification.json",
+      "bytes": 594,
+      "sha256": "27643b003dd5f7df0db31f3fdac407079baa5453a87baaed1713ed14f7989e94"
+    }
+  ],
+  "hash_basis": "Git blob bytes; UTF-8 text uses LF, independent of checkout line-ending conversion"
+}
