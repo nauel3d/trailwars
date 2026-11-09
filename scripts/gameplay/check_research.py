@@ -28,7 +28,7 @@ for row in rows:
     for field in ("client_provenance", "evidence_class", "open_questions", "runtime_timestamp"):
         assert row[field], f"Missing evidence boundary: {row['identifier']} / {field}"
 for path in (ROOT / "src").rglob("*.luau"):
-    if path.name != "MatchSeries.luau":
+    if path.name not in {"MatchSeries.luau", "PlaytestMatchService.luau"}:
         assert "MatchSeries" not in path.read_text(encoding="utf-8-sig"), f"Series unexpectedly wired: {path}"
 for path in (ROOT / "dev").rglob("*.luau"):
     assert "MatchSeries" not in path.read_text(encoding="utf-8-sig"), f"Series unexpectedly wired: {path}"

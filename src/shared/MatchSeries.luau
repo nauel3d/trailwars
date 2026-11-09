@@ -3,7 +3,16 @@
 -- Only a future server adapter may submit authoritative round outcomes.
 local Series = {}
 Series.__index = Series
-local defaults = { Mode = "Circuit", Rounds = 3, Target = 12, MaxRounds = 5, MaxOvertimes = 1, WinnerBonus = 1 }
+local defaults = {
+	Mode = "Circuit",
+	Rounds = 3,
+	Target = 12,
+	MaxRounds = 5,
+	MaxOvertimes = 1,
+	WinnerBonus = 1,
+	MinRounds = 1,
+	PointValue = 1,
+}
 local function integer(value: any, low: number, high: number): boolean
 	return type(value) == "number" and value == value and value >= low and value <= high and value % 1 == 0
 end
@@ -19,13 +28,14 @@ function Series.new(matchId: string, roster: any, options: any?)
 		config[k] = v
 	end
 	assert(config.Mode == "Circuit" or config.Mode == "Sprint", "Unknown series mode")
-	for _, key in { "Rounds", "MaxRounds" } do
+	for _, key in { "Rounds", "MaxRounds", "MinRounds" } do
 		assert(integer(config[key], 1, 12), "Invalid round bound")
 	end
 	assert(
 		integer(config.Target, 1, 1000) and integer(config.MaxOvertimes, 0, 3) and integer(config.WinnerBonus, 0, 3),
 		"Invalid scoring bound"
 	)
+	assert(integer(config.PointValue, 1, 100), "Invalid point value")
 	local self: any = setmetatable({
 		matchId = matchId,
 		config = table.freeze(config),
@@ -195,6 +205,7 @@ function Series:settleRound(matchId: any, roundId: any, sequence: any, rows: any
 		if not p.connected then
 			points = 0
 		end
+		points *= self.config.PointValue
 		local before = p.score
 		p.score += points
 		table.insert(ledger.awards, { id = p.id, before = before, delta = points, total = p.score })
@@ -209,7 +220,8 @@ function Series:settleRound(matchId: any, roundId: any, sequence: any, rows: any
 		or (
 			if self.config.Mode == "Circuit"
 				then self.round >= self.config.Rounds
-				else highest >= self.config.Target or self.round >= self.config.MaxRounds
+				else (highest >= self.config.Target and self.round >= self.config.MinRounds)
+					or self.round >= self.config.MaxRounds
 		)
 	if finish then
 		if #leaders > 1 and self.overtimes < self.config.MaxOvertimes then

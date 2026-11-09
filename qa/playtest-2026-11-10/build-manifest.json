@@ -1,0 +1,11 @@
+{
+  "place": "dist/TrailWarsNov10Playtest.rbxlx",
+  "sha256": "45A2BC230225400AC00AEA2AE2C6301120F69D35DC8A1AE1BC7C25BF8D98AE2A",
+  "sourceCommit": "662ef7cf02248eee6463c427ddf246a74305cfd2",
+  "project": "playtest.project.json",
+  "storage": "MockStore: current server only",
+  "published": false,
+  "twoClientEvidence": "two-client-pass.json",
+  "normalFootage": "verified-normal-gameplay.mp4",
+  "verification": "570 core assertions; 97 Luau sources; seven builds; two-client controlled engine pass; normal three-round final ordering pass"
+}

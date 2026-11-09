@@ -47,7 +47,7 @@ parts.append('add("ServerStorage.FoundationTests")\nloaders["ServerStorage.Found
 parts.append((ROOT / "tests" / "FoundationTests.luau").read_text(encoding="utf-8-sig") + "\nend\n")
 parts.append('local result = moduleRequire(nodes["ServerStorage.FoundationTests"])()\n')
 parts.append('assert(result.failed == 0)\nprint(string.format("HEADLESS FOUNDATION: %d assertions passed; official Luau CLI + minimal service/module mocks; NOT Roblox execution", result.passed))\n')
-for suite in ('GameplayTests', 'GameplayEdgeTests', 'RoundSessionTests', 'MatchServiceTests', 'GameplayNetworkTests', 'MatchSeriesTests'):
+for suite in ('GameplayTests', 'GameplayEdgeTests', 'RoundSessionTests', 'MatchServiceTests', 'GameplayNetworkTests', 'MatchSeriesTests', 'PlaytestTests'):
     if len(sys.argv) > 1 and suite not in sys.argv[1:]:
         continue
     suite_path = ROOT / 'tests' / (suite + '.luau')

@@ -25,3 +25,10 @@ gameplay_names = names(gameplay)
 assert "Main" not in gameplay_names, "Default UI backend must not run alongside the isolated match adapter"
 assert "StudioGameplayTest" not in gameplay_names, "Engine fixture leaked into gameplay build"
 print("GAMEPLAY BOUNDARY: isolated adapter; default Main and engine fixtures excluded")
+
+playtest = ET.parse(root / "dist" / "TrailWarsNov10Playtest.rbxlx")
+playtest_names = names(playtest)
+assert "Nov10Test" not in playtest_names, "Controlled test fixture leaked into playtest"
+assert "Main" not in playtest_names, "Production backend must not run alongside mock playtest"
+assert "PlaytestMatchService" in playtest_names and "PowerService" in playtest_names
+print("PLAYTEST BOUNDARY: integrated powers mode; mock adapter; controlled fixtures excluded")

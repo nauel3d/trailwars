@@ -13,6 +13,12 @@ function Renderer.new(field: Frame, Kit: any, config: any)
 		Color3.fromRGB(244, 148, 60),
 	}
 	function controller:reset()
+		for _, child in field:GetChildren() do
+			if child.Name == "Rocket" then
+				child:Destroy()
+			end
+		end
+		controller.rockets = {}
 		for _, chunk in controller.chunks do
 			chunk.path:Destroy()
 		end
@@ -52,7 +58,11 @@ function Renderer.new(field: Frame, Kit: any, config: any)
 				continue
 			end
 			local chunk = controller.active[s.owner]
-			if not chunk or #chunk.points >= 48 then
+			if
+				not chunk
+				or #chunk.points >= 48
+				or math.abs((chunk.bx or s.ax) - s.ax) + math.abs((chunk.by or s.ay) - s.ay) > 0.001
+			then
 				local path = Instance.new("Path2D")
 				path.Name = "Trail_" .. s.owner
 				path.Color3 = sprite.color
@@ -71,6 +81,7 @@ function Renderer.new(field: Frame, Kit: any, config: any)
 				chunk.points,
 				Path2DControlPoint.new(UDim2.fromScale(s.bx / config.Width, s.by / config.Height))
 			)
+			chunk.bx, chunk.by = s.bx, s.by
 			dirty[chunk] = true
 			controller.consumed += 1
 		end
@@ -101,6 +112,32 @@ function Renderer.new(field: Frame, Kit: any, config: any)
 					if py < 22 then size + 20 else -4
 				)
 				sprite.core.Visible = p.alive
+				sprite.core.BackgroundTransparency = if p.jumping then 0.65 else 0
+			end
+		end
+	end
+	function controller:projectiles(data: any)
+		controller.rockets = controller.rockets or {}
+		local seen = {}
+		for _, q in data do
+			seen[q.id] = true
+			local object = controller.rockets[q.id]
+			if not object then
+				object = Kit.frame(field, "Rocket", if q.kind == "Turret" then Kit.colors.yellow else Kit.colors.coral)
+				Kit.round(object, 5)
+				Kit.outline(object)
+				object.Size = UDim2.fromOffset(14, 8)
+				object.AnchorPoint = Vector2.new(0.5, 0.5)
+				object.ZIndex = 7
+				controller.rockets[q.id] = object
+			end
+			object.Position = UDim2.fromScale(q.x / config.Width, q.y / config.Height)
+			object.Rotation = math.deg(q.heading)
+		end
+		for id, object in controller.rockets do
+			if not seen[id] then
+				object:Destroy()
+				controller.rockets[id] = nil
 			end
 		end
 	end

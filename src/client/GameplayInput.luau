@@ -1,14 +1,25 @@
 --!strict
 local UIS = game:GetService("UserInputService")
 local Input = {}
-function Input.new(left: GuiButton, right: GuiButton)
+function Input.new(left: GuiButton, right: GuiButton, onChanged: any?)
 	local controller: any = { enabled = false, held = {}, connections = {}, axis = 0 }
 	local function connect(signal: any, fn: any)
 		table.insert(controller.connections, signal:Connect(fn))
 	end
+	function controller:emit()
+		local value = self:value()
+		if onChanged and value ~= self.lastSent then
+			self.lastSent = value
+			onChanged(value)
+		end
+	end
 	function controller:clear()
 		table.clear(controller.held)
 		controller.axis = 0
+		if onChanged and controller.lastSent ~= 0 then
+			controller.lastSent = 0
+			onChanged(0)
+		end
 	end
 	local function direction(key: Enum.KeyCode)
 		if key == Enum.KeyCode.A or key == Enum.KeyCode.Left or key == Enum.KeyCode.DPadLeft then
@@ -24,15 +35,18 @@ function Input.new(left: GuiButton, right: GuiButton)
 		local dpad = i.KeyCode == Enum.KeyCode.DPadLeft or i.KeyCode == Enum.KeyCode.DPadRight
 		if (not processed or dpad) and controller.enabled and turn then
 			controller.held[i.KeyCode] = turn
+			controller:emit()
 		end
 	end)
 	connect(UIS.InputEnded, function(i)
 		controller.held[i.KeyCode] = nil
 		controller.held[i] = nil
+		controller:emit()
 	end)
 	connect(UIS.InputChanged, function(i)
 		if i.KeyCode == Enum.KeyCode.Thumbstick1 then
 			controller.axis = if math.abs(i.Position.X) > 0.35 then math.sign(i.Position.X) else 0
+			controller:emit()
 		end
 	end)
 	for _, pair in { { left, -1 }, { right, 1 } } do
@@ -42,6 +56,7 @@ function Input.new(left: GuiButton, right: GuiButton)
 				and (i.UserInputType == Enum.UserInputType.Touch or i.UserInputType == Enum.UserInputType.MouseButton1)
 			then
 				controller.held[i] = pair[2]
+				controller:emit()
 			end
 		end)
 	end
