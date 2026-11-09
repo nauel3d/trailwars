@@ -1,0 +1,15 @@
+# Private reference evidence remains preserved locally.
+/research/*
+!/research/public/
+/qa/*evidence*.json
+/qa/screenshots/
+/dist/
+/*.rbxl
+/*.rbxlx
+/Packages/
+/DevPackages/
+/node_modules/
+/.tools/
+/.env*
+*.log
+*.tmp
