@@ -1,12 +1,12 @@
 {
-  "ok": false,
+  "ok": true,
   "interruptedCycles": 5,
   "initialNodes": 300,
   "finalNodes": 300,
   "cycles": {
-    "frames": 8,
-    "rafScheduled": false,
-    "activeAnimations": 1,
+    "frames": 17,
+    "rafScheduled": true,
+    "activeAnimations": 0,
     "peakAnimations": 1,
     "balance": 480,
     "pending": false,
@@ -21,14 +21,12 @@
       "x": 0,
       "y": 0
     },
-    "openDialogs": [
-      "shop"
-    ],
+    "openDialogs": [],
     "disposed": false
   },
   "reduced": {
     "state": {
-      "frames": 8,
+      "frames": 17,
       "rafScheduled": false,
       "activeAnimations": 0,
       "peakAnimations": 1,
@@ -56,7 +54,7 @@
     "blur": "none",
     "animation": "0s",
     "state": {
-      "frames": 8,
+      "frames": 17,
       "rafScheduled": false,
       "activeAnimations": 1,
       "peakAnimations": 1,
