@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "boards": 43,
+  "localLinkReferences": 215,
+  "missing": [],
+  "pageErrors": [],
+  "portraitFamiliesShown": 12,
+  "phoneGalleryOverflow": false,
+  "motion": {
+    "scoreAndRank": true,
+    "repeatedInterruptions": 4,
+    "reducedMotion": true
+  },
+  "scope": "Local design/gallery check; not Roblox engine, GPU, gameplay, physical-device or audio certification"
+}

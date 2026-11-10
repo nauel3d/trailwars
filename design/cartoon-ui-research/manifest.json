@@ -1,0 +1,346 @@
+[
+  {
+    "id": "concept-a-home-desktop",
+    "file": "concepts/concept-a-home-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "Candy Comet Arcade / home"
+  },
+  {
+    "id": "concept-a-hud-desktop",
+    "file": "concepts/concept-a-hud-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "Candy Comet Arcade / hud"
+  },
+  {
+    "id": "concept-a-results-desktop",
+    "file": "concepts/concept-a-results-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "Candy Comet Arcade / results"
+  },
+  {
+    "id": "concept-a-hud-portrait",
+    "file": "concepts/concept-a-hud-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "concept-a-hud-portrait"
+  },
+  {
+    "id": "a-moodboard",
+    "file": "concepts/a-moodboard.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "a-moodboard"
+  },
+  {
+    "id": "concept-b-home-desktop",
+    "file": "concepts/concept-b-home-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "B",
+    "label": "Stickerbook Showdown / home"
+  },
+  {
+    "id": "concept-b-hud-desktop",
+    "file": "concepts/concept-b-hud-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "B",
+    "label": "Stickerbook Showdown / hud"
+  },
+  {
+    "id": "concept-b-results-desktop",
+    "file": "concepts/concept-b-results-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "B",
+    "label": "Stickerbook Showdown / results"
+  },
+  {
+    "id": "concept-b-hud-portrait",
+    "file": "concepts/concept-b-hud-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "B",
+    "label": "concept-b-hud-portrait"
+  },
+  {
+    "id": "b-moodboard",
+    "file": "concepts/b-moodboard.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "B",
+    "label": "b-moodboard"
+  },
+  {
+    "id": "concept-c-home-desktop",
+    "file": "concepts/concept-c-home-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "C",
+    "label": "Miniature Toy Arena / home"
+  },
+  {
+    "id": "concept-c-hud-desktop",
+    "file": "concepts/concept-c-hud-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "C",
+    "label": "Miniature Toy Arena / hud"
+  },
+  {
+    "id": "concept-c-results-desktop",
+    "file": "concepts/concept-c-results-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "C",
+    "label": "Miniature Toy Arena / results"
+  },
+  {
+    "id": "concept-c-hud-portrait",
+    "file": "concepts/concept-c-hud-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "C",
+    "label": "concept-c-hud-portrait"
+  },
+  {
+    "id": "c-moodboard",
+    "file": "concepts/c-moodboard.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "C",
+    "label": "c-moodboard"
+  },
+  {
+    "id": "a-home-desktop",
+    "file": "screen-designs/a-home-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "home / desktop"
+  },
+  {
+    "id": "a-home-portrait",
+    "file": "screen-designs/a-home-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "home / portrait"
+  },
+  {
+    "id": "a-hud-desktop",
+    "file": "screen-designs/a-hud-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "hud / desktop"
+  },
+  {
+    "id": "a-hud-portrait",
+    "file": "screen-designs/a-hud-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "hud / portrait"
+  },
+  {
+    "id": "a-inter-round-desktop",
+    "file": "screen-designs/a-inter-round-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "inter-round / desktop"
+  },
+  {
+    "id": "a-inter-round-portrait",
+    "file": "screen-designs/a-inter-round-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "inter-round / portrait"
+  },
+  {
+    "id": "a-results-desktop",
+    "file": "screen-designs/a-results-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "results / desktop"
+  },
+  {
+    "id": "a-results-portrait",
+    "file": "screen-designs/a-results-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "results / portrait"
+  },
+  {
+    "id": "a-queue-desktop",
+    "file": "screen-designs/a-queue-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "queue / desktop"
+  },
+  {
+    "id": "a-queue-portrait",
+    "file": "screen-designs/a-queue-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "queue / portrait"
+  },
+  {
+    "id": "a-customize-desktop",
+    "file": "screen-designs/a-customize-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "customize / desktop"
+  },
+  {
+    "id": "a-customize-portrait",
+    "file": "screen-designs/a-customize-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "customize / portrait"
+  },
+  {
+    "id": "a-shop-desktop",
+    "file": "screen-designs/a-shop-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "shop / desktop"
+  },
+  {
+    "id": "a-shop-portrait",
+    "file": "screen-designs/a-shop-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "shop / portrait"
+  },
+  {
+    "id": "a-profile-desktop",
+    "file": "screen-designs/a-profile-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "profile / desktop"
+  },
+  {
+    "id": "a-profile-portrait",
+    "file": "screen-designs/a-profile-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "profile / portrait"
+  },
+  {
+    "id": "a-settings-desktop",
+    "file": "screen-designs/a-settings-desktop.svg",
+    "width": 1280,
+    "height": 720,
+    "concept": "A",
+    "label": "settings / desktop"
+  },
+  {
+    "id": "a-settings-portrait",
+    "file": "screen-designs/a-settings-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "settings / portrait"
+  },
+  {
+    "id": "a-home-landscape",
+    "file": "screen-designs/a-home-landscape.svg",
+    "width": 749,
+    "height": 381,
+    "concept": "A",
+    "label": "a-home-landscape"
+  },
+  {
+    "id": "a-hud-landscape",
+    "file": "screen-designs/a-hud-landscape.svg",
+    "width": 749,
+    "height": 381,
+    "concept": "A",
+    "label": "a-hud-landscape"
+  },
+  {
+    "id": "a-turret-portrait",
+    "file": "screen-designs/a-turret-portrait.svg",
+    "width": 390,
+    "height": 844,
+    "concept": "A",
+    "label": "a-turret-portrait"
+  },
+  {
+    "id": "a-hud-tablet",
+    "file": "screen-designs/a-hud-tablet.svg",
+    "width": 768,
+    "height": 1024,
+    "concept": "A",
+    "label": "a-hud-tablet"
+  },
+  {
+    "id": "a-home-small-portrait",
+    "file": "screen-designs/a-home-small-portrait.svg",
+    "width": 320,
+    "height": 568,
+    "concept": "A",
+    "label": "a-home-small-portrait"
+  },
+  {
+    "id": "a-hud-small-portrait",
+    "file": "screen-designs/a-hud-small-portrait.svg",
+    "width": 320,
+    "height": 568,
+    "concept": "A",
+    "label": "a-hud-small-portrait"
+  },
+  {
+    "id": "a-component-system",
+    "file": "component-designs/a-component-system.svg",
+    "width": 1280,
+    "height": 900,
+    "concept": "A",
+    "label": "a-component-system"
+  },
+  {
+    "id": "a-important-states",
+    "file": "component-designs/a-important-states.svg",
+    "width": 1280,
+    "height": 1140,
+    "concept": "A",
+    "label": "a-important-states"
+  },
+  {
+    "id": "a-motion-storyboard",
+    "file": "motion-storyboards/a-motion-storyboard.svg",
+    "width": 1280,
+    "height": 890,
+    "concept": "A",
+    "label": "a-motion-storyboard"
+  },
+  {
+    "id": "navigation-icons",
+    "file": "component-designs/navigation-icons.svg",
+    "width": 640,
+    "height": 170,
+    "concept": "A",
+    "label": "navigation-icons"
+  }
+]

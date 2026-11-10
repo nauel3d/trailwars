@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "boards": 43,
+  "editableLabelsChecked": 885,
+  "distinctGames": 8,
+  "savedReferenceImages": 13,
+  "errors": [],
+  "scope": "SVG syntax, native browser text bounds and exported PNG sizes; board aspect asserted during generation. Not engine, collision, actual device or localization certification."
+}
