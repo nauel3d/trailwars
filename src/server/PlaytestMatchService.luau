@@ -440,10 +440,16 @@ function Match:snapshot()
 	for i = math.max(1, #self.log - 15), #self.log do
 		local e = self.log[i]
 		if e.roundId == state.roundId then
-			table.insert(
-				state.visualEvents,
-				{ sequence = i, kind = e.kind, victim = e.victim, cause = e.cause, x = e.x, y = e.y, points = e.points }
-			)
+			table.insert(state.visualEvents, {
+				sequence = i,
+				kind = e.kind,
+				victim = e.victim,
+				owner = e.owner,
+				cause = e.cause,
+				x = e.x,
+				y = e.y,
+				points = e.points,
+			})
 		end
 	end
 	state.intermission = math.max(0, math.ceil((self.config.IntermissionSeconds or 4) - self.wait))

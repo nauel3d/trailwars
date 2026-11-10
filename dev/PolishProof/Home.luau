@@ -4,6 +4,8 @@ local Layout = require(script.Parent.Layout)
 local GuiService = game:GetService("GuiService")
 local Home = {}
 local Demos = require(script.Parent.Demos)
+local Motion = require(script.Parent.Motion)
+local Art = require(game.ReplicatedStorage.TrailWarsUI.CandyCometArt)
 local C = Kit.colors
 function Home.mount(parent: Instance, options: any?)
 	local opts = options or {}
@@ -43,6 +45,8 @@ function Home.mount(parent: Instance, options: any?)
 	local activeDemo: any = nil
 	local previous: GuiObject? = nil
 	local buttons = {}
+	local navIcons = {}
+	local motion = Motion.new(root, { preferences = opts.preferences, reducedMotion = opts.reducedMotion })
 	local function close()
 		if activeDemo then
 			activeDemo.destroy()
@@ -84,17 +88,43 @@ function Home.mount(parent: Instance, options: any?)
 		modal = activeDemo.root
 		GuiService.SelectedObject = activeDemo.root:FindFirstChild("Back") :: GuiButton
 	end
-	local play = scope:button(content, "Play", "PLAY  ▶", true, function()
+	local play = scope:button(content, "Play", "PLAY", true, function()
 		open("PLAY")
 	end)
+	local playPuck = Kit.frame(play.face, "PlayPuck", C.yellow)
+	playPuck.AnchorPoint = Vector2.new(0.5, 0.5)
+	Kit.round(playPuck, 99)
+	Kit.outline(playPuck, C.ink, 2)
+	local chevron = Instance.new("Path2D")
+	chevron.Color3 = C.ink
+	chevron.Thickness = 5
+	chevron.Parent = playPuck
+	chevron:SetControlPoints({
+		Path2DControlPoint.new(UDim2.fromScale(0.35, 0.25)),
+		Path2DControlPoint.new(UDim2.fromScale(0.65, 0.5)),
+		Path2DControlPoint.new(UDim2.fromScale(0.35, 0.75)),
+	})
+	play.label.TextXAlignment = Enum.TextXAlignment.Left
+	motion:loop(function()
+		motion:to(playPuck, { Rotation = -8 }, "confirm", function()
+			motion:to(playPuck, { Rotation = 0 }, "settle")
+		end)
+	end, 1 / 7)
 	table.insert(buttons, play)
 	for _, name in { "CUSTOMIZE", "SHOP", "PROFILE", "SETTINGS" } do
-		table.insert(
-			buttons,
-			scope:button(content, name, name, false, function()
-				open(name)
-			end)
-		)
+		local button = scope:button(content, name, name, false, function()
+			open(name)
+		end)
+		local icon = Kit.frame(button.face, "NavIcon")
+		icon.AnchorPoint = Vector2.new(0, 0.5)
+		icon.Position = UDim2.new(0, 14, 0.5, 0)
+		icon.Size = UDim2.fromOffset(28, 28)
+		Art.menuIcon(icon, Kit, name)
+		navIcons[#navIcons + 1] = icon
+		button.label.Position = UDim2.fromOffset(52, 0)
+		button.label.Size = UDim2.new(1, -60, 1, 0)
+		button.label.TextXAlignment = Enum.TextXAlignment.Left
+		table.insert(buttons, button)
 	end
 	local function arrange()
 		if not root.Parent or root.AbsoluteSize.X < 1 then
@@ -111,9 +141,18 @@ function Home.mount(parent: Instance, options: any?)
 		heading.TextSize = l.headingSize
 		Kit.box(play.root, l.play)
 		play.label.TextSize = l.playSize
+		play.label.Position = UDim2.fromOffset(24, 0)
+		play.label.Size = UDim2.new(1, -100, 1, 0)
+		local puckSize = math.min(54, l.play[4] - 22)
+		playPuck.Size = UDim2.fromOffset(puckSize, puckSize)
+		playPuck.Position = UDim2.new(1, -puckSize / 2 - 16, 0.5, -2)
 		for i = 1, 4 do
 			Kit.box(buttons[i + 1].root, l.nav[i])
 			buttons[i + 1].label.TextSize = l.navSize
+			local showIcon = l.textScale <= 1.1 or l.nav[i][3] >= 180
+			navIcons[i].Visible = showIcon
+			buttons[i + 1].label.Position = UDim2.fromOffset(if showIcon then 52 else 10, 0)
+			buttons[i + 1].label.Size = UDim2.new(1, if showIcon then -60 else -20, 1, 0)
 		end
 		hero.Visible = l.showPreview
 		if not l.showPreview then
@@ -139,6 +178,7 @@ function Home.mount(parent: Instance, options: any?)
 		destroy = function()
 			close()
 			arena.destroy()
+			motion:destroy()
 			scope:destroy()
 			root:Destroy()
 		end,

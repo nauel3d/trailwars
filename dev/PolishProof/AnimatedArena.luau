@@ -47,6 +47,12 @@ function Arena.mount(parent: Instance, options: any?)
 		Kit.round(shine, 99)
 		shine.Position = UDim2.fromScale(0.2, 0.16)
 		shine.Size = UDim2.fromScale(0.23, 0.23)
+		core.BackgroundTransparency = 1
+		core:FindFirstChildOfClass("UIStroke").Enabled = false
+		shine.Visible = false
+		local art = Kit.frame(core, "CandyPilot")
+		art.Size = UDim2.fromScale(1, 1)
+		require(game.ReplicatedStorage.TrailWarsUI.CandyCometArt).core(art, Kit, color)
 		local burst = Kit.frame(field, a.id .. "Crash")
 		Kit.round(burst, 99)
 		Kit.outline(burst, color, 3)

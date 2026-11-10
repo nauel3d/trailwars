@@ -1,0 +1,134 @@
+{
+  "origin": "Original deterministic additive/chirp synthesis, no samples or licensed commercial audio",
+  "rate": 44100,
+  "newCues": {
+    "press": [
+      [
+        220,
+        170,
+        0.07
+      ]
+    ],
+    "back": [
+      [
+        880,
+        580,
+        0.065
+      ]
+    ],
+    "queue": [
+      [
+        660,
+        660,
+        0.06
+      ],
+      [
+        880,
+        880,
+        0.09
+      ]
+    ],
+    "go": [
+      [
+        523,
+        523,
+        0.05
+      ],
+      [
+        659,
+        659,
+        0.05
+      ],
+      [
+        1047,
+        1047,
+        0.1
+      ]
+    ],
+    "jump": [
+      [
+        250,
+        760,
+        0.19
+      ]
+    ],
+    "launch": [
+      [
+        160,
+        480,
+        0.13
+      ]
+    ],
+    "hit": [
+      [
+        220,
+        140,
+        0.085
+      ]
+    ],
+    "crash": [
+      [
+        150,
+        65,
+        0.15
+      ]
+    ],
+    "rank": [
+      [
+        659,
+        659,
+        0.055
+      ],
+      [
+        784,
+        784,
+        0.055
+      ],
+      [
+        988,
+        988,
+        0.08
+      ]
+    ],
+    "settle": [
+      [
+        523,
+        523,
+        0.075
+      ],
+      [
+        659,
+        659,
+        0.1
+      ]
+    ],
+    "victory": [
+      [
+        523,
+        523,
+        0.09
+      ],
+      [
+        659,
+        659,
+        0.09
+      ],
+      [
+        784,
+        784,
+        0.11
+      ],
+      [
+        1047,
+        1047,
+        0.22
+      ]
+    ]
+  },
+  "preserved": [
+    "select.wav",
+    "confirm.wav",
+    "warning.wav"
+  ],
+  "robloxStatus": "Silent. asset:read permission check failed; no fabricated asset IDs, no upload attempted."
+}

@@ -6,6 +6,12 @@ if not report then
 end
 local gui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("TrailWarsGameplay")
 local probe = gui:WaitForChild("GameplayProbe")
+local testArgs = game:GetService("StudioTestService"):GetTestArgs()
+local renderControl = type(testArgs) == "table" and testArgs.renderControl == true
+if renderControl then
+	gui.Enabled = false
+	gui:SetAttribute("NoPresentationControl", true)
+end
 report:FireServer("Ready")
 while not RS:GetAttribute("Nov10Start") do
 	task.wait(0.05)
@@ -27,6 +33,12 @@ local result = {
 	cooldownProgress = true,
 }
 local renderedFrames = {}
+local heartbeatFrames = {}
+local heartbeatConnection = game:GetService("RunService").Heartbeat:Connect(function(dt)
+	if #heartbeatFrames < 4000 then
+		heartbeatFrames[#heartbeatFrames + 1] = dt * 1000
+	end
+end)
 local frameStart = os.clock()
 local frameConnection = game:GetService("RunService").RenderStepped:Connect(function(dt)
 	if os.clock() - frameStart > 1 and #renderedFrames < 3600 then
@@ -90,13 +102,23 @@ while os.clock() < deadline do
 	task.wait(0.08)
 end
 frameConnection:Disconnect()
+heartbeatConnection:Disconnect()
 local total = 0
 for _, ms in renderedFrames do
 	total += ms
 end
 table.sort(renderedFrames)
 if #renderedFrames > 0 then
+	local hbSum = 0
+	for _, ms in heartbeatFrames do
+		hbSum += ms
+	end
+	table.sort(heartbeatFrames)
 	result.clientFrameTiming = {
+		guiDisabledControl = renderControl,
+		viewport = tostring(workspace.CurrentCamera.ViewportSize),
+		heartbeatMeanMs = hbSum / math.max(1, #heartbeatFrames),
+		heartbeatP95Ms = heartbeatFrames[math.max(1, math.ceil(#heartbeatFrames * 0.95))],
 		samples = #renderedFrames,
 		meanMs = total / #renderedFrames,
 		p95Ms = renderedFrames[math.ceil(#renderedFrames * 0.95)],

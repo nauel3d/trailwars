@@ -15,6 +15,10 @@ return table.freeze({
 	ReorderStart = 1.00,
 	ScoreEnd = 1.40,
 	Tweens = {
+		arcadePress = { time = 0.065, ease = "Quad" },
+		arcadeRelease = { time = 0.145, ease = "Back" },
+		softPress = { time = 0.05, ease = "Quad" },
+		softRelease = { time = 0.11, ease = "Quad" },
 		coreSpawn = { time = 0.18, ease = "Back" },
 		countdownPop = { time = 0.14, ease = "Back" },
 		goPop = { time = 0.20, ease = "Back" },

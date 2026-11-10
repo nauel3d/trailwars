@@ -20,6 +20,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	local Board = require(script.Parent.PlaytestScoreboard)
 	local Panels = require(script.Parent.PlaytestPanels)
 	local Motion = require(components.Motion)
+	local Cues = require(components.UICues)
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "TrailWarsGameplay"
 	gui.ResetOnSpawn = false
@@ -36,6 +37,12 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	screen.Visible = false
 	local preferences = { reducedMotion = GuiService.ReducedMotionEnabled, volume = 0.22, muted = false }
 	local scope = Kit.new(preferences.reducedMotion, preferences)
+	local presentationEnabled = true
+	if RunService:IsStudio() then
+		scope:connect(gui:GetAttributeChangedSignal("NoPresentationControl"), function()
+			presentationEnabled = gui:GetAttribute("NoPresentationControl") ~= true
+		end)
+	end
 	local fieldShadow = Kit.frame(screen, "BoardShadow", Kit.colors.ink)
 	Kit.round(fieldShadow, 18)
 	local fieldFrame = Kit.frame(screen, "BoardFrame", Kit.colors.paper)
@@ -221,6 +228,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	showHome = function()
 		mode = "Home"
 		presentation.hide()
+		Cues.stop(gui)
 		screen.Visible = false
 		input.enabled = false
 		input:clear()
@@ -261,7 +269,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		})
 	end
 	start = function()
-		presentation.hide()
+		Cues.stop(gui)
+		presentation.enter()
 		lastUIKey = nil
 		clearHome()
 		mode = "Match"
@@ -285,6 +294,9 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	end
 	local function paint(state: any)
 		snapshot = state
+		if not presentationEnabled then
+			return
+		end -- Studio-only diagnostic control.
 		renderer:roster(state.players)
 		if round then
 			local delta = {}
@@ -342,8 +354,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		status.Text = if state.phase == "Queue"
 			then "FINDING PLAYERS · BOTS FILL TO FOUR"
 			elseif state.phase == "Countdown" then "A/D · ARROWS · HOLD TO TURN"
-			elseif actor and actor.state == "EliminatedTurret" then "ROCKET CONTROL\nHOLD ◀ / ▶ TO STEER"
-			elseif me and not me.alive then "ELIMINATED · SPECTATING"
+			elseif actor and actor.state == "EliminatedTurret" then "OUT · ROCKET PILOT\nHOLD ◀ / ▶ TO TURN"
+			elseif me and not me.alive then "OUT · SPECTATING"
 			elseif not me then "SPECTATING · NEXT ROUND QUEUED"
 			else "RELEASE = STRAIGHT\nBOTH = STRAIGHT"
 		local score = 0
@@ -368,20 +380,33 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			)
 		)
 		clock.TextSize = if safe.AbsoluteSize.X < 500 then 14 elseif safe.AbsoluteSize.Y < 500 then 16 else 22
+		if state.phase == "Queue" then
+			write(clock, "Text", "NEXT MATCH\nFINDING PLAYERS")
+		end
 		write(center, "Text", if state.phase == "Queue" then "FINDING PLAYERS…" else "")
 		local large = results or intermission
 		write(pilot, "Visible", pilotAllowed and me ~= nil and not large)
-		board.root.Visible = large or (safe.AbsoluteSize.X >= 1000 and safe.AbsoluteSize.Y >= 600)
+		board.root.Visible = state.phase ~= "Queue"
+			and (large or (safe.AbsoluteSize.X >= 1000 and safe.AbsoluteSize.Y >= 600))
 		local boardRect = presentation.update(state, me, layout.field, renderer.sprites, powerButtons)
 		if large then
 			Kit.box(board.root, boardRect)
+			local actionY = math.min(safe.AbsoluteSize.Y - 60, boardRect[2] + boardRect[4] + 18)
+			replay.root.Position = UDim2.fromOffset((safe.AbsoluteSize.X - replay.root.Size.X.Offset) / 2, actionY)
+			skip.root.Position = replay.root.Position
 			write(board.title, "Text", if results then "FINAL PLACEMENTS" else "ROUND SCORE REVEAL")
 		else
 			Kit.box(board.root, layout.standings)
 			write(board.title, "Text", "LIVE STANDINGS")
 		end
 		if state.series then
-			board.set(state.series.players, state.series.ledger, large, renderer.sprites, state.settings.target)
+			local barTarget = state.settings.target
+			if results then
+				for _, p in state.series.players do
+					barTarget = math.max(barTarget, p.score)
+				end
+			end
+			board.set(state.series.players, state.series.ledger, large, renderer.sprites, barTarget)
 		end
 		for slot, button in powerButtons do
 			write(button.root, "Visible", not large)
@@ -394,6 +419,9 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 				else "Ready"
 			if button.powerState ~= powerState then
 				button.powerState = powerState
+				button.faceColor = if enabled
+					then (if slot == "Jump" then Kit.colors.blue else Kit.colors.coral)
+					else Kit.colors.paper
 				button:setState(if enabled then "Default" else "Disabled")
 				button.root:SetAttribute("PowerState", powerState)
 				-- setState settles press depth, so invalidate only the overridden style keys.
@@ -420,6 +448,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 				UDim2.fromScale(math.clamp(1 - cooldown / (PowerDefs[slot].CooldownTicks / 50), 0, 1), 1)
 			)
 			write(button.meter, "BackgroundColor3", if enabled then Kit.colors.paper else Kit.colors.blue)
+			write(button.meter.Parent, "Visible", powerState == "Ready" or powerState == "Charging")
 		end
 
 		gui:SetAttribute("Phase", state.phase)
@@ -491,6 +520,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			scope:destroy()
 			board.destroy()
 			presentation.destroy()
+			Cues.stop(gui)
 			renderer:destroy()
 			clearHome()
 			if transport then

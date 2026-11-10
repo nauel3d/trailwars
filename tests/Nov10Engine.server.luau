@@ -242,7 +242,7 @@ for _, p in humans do
 		or not r.active
 		or not r.intermission
 		or not r.final
-		or not r.winnerPresentation
+		or (not args.renderControl and not r.winnerPresentation)
 		or not r.cooldownProgress
 	then
 		ok = false

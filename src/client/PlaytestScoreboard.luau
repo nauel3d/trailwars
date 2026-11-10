@@ -1,6 +1,7 @@
 --!strict
 local Art = require(script.Parent.CandyCometArt)
 local Tokens = require(game.ReplicatedStorage.TrailWars.GameplayMotion)
+local Cues = require(game.ReplicatedStorage.TrailWarsDev.UICues)
 local Board = {}
 function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 	local root = Kit.panel(parent, "MatchStandings")
@@ -117,6 +118,7 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 			local position = UDim2.fromOffset(8, 36 + (i - 1) * height)
 			local label = tostring(p.rank) .. "  " .. p.name
 			local award = awards[p.id]
+			local rose = row.rank and p.rank < row.rank
 			if fresh and award and not scope:isReduced() then
 				row.label.Text = tostring(row.rank or p.rank) .. "  " .. p.name
 				row.count.Value = award.before
@@ -143,6 +145,11 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 					if gen == generation then
 						row.label.Text = label
 						scope:to(row.face, { Position = position }, "rankMove")
+						if rose then
+							row.face.Rotation = -1.5
+							scope:to(row.face, { Rotation = 0 }, "settle")
+							Cues.play(root, "rank", preferences)
+						end
 					end
 				end)
 			elseif not busy or scope:isReduced() then
@@ -164,6 +171,10 @@ function Board.mount(parent: Instance, Kit: any, Motion: any, preferences: any)
 		end
 		for id, row in rows do
 			if not seen[id] then
+				generation += 1
+				busy = false
+				scope:cancel()
+				lastKey = nil
 				release(row)
 				rows[id] = nil
 			end

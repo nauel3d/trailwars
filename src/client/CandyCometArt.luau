@@ -58,4 +58,40 @@ function Art.rocket(parent: Instance, Kit: any, turret: boolean)
 	stripe.Visible = not turret
 	return flame
 end
+function Art.menuIcon(parent: Instance, Kit: any, kind: string)
+	local function part(color, x, y, w, h, r)
+		local f = Kit.frame(parent, "IconPart", color)
+		f.Position = UDim2.fromScale(x, y)
+		f.Size = UDim2.fromScale(w, h)
+		if r then
+			Kit.round(f, r)
+		end
+		return f
+	end
+	local ink = Kit.colors.ink
+	if kind == "CUSTOMIZE" then
+		local handle = part(Kit.colors.blue, 0.42, 0.28, 0.2, 0.6, 3)
+		handle.Rotation = 30
+		local brush = part(Kit.colors.coral, 0.48, 0.05, 0.32, 0.4, 5)
+		brush.Rotation = 30
+		Kit.outline(brush, ink, 1.5)
+		part(Kit.colors.yellow, 0.12, 0.72, 0.22, 0.18, 99)
+	elseif kind == "SHOP" then
+		local body = part(Kit.colors.paper, 0.18, 0.28, 0.68, 0.6, 4)
+		Kit.outline(body, ink, 2)
+		local handle = part(nil, 0.34, 0.10, 0.34, 0.3, 99)
+		Kit.outline(handle, ink, 2)
+		part(Kit.colors.yellow, 0.5, 0.52, 0.2, 0.2, 99)
+	elseif kind == "PROFILE" then
+		part(ink, 0.34, 0.08, 0.38, 0.38, 99)
+		part(ink, 0.15, 0.52, 0.76, 0.4, 99)
+		part(Kit.colors.blue, 0.38, 0.62, 0.28, 0.11, 3)
+	else
+		for i = 0, 3 do
+			local tooth = part(ink, 0.35, 0.05, 0.3, 0.9, 2)
+			tooth.Rotation = i * 45
+		end
+		part(Kit.colors.paper, 0.37, 0.37, 0.26, 0.26, 99)
+	end
+end
 return Art

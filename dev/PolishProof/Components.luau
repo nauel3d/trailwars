@@ -65,9 +65,17 @@ function Kit.new(reducedMotion: boolean?, preferences: any?)
 				Motion.new(face.Parent.Parent, { reducedMotion = self.reducedMotion, preferences = preferences })
 		end
 		self.motion.reducedMotion = self.reducedMotion
-		self.motion:to(face, { Position = UDim2.fromOffset(0, y) }, if y == 0 then "release" else "press")
+		local major = face:GetAttribute("ArcadeTactile") == true
+		self.motion:to(
+			face,
+			{ Position = UDim2.fromOffset(0, y) },
+			if y == 0
+				then (if major then "arcadeRelease" else "softRelease")
+				else (if major then "arcadePress" else "softPress")
+		)
 	end
 	function scope:button(parent: Instance, name: string, label: string, primary: boolean?, callback: () -> ())
+		local major = primary == true or name == "Homing" or name == "Jump"
 		local root = Instance.new("TextButton")
 		root.Name = name
 		root.Text = ""
@@ -78,10 +86,12 @@ function Kit.new(reducedMotion: boolean?, preferences: any?)
 		local base = Kit.frame(root, "Shadow", Kit.colors.ink)
 		base.Position = UDim2.fromOffset(0, 5)
 		base.Size = UDim2.new(1, 0, 1, -5)
-		Kit.round(base, 16)
+		Kit.round(base, if primary then 22 else 12)
 		local face = Kit.frame(root, "Face", if primary then Kit.colors.coral else Kit.colors.paper)
 		face.Size = UDim2.new(1, 0, 1, -7)
-		Kit.round(face, 16)
+		face:SetAttribute("ArcadeTactile", major)
+		Kit.round(face, if primary then 22 else 12)
+		Kit.round(root, if primary then 22 else 12)
 		Kit.outline(face)
 		local text = Kit.text(
 			face,
@@ -112,8 +122,11 @@ function Kit.new(reducedMotion: boolean?, preferences: any?)
 		end
 		function control.activate(_control: any)
 			if state ~= "Disabled" and state ~= "Loading" then
-				Cues.play(root, "select", preferences)
+				local gui = root:FindFirstAncestorOfClass("ScreenGui")
 				callback()
+				if gui and gui.Parent then
+					Cues.play(gui, if name == "Back" or name == "Home" then "back" else "select", preferences)
+				end
 			end
 		end
 		scope:connect(root.Activated, function()
@@ -129,7 +142,8 @@ function Kit.new(reducedMotion: boolean?, preferences: any?)
 					or input.KeyCode == Enum.KeyCode.ButtonA
 				)
 			then
-				scope:move(face, 4)
+				scope:move(face, if major then 4 else 2)
+				Cues.play(root, "press", preferences)
 			end
 		end)
 		scope:connect(root.InputEnded, function()
@@ -147,12 +161,15 @@ function Kit.new(reducedMotion: boolean?, preferences: any?)
 		end)
 		scope:connect(root.MouseEnter, function()
 			if state == "Default" then
-				face.BackgroundColor3 = if primary then Color3.fromRGB(255, 119, 98) else Kit.colors.mint
+				face.BackgroundColor3 = if control.faceColor
+					then control.faceColor:Lerp(Kit.colors.paper, 0.10)
+					elseif primary then Color3.fromRGB(255, 119, 98)
+					else Kit.colors.mint
 			end
 		end)
 		scope:connect(root.MouseLeave, function()
 			if state == "Default" then
-				face.BackgroundColor3 = if primary then Kit.colors.coral else Kit.colors.paper
+				face.BackgroundColor3 = control.faceColor or (if primary then Kit.colors.coral else Kit.colors.paper)
 			end
 		end)
 		control:setState("Default")

@@ -32,7 +32,7 @@ function Replay.new(stress: boolean?)
 	for _, p in roster do
 		replay.scores[p.id] = 10
 	end
-	local function event(kind, victim, cause, points)
+	local function event(kind, victim, cause, points, owner)
 		local p = r.sim.byId[victim]
 		table.insert(replay.events, {
 			sequence = #replay.events + 1,
@@ -42,13 +42,14 @@ function Replay.new(stress: boolean?)
 			y = p.y,
 			cause = cause,
 			points = points,
+			owner = owner,
 		})
 	end
 	replay.powers = Powers.new(r.sim, r.matchId, true, function(_id, owner, victim, amount, kind)
 		local taken = math.min(amount, replay.scores[victim])
 		replay.scores[victim] -= taken
 		replay.scores[owner] += taken
-		event(kind, victim, nil, taken)
+		event(kind, victim, nil, taken, owner)
 	end)
 	if not stress then
 		r.sim.index:insert({ owner = "orbit", ax = 300, ay = 390, bx = 300, by = 465, endDistance = 0 })
@@ -80,7 +81,7 @@ function Replay.new(stress: boolean?)
 		Round.step(r)
 		for i = replay.deaths + 1, #r.sim.events do
 			local e = r.sim.events[i]
-			event("Eliminated", e.id, e.cause)
+			event("Eliminated", e.id, e.cause, nil, e.killerId)
 		end
 		replay.deaths = #r.sim.events
 		if r.phase == "Active" then

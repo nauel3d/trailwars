@@ -3,6 +3,7 @@
 local Base = require(script.Parent.GameplayRenderer)
 local Art = require(script.Parent.CandyCometArt)
 local Tokens = require(game.ReplicatedStorage.TrailWars.GameplayMotion)
+local Cues = require(game.ReplicatedStorage.TrailWarsDev.UICues)
 local Candy = {}
 function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 	local opts = options or {}
@@ -93,7 +94,7 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 		end
 		if localPlayer then
 			feedback.text = if not lethal
-				then "TAGGED · POINTS STOLEN, STILL ALIVE"
+				then "TAGGED · KEEP MOVING!"
 				elseif cause == "Wall" then "WALL CRASH · ELIMINATED"
 				elseif cause == "SelfTrail" then "OWN TRAIL · ELIMINATED"
 				elseif cause == "Core" then "CORE COLLISION · ELIMINATED"
@@ -165,6 +166,7 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 		end
 	end
 	function renderer:draw(players)
+		debug.profilebegin("TrailWars/CoreDraw")
 		local scale = field.AbsoluteSize.X / config.Width
 		if renderer.lastScale ~= scale then
 			for _, chunk in renderer.chunks do
@@ -244,6 +246,7 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 				)
 			)
 		end
+		debug.profileend()
 	end
 	function renderer:projectiles(data)
 		renderer.rockets = renderer.rockets or {}
@@ -331,6 +334,16 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 						e.victim == opts.selfId,
 						e.points
 					)
+					if e.owner == opts.selfId or e.victim == opts.selfId then
+						Cues.play(field, if e.kind == "Eliminated" then "crash" else "hit", opts.preferences)
+					end
+					if e.owner == opts.selfId and e.victim ~= opts.selfId then
+						feedback.text = if e.kind == "Eliminated"
+							then "TRAIL ELIMINATION!"
+							elseif (e.points or 0) > 0 then "TAG! +" .. e.points .. " POINTS"
+							else "TAG CONFIRMED"
+						feedback.untilTime = elapsed + 1
+					end
 				end
 			end
 		end

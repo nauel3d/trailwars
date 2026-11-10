@@ -1,6 +1,7 @@
 --!strict
 -- Semantic match presentation. Authoritative state triggers effects; inputs never wait for them.
 local Art = require(script.Parent.CandyCometArt)
+local Cues = require(game.ReplicatedStorage.TrailWarsDev.UICues)
 local Tokens = require(game.ReplicatedStorage.TrailWars.GameplayMotion)
 local Presentation = {}
 function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences: any, selfId: string, pilot: Frame)
@@ -50,7 +51,7 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 	local previousPhase, previousRound, previousRemaining, previousActor = nil, nil, nil, nil
 	local lastPower = {}
 	local boardRect = nil
-	local lastW, lastH, lastLarge = nil, nil, nil
+	local lastW, lastH, lastLarge, lastCount = nil, nil, nil, nil
 	local function cancel()
 		generation += 1
 		scope:cancel()
@@ -85,7 +86,7 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 			end
 		end)
 	end
-	local function arrange(w, h, field, large)
+	local function arrange(w, h, field, large, count)
 		badge.Position = UDim2.fromOffset(field[1] + field[3] / 2, field[2] + field[4] / 2)
 		badge.Size = UDim2.fromOffset(math.min(200, field[3] - 0.1), math.min(90, field[4] * 0.5))
 		badgeText.TextSize = if field[4] < 180 then 36 else 56
@@ -100,15 +101,16 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 			boardRect = { 206, 52, w - 222, h - 116 }
 		else
 			local bw = math.min(560, w - 24)
-			Kit.box(hero, { (w - bw) / 2, 56, bw, 76 })
+			local bh = math.min(350, h - 214, 42 + count * 48)
+			local top = math.max(56, (h - (76 + 10 + bh + 18 + 48)) / 2)
+			Kit.box(hero, { (w - bw) / 2, top, bw, 76 })
 			avatar.Position = UDim2.fromOffset(48, 38)
 			avatar.Size = UDim2.fromOffset(60, 60)
 			Kit.box(title, { 90, 6, bw - 104, 42 })
-			title.TextSize = if w < 500 then 23 else 28
+			title.TextSize = if w < 360 then 20 elseif w < 500 then 23 else 28
 			Kit.box(detail, { 92, 47, bw - 106, 28 })
 			detail.TextSize = if w < 500 then 12 else 14
-			local bh = math.min(350, h - 214)
-			boardRect = { (w - bw) / 2, 142, bw, bh }
+			boardRect = { (w - bw) / 2, top + 86, bw, bh }
 		end
 		hero.Visible = large
 		heroShadow.Visible = large
@@ -129,12 +131,16 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 			heroShadow.Visible = large
 		end
 		local w, h = parent.AbsoluteSize.X, parent.AbsoluteSize.Y
-		if w ~= lastW or h ~= lastH or large ~= lastLarge then
-			arrange(w, h, field, large)
-			lastW, lastH, lastLarge = w, h, large
+		local count = if state.series then #state.series.players else 0
+		if w ~= lastW or h ~= lastH or large ~= lastLarge or count ~= lastCount then
+			arrange(w, h, field, large, count)
+			lastW, lastH, lastLarge, lastCount = w, h, large, count
 		end
 		local gen = generation
 		if phase == "Countdown" and (changed or previousRemaining ~= state.remaining) then
+			if changed then
+				Cues.play(root, "queue", preferences)
+			end
 			badge.Visible = true
 			badgeText.Text = tostring(state.remaining)
 			badge.BackgroundColor3 = Kit.colors.paper
@@ -143,6 +149,7 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 		elseif phase == "Active" and changed and wasPhase == "Countdown" then
 			badge.Visible = true
 			badgeText.Text = "GO!"
+			Cues.play(root, "go", preferences)
 			badge.BackgroundColor3 = Kit.colors.yellow
 			badge.Rotation = if scope:isReduced() then 0 else -8
 			scope:to(badge, { Rotation = 0 }, "goPop")
@@ -163,6 +170,11 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 			local cooldown = actor and actor[slot] or 0
 			if not changed and lastPower[slot] and lastPower[slot] <= 0.15 and cooldown > 1 then
 				button.root:SetAttribute("ConfirmedActivation", state.tick)
+				if slot == "Homing" then
+					Cues.play(root, "launch", preferences)
+				elseif actor.jumping then
+					Cues.play(root, "jump", preferences)
+				end
 				if not scope:isReduced() then
 					button.face.Rotation = -2
 					scope:to(button.face, { Rotation = 0 }, "abilityConfirm")
@@ -184,13 +196,16 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 				end
 			end
 			local isWinner = table.find(ids, selfId) ~= nil
+			Cues.play(root, if phase == "Final" and isWinner then "victory" else "settle", preferences)
 			title.Text = if phase == "Final"
-				then (if #ids > 1 then "SHARED WIN!" elseif isWinner then "YOU WIN!" else "WINNER!")
+				then (if #ids > 1 then "SHARED WIN!" elseif isWinner then "YOU WIN!" else name .. " WINS!")
 				elseif me and me.alive then "ROUND SURVIVED!"
 				else "ROUND COMPLETE"
 			detail.Text = if phase == "Final"
 				then (if isWinner then "NICE RUN · PLAY AGAIN?" else "YOU #" .. tostring(rank or "-") .. " · " .. name)
 				else "SCORES IN · NEXT IN " .. state.intermission
+			title.TextWrapped = false
+			title.TextTruncate = Enum.TextTruncate.AtEnd
 			detail.TextWrapped = false
 			detail.TextTruncate = Enum.TextTruncate.AtEnd
 			hero.BackgroundColor3 = if phase == "Final" and isWinner then Kit.colors.yellow else Kit.colors.mint
@@ -222,6 +237,15 @@ function Presentation.mount(parent: Instance, Kit: any, Motion: any, preferences
 	end
 	return {
 		update = update,
+		enter = function()
+			cancel()
+			previousPhase = nil
+			previousActor = nil
+			lastPower = {}
+			root.Visible = true
+			parent.Position = UDim2.fromOffset(0, if scope:isReduced() then 0 else 6)
+			scope:to(parent, { Position = UDim2.fromOffset(0, 0) }, "rematchEnter")
+		end,
 		hide = function()
 			cancel()
 			root.Visible = false
