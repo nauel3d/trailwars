@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "errors": [],
+  "missing": [],
+  "linksChecked": 25,
+  "stateRetainedAcrossViewportChange": true,
+  "phone": {
+    "width": 390,
+    "height": 844,
+    "open": true
+  },
+  "landscape": {
+    "width": 844,
+    "height": 390,
+    "open": true
+  },
+  "scope": "Local review gallery, same live iframe, no scaling of screenshots"
+}

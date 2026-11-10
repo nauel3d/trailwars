@@ -1,0 +1,83 @@
+{
+  "ok": false,
+  "interruptedCycles": 5,
+  "initialNodes": 300,
+  "finalNodes": 300,
+  "cycles": {
+    "frames": 8,
+    "rafScheduled": false,
+    "activeAnimations": 1,
+    "peakAnimations": 1,
+    "balance": 480,
+    "pending": false,
+    "category": "all",
+    "reduced": false,
+    "quality": "high",
+    "owned": [
+      "core_default",
+      "trail_default"
+    ],
+    "parallax": {
+      "x": 0,
+      "y": 0
+    },
+    "openDialogs": [
+      "shop"
+    ],
+    "disposed": false
+  },
+  "reduced": {
+    "state": {
+      "frames": 8,
+      "rafScheduled": false,
+      "activeAnimations": 0,
+      "peakAnimations": 1,
+      "balance": 480,
+      "pending": false,
+      "category": "all",
+      "reduced": true,
+      "quality": "high",
+      "owned": [
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [
+        "shop"
+      ],
+      "disposed": false
+    },
+    "backdrop": "0s"
+  },
+  "low": {
+    "blur": "none",
+    "animation": "0s",
+    "state": {
+      "frames": 8,
+      "rafScheduled": false,
+      "activeAnimations": 1,
+      "peakAnimations": 1,
+      "balance": 480,
+      "pending": false,
+      "category": "all",
+      "reduced": false,
+      "quality": "low",
+      "owned": [
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [
+        "shop"
+      ],
+      "disposed": false
+    }
+  },
+  "scope": "Real browser prototype: interrupted transitions, stable DOM count, reduced motion mid-entry and no Low-tier backdrop blur."
+}

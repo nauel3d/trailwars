@@ -1,0 +1,38 @@
+[
+  {
+    "file": "assets/distant-world.png",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "mode": "RGB",
+    "sha256": "4dacef824496dcc12f670fbd301a396d5b6384d1f26c2e1d999badef01e98ebf",
+    "alphaRange": null
+  },
+  {
+    "file": "assets/icons.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "sha256": "8b1746871a4bce40fc400da7058d2b602dc85f3a3e2f520d3a199cd83dddd056",
+    "alphaRange": [
+      0,
+      255
+    ]
+  },
+  {
+    "file": "assets/racers.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "sha256": "41e538191697afa2f5fe9e76bd99f074b0cc9c06c8856df73afb0768a064da63",
+    "alphaRange": [
+      0,
+      255
+    ]
+  }
+]

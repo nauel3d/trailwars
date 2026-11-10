@@ -1,0 +1,671 @@
+{
+  "ok": true,
+  "errors": [],
+  "cases": [
+    {
+      "name": "desktop",
+      "width": 1920,
+      "height": 1080,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 350,
+            "y": 873.5,
+            "w": 560,
+            "h": 92,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 68,
+            "y": 497.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 68,
+            "y": 697.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 68,
+            "y": 397.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 68,
+            "y": 597.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": false,
+        "grid": "grid"
+      }
+    },
+    {
+      "name": "desktop-1440p",
+      "width": 2560,
+      "height": 1440,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 738,
+            "y": 1150.5,
+            "w": 560,
+            "h": 112,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 388,
+            "y": 665,
+            "w": 300,
+            "h": 95,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 388,
+            "y": 903,
+            "w": 300,
+            "h": 95,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 388,
+            "y": 546,
+            "w": 300,
+            "h": 95,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 388,
+            "y": 784,
+            "w": 300,
+            "h": 95,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": false,
+        "grid": "grid"
+      }
+    },
+    {
+      "name": "laptop",
+      "width": 1366,
+      "height": 768,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 330,
+            "y": 602,
+            "w": 415.640625,
+            "h": 70,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 48,
+            "y": 349.5,
+            "w": 250,
+            "h": 62,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 48,
+            "y": 507.5,
+            "w": 250,
+            "h": 62,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 48,
+            "y": 270.5,
+            "w": 250,
+            "h": 62,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 48,
+            "y": 428.5,
+            "w": 250,
+            "h": 62,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": false,
+        "grid": "grid"
+      }
+    },
+    {
+      "name": "desktop-16-10",
+      "width": 1440,
+      "height": 900,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 330,
+            "y": 693.5,
+            "w": 447.8125,
+            "h": 92,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 48,
+            "y": 407.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 48,
+            "y": 607.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 48,
+            "y": 307.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 48,
+            "y": 507.5,
+            "w": 250,
+            "h": 76,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": true,
+        "grid": "grid"
+      }
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 250,
+            "y": 818,
+            "w": 486,
+            "h": 78,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 32,
+            "y": 454,
+            "w": 190,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 32,
+            "y": 656,
+            "w": 190,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 32,
+            "y": 353,
+            "w": 190,
+            "h": 76,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 32,
+            "y": 555,
+            "w": 190,
+            "h": 76,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": true,
+        "grid": "grid"
+      }
+    },
+    {
+      "name": "portrait",
+      "width": 390,
+      "height": 844,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 22,
+            "y": 508.5,
+            "w": 346,
+            "h": 74,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 204,
+            "y": 651.5,
+            "w": 164,
+            "h": 51,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 204,
+            "y": 719.5,
+            "w": 164,
+            "h": 51,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 22,
+            "y": 651.5,
+            "w": 164,
+            "h": 51,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 22,
+            "y": 719.5,
+            "w": 164,
+            "h": 51,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": true,
+        "grid": "flex"
+      }
+    },
+    {
+      "name": "landscape",
+      "width": 844,
+      "height": 390,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 188,
+            "y": 271,
+            "w": 281.640625,
+            "h": 54,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 25,
+            "y": 171.5,
+            "w": 145,
+            "h": 48,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 25,
+            "y": 291.5,
+            "w": 145,
+            "h": 48,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 25,
+            "y": 111.5,
+            "w": 145,
+            "h": 48,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 25,
+            "y": 231.5,
+            "w": 145,
+            "h": 48,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": true,
+        "grid": "grid"
+      }
+    },
+    {
+      "name": "small-phone",
+      "width": 320,
+      "height": 568,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "play",
+            "x": 18,
+            "y": 299,
+            "w": 284,
+            "h": 62,
+            "inBounds": true
+          },
+          {
+            "id": "openShop",
+            "x": 168,
+            "y": 398.5,
+            "w": 134,
+            "h": 48,
+            "inBounds": true
+          },
+          {
+            "id": "openPrefs",
+            "x": 168,
+            "y": 459.5,
+            "w": 134,
+            "h": 48,
+            "inBounds": true
+          },
+          {
+            "id": "customize",
+            "x": 18,
+            "y": 398.5,
+            "w": 134,
+            "h": 48,
+            "inBounds": true
+          },
+          {
+            "id": "profile",
+            "x": 18,
+            "y": 459.5,
+            "w": 134,
+            "h": 48,
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true,
+        "scrollable": true,
+        "grid": "flex"
+      }
+    },
+    {
+      "name": "small-safe",
+      "width": 320,
+      "height": 568,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "safe-controls",
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true
+      },
+      "note": "Synthetic safe-area stress values, not physical-device certification"
+    },
+    {
+      "name": "landscape-safe",
+      "width": 844,
+      "height": 390,
+      "home": {
+        "overflow": false,
+        "controls": [
+          {
+            "id": "safe-controls",
+            "inBounds": true
+          }
+        ]
+      },
+      "shop": {
+        "inBounds": true,
+        "closeVisible": true
+      },
+      "note": "Synthetic safe-area stress values, not physical-device certification"
+    }
+  ],
+  "checks": {
+    "parallaxAndFixedPlayTarget": true,
+    "categoryFiltering": true,
+    "filteredPricesInsideCards": true,
+    "samplePurchaseOnce": true,
+    "pendingCancelNoCharge": true,
+    "insufficientNoMutation": true,
+    "focusRestored": true,
+    "rapidOpenCloseClean": true,
+    "reducedStops": true,
+    "lowAmbientStopped": true,
+    "disposed": true
+  },
+  "diagnostics": {
+    "before": {
+      "near": "translate3d(0.43px, 0.44px, 0px)",
+      "rect": {
+        "x": 330,
+        "y": 602,
+        "width": 415.640625,
+        "height": 70,
+        "top": 602,
+        "right": 745.640625,
+        "bottom": 672,
+        "left": 330
+      }
+    },
+    "after": {
+      "near": "translate3d(18.39px, -14.74px, 0px)",
+      "rect": {
+        "x": 330,
+        "y": 602,
+        "width": 415.640625,
+        "height": 70,
+        "top": 602,
+        "right": 745.640625,
+        "bottom": 672,
+        "left": 330
+      }
+    },
+    "success": {
+      "frames": 121,
+      "rafScheduled": false,
+      "activeAnimations": 1,
+      "peakAnimations": 1,
+      "balance": 330,
+      "pending": false,
+      "category": "all",
+      "reduced": false,
+      "quality": "high",
+      "owned": [
+        "core_ring",
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [
+        "shop",
+        "inspect"
+      ],
+      "disposed": false
+    },
+    "canceled": {
+      "frames": 121,
+      "rafScheduled": false,
+      "activeAnimations": 0,
+      "peakAnimations": 2,
+      "balance": 330,
+      "pending": false,
+      "category": "all",
+      "reduced": false,
+      "quality": "high",
+      "owned": [
+        "core_ring",
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [
+        "shop"
+      ],
+      "disposed": false
+    },
+    "reduced1": {
+      "frames": 162,
+      "rafScheduled": false,
+      "activeAnimations": 0,
+      "peakAnimations": 2,
+      "balance": 20,
+      "pending": false,
+      "category": "all",
+      "reduced": true,
+      "quality": "high",
+      "owned": [
+        "core_ring",
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [],
+      "disposed": false
+    },
+    "reduced2": {
+      "frames": 162,
+      "rafScheduled": false,
+      "activeAnimations": 0,
+      "peakAnimations": 2,
+      "balance": 20,
+      "pending": false,
+      "category": "all",
+      "reduced": true,
+      "quality": "high",
+      "owned": [
+        "core_ring",
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [],
+      "disposed": false
+    },
+    "low": {
+      "frames": 163,
+      "rafScheduled": false,
+      "activeAnimations": 0,
+      "peakAnimations": 2,
+      "balance": 20,
+      "pending": false,
+      "category": "all",
+      "reduced": false,
+      "quality": "low",
+      "owned": [
+        "core_ring",
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [],
+      "disposed": false
+    },
+    "disposed": {
+      "frames": 163,
+      "rafScheduled": false,
+      "activeAnimations": 0,
+      "peakAnimations": 2,
+      "balance": 20,
+      "pending": false,
+      "category": "all",
+      "reduced": false,
+      "quality": "low",
+      "owned": [
+        "core_ring",
+        "core_default",
+        "trail_default"
+      ],
+      "parallax": {
+        "x": 0,
+        "y": 0
+      },
+      "openDialogs": [],
+      "disposed": true
+    }
+  },
+  "scope": "Real browser DOM prototype and local sample states. Not Roblox engine, physical-device, GPU/FPS or live-purchase certification."
+}
