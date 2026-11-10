@@ -8,7 +8,8 @@ local ProfileStore = {}
 ProfileStore.__index = ProfileStore
 
 -- Injected store and clock make failure/retry/session behavior testable in Studio.
-function ProfileStore.new(store: any, clock: (() -> number)?, owner: string?)
+function ProfileStore.new(store: any, clock: (() -> number)?, owner: string?, options: any?)
+	local opts = options or {}
 	return setmetatable({
 		store = store,
 		clock = clock or os.time,
@@ -17,7 +18,24 @@ function ProfileStore.new(store: any, clock: (() -> number)?, owner: string?)
 		busy = {},
 		closing = {},
 		stopped = false,
+		wait = opts.wait or task.wait,
 	}, ProfileStore)
+end
+-- Only idempotent lease operations may retry an ambiguous network error.
+-- Generic transaction callbacks may not: a timeout can follow a committed grant.
+function ProfileStore:_leaseUpdate(key: string, callback: (any) -> any): any
+	for attempt = 1, 3 do
+		local ok, result = pcall(function()
+			return self.store:UpdateAsync(key, callback)
+		end)
+		if ok then
+			return result
+		end
+		if attempt < 3 then
+			self.wait(attempt * 0.25)
+		end
+	end
+	error("Lease storage unavailable")
 end
 function ProfileStore:_serial(userId: number, operation: () -> (boolean, string)): (boolean, string)
 	local deadline = os.clock() + 15
@@ -31,6 +49,9 @@ function ProfileStore:_serial(userId: number, operation: () -> (boolean, string)
 	local ok, success, code = pcall(operation)
 	self.busy[userId] = nil
 	if not ok then
+		-- The remote write may have committed before its response failed. Hide
+		-- the old cache until a successful load reconciles durable truth.
+		self.cache[userId] = nil
 		return false, "DATA_UNAVAILABLE"
 	end
 	return success, code
@@ -41,7 +62,7 @@ function ProfileStore:load(userId: number): (boolean, string)
 			return false, "CLOSING"
 		end
 		local reason = "DATA_UNAVAILABLE"
-		local result = self.store:UpdateAsync("u_" .. userId, function(raw: any)
+		local result = self:_leaseUpdate("u_" .. userId, function(raw: any)
 			-- UpdateAsync may rerun this pure callback. Do not grant effects here.
 			local profile, problem = Schema.migrate(raw)
 			if not profile then
@@ -124,7 +145,7 @@ end
 function ProfileStore:release(userId: number): (boolean, string)
 	self.closing[userId] = true
 	local success, code = self:_serial(userId, function()
-		local result = self.store:UpdateAsync("u_" .. userId, function(raw: any)
+		local result = self:_leaseUpdate("u_" .. userId, function(raw: any)
 			if type(raw) ~= "table" or not raw.lease or raw.lease.owner ~= self.owner then
 				return nil
 			end

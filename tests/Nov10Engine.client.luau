@@ -48,6 +48,7 @@ end)
 local fired = false
 local rematched = false
 local first = nil
+local winnerVisibleSince = nil
 local deadline = os.clock() + 85
 while os.clock() < deadline do
 	local s = probe:Invoke("Snapshot")
@@ -81,7 +82,17 @@ while os.clock() < deadline do
 		elseif s.phase == "Final" then
 			result.final = true
 			local card = gui.SafeArea.Match.MatchPresentation.ChampionCard
-			result.winnerPresentation = card.Visible and #card.Headline.Text > 0
+			-- Start() intentionally clears the old card while awaiting rematch.
+			-- Preserve evidence of a sustained, actually visible first result;
+			-- do not overwrite it from the stale Final snapshot during that wait.
+			if card.Visible and #card.Headline.Text > 0 and not rematched then
+				winnerVisibleSince = winnerVisibleSince or os.clock()
+				if os.clock() - winnerVisibleSince >= 0.3 then
+					result.winnerPresentation = true
+				end
+			elseif not result.winnerPresentation then
+				winnerVisibleSince = nil
+			end
 		end
 		if RS:GetAttribute("Nov10Rematch") and not rematched then
 			rematched = true

@@ -191,6 +191,8 @@ return function()
 		return Stats.time(x, "clock", 30)
 	end), "Save failure reported")
 	store.fail = false
+	check(a:snapshot(12) == nil, "Uncertain write hides stale time totals")
+	check(a:load(12), "Reconcile after failed save before replaying idempotent session time")
 	a:transact(12, function(x)
 		return Stats.time(x, "clock", 30)
 	end)

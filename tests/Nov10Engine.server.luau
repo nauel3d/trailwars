@@ -178,7 +178,16 @@ while os.clock() < deadline do
 			flags.rematch = true
 		end
 	end)
-	if flags.final then
+	-- A server-side Final is not proof that either client rendered results.
+	-- Do not tell clients to clear their result screens until BOTH acknowledged
+	-- the real winner card. This also makes a missing Final packet fail visibly.
+	local bothSawFinal = count(reports) == 2
+	for _, r in reports do
+		if not r.final or (not args.renderControl and not r.winnerPresentation) then
+			bothSawFinal = false
+		end
+	end
+	if flags.final and bothSawFinal then
 		RS:SetAttribute("Nov10Rematch", true)
 	end
 	local bothRematched = count(reports) == 2
