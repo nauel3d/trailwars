@@ -1,0 +1,34 @@
+[
+  {
+    "cue": "press",
+    "seconds": 0.07
+  },
+  {
+    "cue": "go",
+    "seconds": 0.2
+  },
+  {
+    "cue": "jump",
+    "seconds": 0.19
+  },
+  {
+    "cue": "launch",
+    "seconds": 0.13
+  },
+  {
+    "cue": "hit",
+    "seconds": 0.08498866213151927
+  },
+  {
+    "cue": "crash",
+    "seconds": 0.15
+  },
+  {
+    "cue": "rank",
+    "seconds": 0.18997732426303854
+  },
+  {
+    "cue": "victory",
+    "seconds": 0.51
+  }
+]
