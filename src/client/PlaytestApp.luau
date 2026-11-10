@@ -106,6 +106,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	local acc = Stepper.new(Config.Step, Config.MaxCatchupSteps, Config.MaxBacklogSeconds)
 	local mode = "Home"
 	local panelClock = 0
+	local suppressFinalSeries = nil
+	local lastRenderPhase = nil
 	local debugTurn: number? = nil
 	local nextRound = 0
 	local left = scope:button(screen, "Left", "◀", false, function() end)
@@ -270,7 +272,13 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	end
 	start = function()
 		Cues.stop(gui)
-		presentation.enter()
+		presentation.hide()
+		suppressFinalSeries = if transport
+				and transport.state
+				and transport.state.phase == "Final"
+			then transport.state.seriesId
+			else nil
+		input.enabled = false
 		lastUIKey = nil
 		clearHome()
 		mode = "Match"
@@ -291,13 +299,21 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			}, nil, "practice-" .. nextRound)
 		end
 		arrange()
+		replay.root.Visible = false
+		skip.root.Visible = false
+		board.root.Visible = false
+		pilot.Visible = false
+		center.Text = "FINDING PLAYERS…"
+		presentation.enter()
 	end
 	local function paint(state: any)
 		snapshot = state
 		if not presentationEnabled then
 			return
 		end -- Studio-only diagnostic control.
-		renderer:roster(state.players)
+		if state.phase ~= "Queue" then
+			renderer:roster(state.players)
+		end
 		if round then
 			local delta = {}
 			for i = renderer.consumed + 1, #round.sim.index.segments do
@@ -305,7 +321,9 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			end
 			renderer:append(delta)
 		end
-		renderer:draw(state.players)
+		if state.phase ~= "Queue" then
+			renderer:draw(state.players)
+		end
 		renderer:events(state.roundId, state.visualEvents or {})
 		write(feedback, "Text", renderer:feedback())
 		renderer:projectiles(state.powers.projectiles)
@@ -385,7 +403,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		end
 		write(center, "Text", if state.phase == "Queue" then "FINDING PLAYERS…" else "")
 		local large = results or intermission
-		write(pilot, "Visible", pilotAllowed and me ~= nil and not large)
+		write(pilot, "Visible", pilotAllowed and me ~= nil and not large and state.phase ~= "Queue")
 		board.root.Visible = state.phase ~= "Queue"
 			and (large or (safe.AbsoluteSize.X >= 1000 and safe.AbsoluteSize.Y >= 600))
 		local boardRect = presentation.update(state, me, layout.field, renderer.sprites, powerButtons)
@@ -475,12 +493,28 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		elseif transport then
 			transport:step(dt, debugTurn or input:value())
 			if transport.state then
+				if
+					suppressFinalSeries
+					and transport.state.phase == "Final"
+					and transport.state.seriesId == suppressFinalSeries
+				then
+					return
+				end
+				suppressFinalSeries = nil
 				if transport.reset then
 					renderer:reset()
 					transport.reset = false
 				end
-				renderer:roster(transport.state.players)
-				renderer:append(transport:drain())
+				local segments = transport:drain()
+				if transport.state.phase == "Queue" then
+					if lastRenderPhase ~= "Queue" then
+						renderer:reset()
+					end
+				else
+					renderer:roster(transport.state.players)
+					renderer:append(segments)
+				end
+				lastRenderPhase = transport.state.phase
 				paint(transport.state)
 			else
 				center.Text = "FINDING A ROUND…"

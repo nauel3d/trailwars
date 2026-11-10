@@ -1,0 +1,40 @@
+Results:
+0 errors
+0 warnings
+0 parse errors
+Compiled 13 KLOC into 491 KB bytecode (read 0.03s, parse 0.02s, compile 0.04s)
+C:\Users\User\Documents\Codex\2026-11-09\files-mentioned-by-the-user-trail\outputs\TrailWars\.tools\foundation-tests.generated.luau
+HEADLESS FOUNDATION: 40 assertions passed; official Luau CLI + minimal service/module mocks; NOT Roblox execution
+GAMEPLAY: 19 assertions, 20 six-bot rounds, peak 4656 segments, 32.701s CPU elapsed
+GAMEPLAY EDGES: 242 assertions, 0.064s CPU
+ROUND/LAYOUT: 19 assertions
+MATCH AUTHORITY: 33 assertions
+NETWORK STREAM: 14 assertions; simulated gaps/reorder/resync, not live network throttling
+ISOLATED MATCH SERIES: 161 assertions; original proposed rules, no runtime bootstrap
+NOV10 PLAYTEST: 42 assertions; pure engine/powers/stats integration
+CANDY VISUAL CONTRACT: 173 assertions; deterministic real-engine fixture and presentation bounds
+SNAP LAYOUT: 33 viewport/text-scale cases; 5 visible actions, bounds, 48px targets and no action overlap. Static geometry, NOT engine text/input verification.
+MOTION MODELS: 120 seconds, 16 crashes, 1115 turns, peak 47 trail points; deterministic ranking/final placement/validation passed. Decoration only.
+Building project 'TrailWars'
+Built project to TrailWars.rbxlx
+Building project 'TrailWarsPreview'
+Built project to TrailWarsPreview.rbxlx
+Building project 'TrailWarsLocalGameplay'
+Built project to TrailWarsLocalGameplay.rbxlx
+Building project 'TrailWarsMultiplayerGameplay'
+Built project to TrailWarsMultiplayerGameplay.rbxlx
+Building project 'TrailWarsAutomatedGameplayTests'
+Built project to TrailWarsAutomatedGameplayTests.rbxlx
+Building project 'TrailWarsNov10Playtest'
+Built project to TrailWarsNov10Playtest.rbxlx
+Building project 'TrailWarsNov10EngineTests'
+Built project to TrailWarsNov10EngineTests.rbxlx
+Building project 'TrailWarsCandyCometReview'
+Built project to TrailWarsCandyCometReview.rbxlx
+ARTIFACT BOUNDARY: production excludes dev/stories, tests and temporary fixture; preview includes stories
+GAMEPLAY BOUNDARY: isolated adapter; default Main and engine fixtures excluded
+PLAYTEST BOUNDARY: integrated powers mode; mock adapter; controlled fixtures excluded
+CANDY BOUNDARY: standalone engine replay; art board and benchmark excluded from playable bootstrap
+RESEARCH STRUCTURE: 31 concrete powers + selector/orphan separated; reports complete; series remains opt-in
+PASS: format, lint, 116 Luau files compiled, foundation/gameplay tests, eight builds and artifact boundaries.
+Compile/lint success is not Roblox typechecking or engine/device validation.

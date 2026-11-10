@@ -182,7 +182,7 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 			if not s or not s.art then
 				continue
 			end
-			local size = math.max(7, config.VisualRadius * 2 * scale)
+			local size = math.max(if field.AbsoluteSize.X >= 550 then 10 else 7, config.VisualRadius * 2 * scale)
 			local detailed = size >= 9
 			local jumping = p.jumping == true
 			write(s.core, s.cache, "Position", UDim2.fromScale(p.x / config.Width, p.y / config.Height))

@@ -1,0 +1,1 @@
+{"wallInterval":{"p95Ms":24.443200003588573,"samples":530,"maxMs":34.41930000553839,"meanMs":18.881892075488687},"renderDelta":{"p95Ms":24.512600153684617,"samples":530,"maxMs":34.691501408815387,"meanMs":18.895416415981808},"method":"Normal visible playtest client, real server + three bots, actual keyboard actions; no multiplayer test driver","viewport":"1536, 714.400024"}
