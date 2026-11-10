@@ -40,7 +40,7 @@ return function()
 	backend.repeatCallback = true
 	local a = Store.new(backend, function()
 		return now
-	end, "a")
+	end, "a", { wait = function() end })
 	local b = Store.new(backend, function()
 		return now
 	end, "b")
@@ -86,7 +86,9 @@ return function()
 		return true, "OK"
 	end), "failed persistence rejected")
 	backend.fail = false
-	check(a:snapshot(1).coins == 0, "failed persistence did not update cache")
+	check(a:snapshot(1) == nil, "failed persistence hides ambiguous cached balance")
+	check(a:load(1), "explicit reconciliation recovers confirmed durable data")
+	check(a:snapshot(1).coins == 0, "failed precommit write preserved durable balance")
 	check(
 		a:transact(1, function(p: any)
 			return Economy.roundReward(p, "m1", true)

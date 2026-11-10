@@ -15,6 +15,17 @@ local sessions: any = {}
 local pending = {}
 local departed = {}
 local cursors: any = {}
+local function persist(userId, change)
+	-- Failed writes invalidate cache because the durable result is uncertain.
+	-- Reconcile first, then replay the SAME idempotent stats event/session ID.
+	if not profiles:snapshot(userId) and not profiles:isBusy(userId) then
+		local loaded = profiles:load(userId)
+		if not loaded then
+			return false
+		end
+	end
+	return profiles:transact(userId, change)
+end
 local function enqueue(id, kind, eventId, value)
 	table.insert(pending, { id = id, kind = kind, eventId = eventId, value = value })
 end
@@ -42,7 +53,7 @@ local function flush(p)
 		return
 	end
 	local elapsed = math.floor(os.clock() - session.start)
-	local ok = profiles:transact(p.UserId, function(profile)
+	local ok = persist(p.UserId, function(profile)
 		return Stats.time(profile, session.id, elapsed)
 	end)
 	if ok then
@@ -73,7 +84,7 @@ local function drain()
 	local keep = {}
 	for _, event in pending do
 		local uid = tonumber(event.id:sub(2))
-		local ok = profiles:transact(uid, function(profile)
+		local ok = persist(uid, function(profile)
 			return Stats[event.kind](profile, event.eventId, event.value)
 		end)
 		if not ok then
