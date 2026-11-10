@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "images": [
+    {
+      "src": "home-desktop.png",
+      "loaded": true,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "src": "shop-desktop.png",
+      "loaded": true,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "missing": [],
+  "pageErrors": [],
+  "buttonMaterial": {
+    "pressTransform": "matrix(1, 0, 0, 1, 0, -2)",
+    "releaseTransform": "matrix(1, 0, 0, 1, 0, -7)",
+    "reducedMotionTransition": "0s"
+  },
+  "scope": "Local design review and separate browser button material study only. Not Roblox, native UI fidelity, gameplay, device or purchase certification."
+}

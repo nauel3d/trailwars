@@ -1,0 +1,20 @@
+[
+  {
+    "file": "home-desktop.png",
+    "size": [
+      1672,
+      941
+    ],
+    "sha256": "8b5fcdd3662f29d09cf8077dbd7833591e7db86986963d87d0b7a7b4cbc2e234",
+    "kind": "Generated original visual prototype; not implemented Roblox UI"
+  },
+  {
+    "file": "shop-desktop.png",
+    "size": [
+      1672,
+      941
+    ],
+    "sha256": "044766745ea183a4269059f37b37a4f29010dad285828a3cc46ce92639b51be4",
+    "kind": "Generated original visual prototype; not implemented Roblox UI"
+  }
+]
