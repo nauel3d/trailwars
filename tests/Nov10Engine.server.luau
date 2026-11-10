@@ -183,7 +183,7 @@ while os.clock() < deadline do
 	end
 	local bothRematched = count(reports) == 2
 	for _, r in reports do
-		if not r.rematch then
+		if not r.rematch or not r.clientFrameTiming then
 			bothRematched = false
 		end
 	end
@@ -237,7 +237,14 @@ for _, p in saved do
 end
 for _, p in humans do
 	local r = reports[p.UserId]
-	if not r or not r.active or not r.intermission or not r.final then
+	if
+		not r
+		or not r.active
+		or not r.intermission
+		or not r.final
+		or not r.winnerPresentation
+		or not r.cooldownProgress
+	then
 		ok = false
 		table.insert(errors, "client flow " .. p.Name)
 	end

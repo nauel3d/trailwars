@@ -23,7 +23,16 @@ local result = {
 	rounds = 0,
 	controls = true,
 	rematch = false,
+	winnerPresentation = false,
+	cooldownProgress = true,
 }
+local renderedFrames = {}
+local frameStart = os.clock()
+local frameConnection = game:GetService("RunService").RenderStepped:Connect(function(dt)
+	if os.clock() - frameStart > 1 and #renderedFrames < 3600 then
+		renderedFrames[#renderedFrames + 1] = dt * 1000
+	end
+end)
 local fired = false
 local rematched = false
 local first = nil
@@ -59,6 +68,8 @@ while os.clock() < deadline do
 			result.intermission = true
 		elseif s.phase == "Final" then
 			result.final = true
+			local card = gui.SafeArea.Match.MatchPresentation.ChampionCard
+			result.winnerPresentation = card.Visible and #card.Headline.Text > 0
 		end
 		if RS:GetAttribute("Nov10Rematch") and not rematched then
 			rematched = true
@@ -69,11 +80,28 @@ while os.clock() < deadline do
 		end
 		result.controls = gui.SafeArea.Match.Homing.AbsoluteSize.Y >= 44
 			and gui.SafeArea.Match.Jump.AbsoluteSize.Y >= 44
+		local progress = gui.SafeArea.Match.Jump.Face.ChargeTrack.Charge.Size.X.Scale
+		result.cooldownProgress = result.cooldownProgress and progress >= 0 and progress <= 1
 	end
 	report:FireServer(result)
 	if result.rematch then
 		break
 	end
 	task.wait(0.08)
+end
+frameConnection:Disconnect()
+local total = 0
+for _, ms in renderedFrames do
+	total += ms
+end
+table.sort(renderedFrames)
+if #renderedFrames > 0 then
+	result.clientFrameTiming = {
+		samples = #renderedFrames,
+		meanMs = total / #renderedFrames,
+		p95Ms = renderedFrames[math.ceil(#renderedFrames * 0.95)],
+		maxMs = renderedFrames[#renderedFrames],
+		method = "Actual multiplayer client RenderStepped; includes Studio test overhead",
+	}
 end
 report:FireServer(result)

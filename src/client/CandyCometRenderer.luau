@@ -2,12 +2,12 @@
 -- Optional art layer over the preserved renderer. No movement, collision or scoring logic.
 local Base = require(script.Parent.GameplayRenderer)
 local Art = require(script.Parent.CandyCometArt)
+local Tokens = require(game.ReplicatedStorage.TrailWars.GameplayMotion)
 local Candy = {}
 function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 	local opts = options or {}
 	local renderer = Base.new(field, Kit, config)
-	local originalRoster, originalDraw, originalAppend, originalReset =
-		renderer.roster, renderer.draw, renderer.append, renderer.reset
+	local originalRoster, originalAppend, originalReset = renderer.roster, renderer.append, renderer.reset
 	local ink, paper = Kit.colors.ink, Kit.colors.paper
 	local colors = {
 		Kit.colors.coral,
@@ -22,6 +22,13 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 	local primed = false
 	local fx = {}
 	local accents = {}
+	local freeRockets, rocketState = {}, {}
+	local function write(object, cache, property, value)
+		if cache[property] ~= value then
+			object[property] = value
+			cache[property] = value
+		end
+	end
 	local function reduced()
 		return opts.preferences and opts.preferences.reducedMotion == true
 	end
@@ -73,7 +80,7 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 		cursor = cursor % #fx + 1
 		local f = fx[cursor]
 		f.x, f.y, f.age, f.lethal = x, y, 0, lethal
-		f.duration = if reduced() then 0.32 else if lethal then 0.48 else 0.3
+		f.duration = if reduced() then Tokens.StaticImpact else if lethal then Tokens.Crash else Tokens.Hit
 		f.root.Position = UDim2.fromScale(x / config.Width, y / config.Height)
 		f.root.Visible = true
 		f.stroke.Color = if lethal then ink else color
@@ -103,6 +110,8 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 			end
 			s.color = colors[i]
 			s.number = i
+			s.cache, s.style, s.labelCache, s.artCache = {}, {}, {}, {}
+			s.spawned = elapsed
 			s.core.BackgroundTransparency = 1
 			s.core:FindFirstChildOfClass("UIStroke").Enabled = false
 			s.core.Shine.Visible = false
@@ -125,6 +134,7 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 			s.label.TextWrapped = false
 			s.label.TextTruncate = Enum.TextTruncate.AtEnd
 			s.label.TextSize = 11
+			s.label.AnchorPoint = Vector2.new(0.5, 1)
 			s.label.ZIndex = 8
 			Kit.round(s.label, 5)
 			local accent = Instance.new("Path2D")
@@ -155,52 +165,83 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 		end
 	end
 	function renderer:draw(players)
-		originalDraw(renderer, players)
+		local scale = field.AbsoluteSize.X / config.Width
+		if renderer.lastScale ~= scale then
+			for _, chunk in renderer.chunks do
+				chunk.path.Thickness = math.max(1, config.TrailRadius * 2 * scale)
+			end
+			for _, accent in accents do
+				accent.Thickness = math.max(0.5, config.TrailRadius * 0.55 * scale)
+			end
+			renderer.lastScale = scale
+		end
 		for _, p in players do
 			local s = renderer.sprites[p.id]
 			if not s or not s.art then
 				continue
 			end
-			local size = s.core.AbsoluteSize.X
+			local size = math.max(7, config.VisualRadius * 2 * scale)
 			local detailed = size >= 9
 			local jumping = p.jumping == true
-			s.core.BackgroundTransparency = 1
-			s.art.Rotation = math.deg(p.heading)
-			s.visor.Visible = detailed
-			s.rim.Visible = detailed
-			s.shade.Visible = detailed
-			s.face.Visible = detailed
-			s.spec.Visible = size >= 8
-			s.bodyStroke.Thickness = if detailed then 1.5 else 1.15
-			s.shadow.Visible = not jumping
-			s.jumpRing.Visible = jumping
-			s.jumpStroke.Transparency = if jumping then 0.1 else 1
+			write(s.core, s.cache, "Position", UDim2.fromScale(p.x / config.Width, p.y / config.Height))
+			write(s.core, s.cache, "Size", UDim2.fromOffset(size, size))
+			write(s.core, s.cache, "Visible", p.alive)
+			write(s.art, s.artCache, "Rotation", math.deg(p.heading))
+			if s.detail ~= detailed then
+				s.detail = detailed
+				for _, o in { s.visor, s.rim, s.shade, s.face } do
+					o.Visible = detailed
+				end
+				s.bodyStroke.Thickness = if detailed then 1.5 else 1.15
+			end
+			if s.lastSize ~= size then
+				s.spec.Visible = size >= 8
+				s.lastSize = size
+			end
 			if jumping ~= s.jumping then
 				s.changed = elapsed
 				if s.jumping and p.alive and not reduced() then
 					impact(p.x, p.y, s.color, false, "Landing", false)
 				end
 				s.jumping = jumping
+				s.shadow.Visible = not jumping
+				s.jumpRing.Visible = jumping
+				s.jumpStroke.Transparency = if jumping then 0.1 else 1
 			end
 			local age = elapsed - (s.changed or 0)
-			local lift = if jumping and not reduced() then math.min(1, age / 0.08) * math.min(5, size * 0.3) else 0
-			-- Art-only lift. The root, shadow and server position stay on the ground.
-			s.art.Position = UDim2.new(0.5, 0, 0.5, -lift)
+			local lift = if jumping and not reduced()
+				then math.min(1, age / Tokens.JumpLift) * math.min(5, size * 0.3)
+				else 0
+			write(s.art, s.artCache, "Position", UDim2.new(0.5, 0, 0.5, -lift))
 			local lean = if reduced() or jumping then 0 else (p.turn or 0) * 0.06
-			local shellScale = if detailed then 1.25 else 1
-			s.art.Size = UDim2.fromScale(shellScale + math.abs(lean), shellScale - math.abs(lean))
-			if accents[p.id] then
-				accents[p.id].Visible = p.alive and not jumping
+			local spawn = if reduced()
+				then 1
+				else 1 - 0.2 * (1 - math.clamp((elapsed - s.spawned) / Tokens.Spawn, 0, 1)) ^ 3
+			local shell = if detailed then 1.25 else 1
+			write(
+				s.art,
+				s.artCache,
+				"Size",
+				UDim2.fromScale((shell + math.abs(lean)) * spawn, (shell - math.abs(lean)) * spawn)
+			)
+			if accents[p.id] and s.accentVisible ~= (p.alive and not jumping) then
+				s.accentVisible = p.alive and not jumping
+				accents[p.id].Visible = s.accentVisible
 			end
-			s.label.Text = tostring(s.number)
+			local text = tostring(s.number)
 				.. (if jumping then " · AIR" elseif p.id == opts.selfId then " · YOU" else " · " .. p.name)
-			s.label.Size = UDim2.fromOffset(if field.AbsoluteSize.X < 450 then 54 else 88, 17)
-			-- Labels stay upright and clamp to the field; IDs distinguish every racer without color.
-			local lw = s.label.Size.X.Offset
-			local px = p.x / config.Width * field.AbsoluteSize.X
-			s.label.Position = UDim2.fromOffset(
-				math.clamp(px, lw / 2 + 2, field.AbsoluteSize.X - lw / 2 - 2) - px + size / 2,
-				if p.y / config.Height * field.AbsoluteSize.Y < 24 then size + 20 else -5 - lift
+			write(s.label, s.labelCache, "Text", text)
+			local lw = if field.AbsoluteSize.X < 450 then 54 else 88
+			write(s.label, s.labelCache, "Size", UDim2.fromOffset(lw, 17))
+			local px, py = p.x * scale, p.y * scale
+			write(
+				s.label,
+				s.labelCache,
+				"Position",
+				UDim2.fromOffset(
+					math.clamp(px, lw / 2 + 2, field.AbsoluteSize.X - lw / 2 - 2) - px + size / 2,
+					if py < 24 then size + 20 else -5 - lift
+				)
 			)
 		end
 	end
@@ -209,26 +250,66 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 		local seen = {}
 		for _, q in data do
 			seen[q.id] = true
-			local rocket = renderer.rockets[q.id]
-			if not rocket then
-				rocket = Kit.frame(field, "Rocket")
-				rocket.AnchorPoint = Vector2.new(0.5, 0.5)
-				rocket.ZIndex = 7
-				local turret = q.kind == "Turret"
-				Art.rocket(rocket, Kit, turret)
-				renderer.rockets[q.id] = rocket
-			end
-			local width = math.clamp(23 * field.AbsoluteSize.X / config.Width, 13, 26)
-			rocket.Size = UDim2.fromOffset(width, width * 0.65)
-			rocket.Position = UDim2.fromScale(q.x / config.Width, q.y / config.Height)
-			rocket.Rotation = math.deg(q.heading)
-			rocket.Exhaust.Visible = not reduced()
 		end
 		for id, object in renderer.rockets do
 			if not seen[id] then
-				object:Destroy()
+				object.Visible = false
 				renderer.rockets[id] = nil
+				rocketState[id] = nil
+				table.insert(freeRockets, object)
 			end
+		end
+		for _, q in data do
+			seen[q.id] = true
+			local object = renderer.rockets[q.id]
+			local state = rocketState[q.id]
+			if not object then
+				object = table.remove(freeRockets)
+				if not object then
+					object = Kit.frame(field, "Rocket")
+					object.AnchorPoint = Vector2.new(0.5, 0.5)
+					object.ZIndex = 7
+					Art.rocket(object, Kit, false)
+				end
+				local turret = q.kind == "Turret"
+				object.Stripe.Visible = not turret
+				object.TurretWings.Visible = turret
+				object.Nose.BackgroundColor3 = if turret then Kit.colors.yellow else Kit.colors.coral
+				object.Visible = true
+				state = {
+					x = q.x,
+					y = q.y,
+					fromX = q.x,
+					fromY = q.y,
+					visualX = q.x,
+					visualY = q.y,
+					changed = elapsed,
+					born = elapsed,
+					cache = {},
+				}
+				rocketState[q.id] = state
+				renderer.rockets[q.id] = object
+			end
+			if state.x ~= q.x or state.y ~= q.y then
+				state.fromX, state.fromY = state.visualX, state.visualY
+				state.x, state.y = q.x, q.y
+				state.changed = elapsed
+			end
+			local a = if reduced() then 1 else math.clamp((elapsed - state.changed) / Tokens.ProjectileBlend, 0, 1)
+			state.visualX = state.fromX + (state.x - state.fromX) * a
+			state.visualY = state.fromY + (state.y - state.fromY) * a
+			write(
+				object,
+				state.cache,
+				"Position",
+				UDim2.fromScale(state.visualX / config.Width, state.visualY / config.Height)
+			)
+			write(object, state.cache, "Rotation", math.deg(q.heading))
+			local width = math.clamp(23 * field.AbsoluteSize.X / config.Width, 13, 26)
+			write(object, state.cache, "Size", UDim2.fromOffset(width, width * 0.65))
+			object.Exhaust.Visible = not reduced()
+			local launch = math.clamp((elapsed - state.born) / Tokens.Launch, 0, 1)
+			object.Exhaust.Size = UDim2.fromScale(0.2 + 0.2 * launch, 0.32)
 		end
 	end
 	function renderer:events(roundId, events)
@@ -288,6 +369,7 @@ function Candy.new(field: Frame, Kit: any, config: any, options: any?)
 			a:Destroy()
 		end
 		accents = {}
+		freeRockets, rocketState = {}, {}
 		for _, f in fx do
 			f.root.Visible = false
 		end

@@ -15,6 +15,8 @@ if game:GetService("RunService"):IsStudio() then
 	probe.OnInvoke = function(action, value)
 		if action == "Start" then
 			proof.start()
+		elseif action == "Reduced" then
+			proof.setReducedMotion(value)
 		elseif action == "Steer" then
 			proof.steer(value)
 		elseif action == "Power" then

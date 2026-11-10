@@ -8,6 +8,8 @@ local Stepper = require(RS.TrailWars.FixedStepper)
 local Layout = require(RS.TrailWars.CandyLayout)
 local Input = require(script.Parent.GameplayInput)
 local Renderer = require(script.Parent.CandyCometRenderer)
+local Presentation = require(script.Parent.MatchPresentation)
+local PowerDefs = require(RS.TrailWars.PowerDefinitions)
 local App = {}
 function App.mount(parent: Instance, components: Instance, transport: any?)
 	-- This is a 2D game: unrelated avatar fall damage must not flash over the arena.
@@ -74,6 +76,20 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	center.TextStrokeColor3 = Kit.colors.paper
 	center.TextStrokeTransparency = 0.2
 	local board = Board.mount(screen, Kit, Motion, preferences)
+	local presentation =
+		Presentation.mount(screen, Kit, Motion, preferences, if transport then transport.selfId else "you", pilot)
+	local layout = nil
+	local uiCache = {}
+	local lastUIKey = nil
+	local layoutVersion, lastLayoutVersion = 0, -1
+	local pilotAllowed = false
+	local function write(object, property, value)
+		uiCache[object] = uiCache[object] or {}
+		if uiCache[object][property] ~= value then
+			object[property] = value
+			uiCache[object][property] = value
+		end
+	end
 
 	local round: any = nil
 	local snapshot: any = nil
@@ -96,6 +112,14 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			transport:send("Activate", nil, slot)
 		end)
 		powerButtons[slot].label.TextSize = 16
+		local meter = Kit.frame(powerButtons[slot].face, "ChargeTrack", Kit.colors.ink)
+		meter.Position = UDim2.new(0, 8, 1, -7)
+		meter.Size = UDim2.new(1, -16, 0, 3)
+		Kit.round(meter, 99)
+		local fill = Kit.frame(meter, "Charge", Kit.colors.blue)
+		fill.Size = UDim2.fromScale(0, 1)
+		Kit.round(fill, 99)
+		powerButtons[slot].meter = fill
 		local badge = Kit.frame(powerButtons[slot].face, "PowerBadge")
 		badge.Size = UDim2.fromOffset(26, 24)
 		badge.Position = UDim2.new(0, 10, 0.5, -12)
@@ -150,6 +174,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		Kit.box(safe, { origin.X, origin.Y, area.Width, area.Height })
 		local w, h = area.Width, area.Height
 		local l = Layout.compute(w, h)
+		layout = l
+		layoutVersion += 1
 		Kit.box(field, l.field)
 		local f = l.field
 		Kit.box(fieldFrame, { f[1] - 6, f[2] - 6, f[3] + 12, f[4] + 12 })
@@ -164,10 +190,12 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		status.TextSize = if l.landscape then 12 else 14
 		Kit.box(feedback, l.feedback)
 		feedback.Visible = not l.landscape
-		pilot.Visible = l.desktop or (not l.landscape and h - 144 - (f[2] + f[4] + 44) >= 76)
+		pilotAllowed = l.desktop or (not l.landscape and h - 144 - (f[2] + f[4] + 44) >= 76)
+		pilot.Visible = pilotAllowed
+		uiCache[pilot] = nil
 		if l.desktop then
-			Kit.box(pilot, { w - 212, 380, 192, 76 })
-			Kit.box(feedback, { w - 212, 470, 192, 70 })
+			Kit.box(pilot, { l.standings[1], 380, 192, 76 })
+			Kit.box(feedback, { l.standings[1], 470, 192, 70 })
 		else
 			Kit.box(pilot, { (w - math.min(280, w - 24)) / 2, f[2] + f[4] + 44, math.min(280, w - 24), 76 })
 		end
@@ -178,9 +206,21 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		skip.root.Size = replay.root.Size
 		Kit.box(powerButtons.Homing.root, l.homing)
 		Kit.box(powerButtons.Jump.root, l.jump)
+		for _, button in powerButtons do
+			button.label.TextSize = if w < 360 then 14 else 16
+		end
+		powerButtons.Homing.root.NextSelectionRight = powerButtons.Jump.root
+		powerButtons.Jump.root.NextSelectionLeft = powerButtons.Homing.root
+		powerButtons.Homing.root.NextSelectionDown = left.root
+		powerButtons.Jump.root.NextSelectionDown = right.root
+		left.root.NextSelectionRight = right.root
+		right.root.NextSelectionLeft = left.root
+		left.root.NextSelectionUp = powerButtons.Homing.root
+		right.root.NextSelectionUp = powerButtons.Jump.root
 	end
 	showHome = function()
 		mode = "Home"
+		presentation.hide()
 		screen.Visible = false
 		input.enabled = false
 		input:clear()
@@ -221,6 +261,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		})
 	end
 	start = function()
+		presentation.hide()
+		lastUIKey = nil
 		clearHome()
 		mode = "Match"
 		screen.Visible = true
@@ -253,7 +295,13 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		end
 		renderer:draw(state.players)
 		renderer:events(state.roundId, state.visualEvents or {})
-		feedback.Text = renderer:feedback()
+		write(feedback, "Text", renderer:feedback())
+		renderer:projectiles(state.powers.projectiles)
+		local key = tostring(state.revision) .. ":" .. tostring(state.roundId) .. ":" .. state.phase
+		if key == lastUIKey and layoutVersion == lastLayoutVersion then
+			return
+		end
+		lastUIKey, lastLayoutVersion = key, layoutVersion
 		local me: any = nil
 		local alive = 0
 		for _, p in state.players do
@@ -270,10 +318,10 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		local actor = state.powers and state.powers.actors[selfId]
 		local localSprite = renderer.sprites[selfId]
 		if localSprite then
-			pilotArt.shell.BackgroundColor3 = localSprite.color
-			pilotArt.shade.BackgroundColor3 = localSprite.color:Lerp(Kit.colors.ink, 0.22)
-			pilotArt.face.BackgroundColor3 = localSprite.color
-			pilotArt.rim.BackgroundColor3 = localSprite.color:Lerp(Kit.colors.paper, 0.55)
+			write(pilotArt.shell, "BackgroundColor3", localSprite.color)
+			write(pilotArt.shade, "BackgroundColor3", localSprite.color:Lerp(Kit.colors.ink, 0.22))
+			write(pilotArt.face, "BackgroundColor3", localSprite.color)
+			write(pilotArt.rim, "BackgroundColor3", localSprite.color:Lerp(Kit.colors.paper, 0.55))
 		end
 		portrait.Visible = me ~= nil and me.alive
 		pilotRocket.Visible = actor ~= nil and actor.state == "EliminatedTurret"
@@ -306,55 +354,73 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 				end
 			end
 		end
-		clock.Text = string.format(
-			"ROUND %d · SCORE %d / %d · %d ALIVE",
-			if state.series then state.series.round else 0,
-			score,
-			state.settings.target,
-			alive
+		write(
+			clock,
+			"Text",
+			string.format(
+				"ROUND %d · %d:%02d\n%d ALIVE · SCORE %d/%d",
+				if state.series then state.series.round else 0,
+				math.floor(state.time / 60),
+				math.floor(state.time % 60),
+				alive,
+				score,
+				state.settings.target
+			)
 		)
 		clock.TextSize = if safe.AbsoluteSize.X < 500 then 14 elseif safe.AbsoluteSize.Y < 500 then 16 else 22
-		center.Text = if state.phase == "Queue"
-			then "FINDING PLAYERS…"
-			elseif state.phase == "Countdown" then tostring(state.remaining)
-			else ""
+		write(center, "Text", if state.phase == "Queue" then "FINDING PLAYERS…" else "")
 		local large = results or intermission
-		if large then
-			pilot.Visible = false
-		end
+		write(pilot, "Visible", pilotAllowed and me ~= nil and not large)
 		board.root.Visible = large or (safe.AbsoluteSize.X >= 1000 and safe.AbsoluteSize.Y >= 600)
+		local boardRect = presentation.update(state, me, layout.field, renderer.sprites, powerButtons)
 		if large then
-			local w, h = safe.AbsoluteSize.X, safe.AbsoluteSize.Y
-			local bw = math.min(w - 24, 540)
-			local bh = math.min(h - 134, 340)
-			Kit.box(board.root, { (w - bw) / 2, 60, bw, bh })
-			board.title.Text = if results
-				then "MATCH FINAL · " .. (if state.series and table.find(state.series.winnerIds, selfId)
-					then "YOU WIN!"
-					else "PLACEMENTS")
-				else "ROUND COMPLETE · NEXT IN " .. state.intermission
+			Kit.box(board.root, boardRect)
+			write(board.title, "Text", if results then "FINAL PLACEMENTS" else "ROUND SCORE REVEAL")
 		else
-			Kit.box(board.root, Layout.compute(safe.AbsoluteSize.X, safe.AbsoluteSize.Y).standings)
-			board.title.Text = "SCORES"
+			Kit.box(board.root, layout.standings)
+			write(board.title, "Text", "LIVE STANDINGS")
 		end
 		if state.series then
-			board.set(state.series.players, state.series.ledger, large)
+			board.set(state.series.players, state.series.ledger, large, renderer.sprites, state.settings.target)
 		end
 		for slot, button in powerButtons do
-			button.root.Visible = not large
+			write(button.root, "Visible", not large)
 			local cooldown = if actor then actor[slot] else 0
-			button.label.Text = string.upper(slot)
-				.. (if cooldown > 0 then string.format("\n%.1fs", cooldown) else "\nREADY")
 			local enabled = active and me and me.alive and cooldown <= 0
-			button.root.Active = enabled == true
-			button.root.Selectable = enabled == true
-			button.face.BackgroundColor3 = if enabled
-				then (if slot == "Jump" then Kit.colors.blue else Kit.colors.coral)
-				else Kit.colors.paper
-			button.label.TextColor3 = if enabled then Kit.colors.paper else Kit.colors.ink
-			button.label.TextTransparency = if enabled then 0 else 0.4
+			local powerState = if not active
+				then "Waiting"
+				elseif not me or not me.alive then "Out"
+				elseif cooldown > 0 then "Charging"
+				else "Ready"
+			if button.powerState ~= powerState then
+				button.powerState = powerState
+				button:setState(if enabled then "Default" else "Disabled")
+				button.root:SetAttribute("PowerState", powerState)
+				-- setState settles press depth, so invalidate only the overridden style keys.
+				uiCache[button.face] = nil
+				uiCache[button.label] = nil
+			end
+			write(
+				button.label,
+				"Text",
+				string.upper(slot)
+					.. "\n"
+					.. (if powerState == "Charging" then string.format("%.1fs", cooldown) else string.upper(powerState))
+			)
+			write(
+				button.face,
+				"BackgroundColor3",
+				if enabled then (if slot == "Jump" then Kit.colors.blue else Kit.colors.coral) else Kit.colors.paper
+			)
+			write(button.label, "TextColor3", if enabled then Kit.colors.paper else Kit.colors.ink)
+			write(button.label, "TextTransparency", if enabled then 0 else 0.25)
+			write(
+				button.meter,
+				"Size",
+				UDim2.fromScale(math.clamp(1 - cooldown / (PowerDefs[slot].CooldownTicks / 50), 0, 1), 1)
+			)
+			write(button.meter, "BackgroundColor3", if enabled then Kit.colors.paper else Kit.colors.blue)
 		end
-		renderer:projectiles(state.powers.projectiles)
 
 		gui:SetAttribute("Phase", state.phase)
 		gui:SetAttribute("Tick", state.tick)
@@ -397,6 +463,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 	scope:connect(GuiService:GetPropertyChangedSignal("ReducedMotionEnabled"), function()
 		preferences.reducedMotion = GuiService.ReducedMotionEnabled
 		board.setReducedMotion(preferences.reducedMotion)
+		presentation.setReduced(preferences.reducedMotion)
+		lastUIKey = nil
 	end)
 	arrange()
 	showHome()
@@ -405,6 +473,8 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 		setReducedMotion = function(value)
 			preferences.reducedMotion = value == true
 			board.setReducedMotion(preferences.reducedMotion)
+			presentation.setReduced(preferences.reducedMotion)
+			lastUIKey = nil
 		end,
 		start = start,
 		home = showHome,
@@ -420,6 +490,7 @@ function App.mount(parent: Instance, components: Instance, transport: any?)
 			input:destroy()
 			scope:destroy()
 			board.destroy()
+			presentation.destroy()
 			renderer:destroy()
 			clearHome()
 			if transport then

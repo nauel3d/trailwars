@@ -39,7 +39,7 @@ return function(parent: Instance)
 		peakSegments = peak,
 		samples = #captures,
 	}
-	for _, mode in { "GameplayRenderer", "CandyFullActive", "CandyCometRenderer" } do
+	for _, mode in { "GameplayRenderer", "CandyApprovedRenderer", "CandyFullActive", "CandyCometRenderer" } do
 		local field = Kit.frame(parent, "BenchmarkField")
 		field.Size = UDim2.fromOffset(1000, 1000 * 800 / 1300)
 		field.Visible = false

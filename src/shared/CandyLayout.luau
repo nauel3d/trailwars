@@ -2,6 +2,8 @@
 -- Presentation only. The 1300:800 authoritative world is never stretched.
 local Layout = {}
 function Layout.compute(w: number, h: number)
+	local origin = math.max(0, (w - 1880) / 2)
+	w = math.min(w, 1880)
 	local landscape = w > h and h < 500
 	local desktop = w >= 1000 and h >= 600
 	local pad = if w < 500 or landscape then 8 else 20
@@ -31,7 +33,7 @@ function Layout.compute(w: number, h: number)
 		jump = { (w + 12) / 2, h - 136, bw, 54 }
 		status = { cw + pad + 8, h - 70, w - 2 * (cw + pad + 8), 54 }
 	end
-	return {
+	local result = {
 		field = field,
 		pad = pad,
 		landscape = landscape,
@@ -46,5 +48,11 @@ function Layout.compute(w: number, h: number)
 		feedback = if desktop then { w - 212, header + 320, 192, 64 } else { field[1], field[2] + fh + 10, fw, 28 },
 		standings = { w - 212, header + 16, 192, 280 },
 	}
+	for _, rect in result do
+		if type(rect) == "table" then
+			rect[1] += origin
+		end
+	end
+	return result
 end
 return Layout

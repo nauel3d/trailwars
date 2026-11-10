@@ -16,6 +16,24 @@
         },
         "CandyArtBoard": {
           "$path": "dev/CandyArtBoard.luau"
+        },
+        "CandyApprovedRenderer": {
+          "$path": "dev/CandyApprovedRenderer.luau"
+        },
+        "CandyApprovedArt": {
+          "$path": "dev/CandyApprovedArt.luau"
+        },
+        "CandyApprovedApp": {
+          "$path": "dev/CandyApprovedApp.luau"
+        },
+        "CandyApprovedLayout": {
+          "$path": "dev/CandyApprovedLayout.luau"
+        },
+        "CandyApprovedScoreboard": {
+          "$path": "dev/CandyApprovedScoreboard.luau"
+        },
+        "CandyFrameProfile": {
+          "$path": "dev/CandyFrameProfile.luau"
         }
       },
       "TrailWarsDev": {

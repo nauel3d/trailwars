@@ -8,7 +8,20 @@ return function()
 		assert(v, message)
 		n += 1
 	end
-	for _, size in { { 1672, 941 }, { 390, 844 }, { 320, 568 }, { 749, 381 }, { 749, 311 }, { 320, 498 } } do
+	for _, size in
+		{
+			{ 1672, 941 },
+			{ 390, 844 },
+			{ 320, 568 },
+			{ 749, 381 },
+			{ 749, 311 },
+			{ 320, 498 },
+			{ 2560, 1080 },
+			{ 3440, 1440 },
+			{ 768, 1024 },
+			{ 1024, 768 },
+		}
+	do
 		local w, h = size[1], size[2]
 		local l = Layout.compute(w, h)
 		check(math.abs(l.field[3] / l.field[4] - 1300 / 800) < 1e-8, "World aspect retained")

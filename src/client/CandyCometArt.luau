@@ -52,11 +52,10 @@ function Art.rocket(parent: Instance, Kit: any, turret: boolean)
 	Kit.round(nose, 99)
 	local window = part("Window", ink, 0.46, 0.35, 0.17, 0.3, 9)
 	Kit.round(window, 99)
-	if turret then
-		part("TurretWings", color, 0.12, -0.04, 0.16, 1.08, 8)
-	else
-		part("Stripe", color, 0.2, 0.28, 0.12, 0.44, 9)
-	end
+	local wings = part("TurretWings", color, 0.12, -0.04, 0.16, 1.08, 8)
+	local stripe = part("Stripe", color, 0.2, 0.28, 0.12, 0.44, 9)
+	wings.Visible = turret
+	stripe.Visible = not turret
 	return flame
 end
 return Art
